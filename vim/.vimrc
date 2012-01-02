@@ -1,7 +1,26 @@
-" Use pathogen to easily modify the runtime path to include all
-" plugins under the ~/.vim/bundle directory
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+Bundle 'majutsushi/tagbar.git'
+Bundle 'scrooloose/syntastic.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+Bundle 'PDV'
 
 " change the mapleader from \ to ,
 let mapleader=","
@@ -41,6 +60,9 @@ set nobackup
 set noswapfile
 
 set pastetoggle=<F2>
+
+" Enable Tags bar in the side
+nmap <F8> :TagbarToggle<CR>
 
 filetype plugin indent on
 autocmd filetype python set expandtab
