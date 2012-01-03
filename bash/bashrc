@@ -99,6 +99,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # load machine specific settings here
-if [ -f ~/.bash_specific]; then
+if [ -f ~/.bash_specific ]; then
     . ~/.bash_specific
 fi
