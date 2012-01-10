@@ -25,10 +25,12 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 " Has a smart status line
 Bundle 'SmartusLine' 
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
 
-" Color Scheme
+" Color Schemes
+" Programmer Color scheme
 Bundle 'pw' 
-" Color scheme
 
 " change the mapleader from \ to ,
 let mapleader=","
@@ -36,6 +38,10 @@ let mapleader=","
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Command T mappings. Who needs Textmate anymore ;)
+nnoremap <silent> <Leader>t :CommandT<CR>
+nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 set hidden
 
