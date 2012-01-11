@@ -32,22 +32,15 @@ Bundle 'git://git.wincent.com/command-t.git'
 " Programmer Color scheme
 Bundle 'pw' 
 
-" change the mapleader from \ to ,
-let mapleader=","
 
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" Show diff of changes that have been made after the file has been opended
+if !exists(":DiffOrig")
+	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+             \ | wincmd p | diffthis
+endif
 
-" Command T mappings. Who needs Textmate anymore ;)
-nnoremap <silent> <Leader>t :CommandT<CR>
-nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
-" Highlight current line and column
-au WinLeave * set nocursorline " nocursorcolumn
-au WinEnter * set cursorline " cursorcolumn
-set cursorline " cursorcolumn
-
+" Common settings
 set hidden
 
 set nowrap        " don't wrap lines
@@ -78,11 +71,33 @@ set noerrorbells         " don't beep
 set nobackup
 set noswapfile
 
+" Highlight current line and column
+au WinLeave * set nocursorline " nocursorcolumn
+au WinEnter * set cursorline " cursorcolumn
+set cursorline " cursorcolumn
+
+
+" Key mappings
+" ------------
+"  
+" Paste without messing up formatting.
 set pastetoggle=<F2>
+
+" change the mapleader from \ to ,
+let mapleader=","
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+" Command T mappings. Who needs Textmate anymore ;)
+nnoremap <silent> <Leader>t :CommandT<CR>
+nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 " Enable Tags bar in the side
 nmap <F8> :TagbarToggle<CR>
 
+" File type specific settings
 filetype plugin indent on
 autocmd filetype python set expandtab
 
