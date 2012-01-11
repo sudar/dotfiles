@@ -43,6 +43,11 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <silent> <Leader>t :CommandT<CR>
 nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
+" Highlight current line and column
+au WinLeave * set nocursorline " nocursorcolumn
+au WinEnter * set cursorline " cursorcolumn
+set cursorline " cursorcolumn
+
 set hidden
 
 set nowrap        " don't wrap lines
@@ -81,7 +86,7 @@ nmap <F8> :TagbarToggle<CR>
 filetype plugin indent on
 autocmd filetype python set expandtab
 
-
+" color schemes
 if &t_Co >= 256 || has("gui_running")
    colorscheme mustang
 endif
