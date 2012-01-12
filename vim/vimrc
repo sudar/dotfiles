@@ -19,12 +19,17 @@ Bundle 'majutsushi/tagbar.git'
 Bundle 'scrooloose/syntastic.git'
 " Zen Coding. Expands HTML apprevations
 Bundle 'mattn/zencoding-vim.git' 
+" Automtically close tags
+Bundle 'Raimondi/delimitMate'
 
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 " Has a smart status line
 Bundle 'SmartusLine' 
+" Automatically highlight HTML tags 
+Bundle 'MatchTag'
+
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 
