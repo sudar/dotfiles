@@ -1,6 +1,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+" Vundle configurations.
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -21,6 +22,8 @@ Bundle 'scrooloose/syntastic.git'
 Bundle 'mattn/zencoding-vim.git' 
 " Automtically close tags
 Bundle 'Raimondi/delimitMate'
+" Show diff of the current file from scms. Who needs Tortoise svn any more ;)
+Bundle 'sudar/vim-scmdiff.git'
 
 " vim-scripts repos
 Bundle 'L9'
