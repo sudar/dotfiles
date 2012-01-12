@@ -94,6 +94,10 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nnoremap <silent> <Leader>t :CommandT<CR>
 nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
+" Mapping for tabs
+nmap <silent> <Leader>h :tabp<CR>
+nmap <silent> <Leader>l :tabn<CR>
+
 " Enable Tags bar in the side
 nmap <F8> :TagbarToggle<CR>
 
