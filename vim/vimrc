@@ -9,37 +9,90 @@ call vundle#rc()
 " required! 
 Bundle 'gmarik/vundle'
 
-" My Bundles here:
 " original repos on github
+" ---------------------------------------------------------------------------
+" Git wrapper for vim. Who needs git bash any more ;)
 Bundle 'tpope/vim-fugitive'
+
+" Navigate the document like a pro. Who needs a mouse any more ;)
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
+
 " Opens a toolbar with method and class indexes
 Bundle 'majutsushi/tagbar.git' 
+" Enable Tags bar in the side
+nmap <F8> :TagbarToggle<CR>
+
+" Syntac Highlighter
 Bundle 'scrooloose/syntastic.git'
-" Zen Coding. Expands HTML apprevations
+let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
+nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
+
+" Zen Coding. Expands HTML apprevations. Need to decide between one of these
 Bundle 'mattn/zencoding-vim.git' 
-" Automtically close tags
+let g:use_zen_complete_tag = 1 " for tag autocomplete.
+" Similar to Zen coding. But uses <c-e> as shortcut
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" Automtically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
+
 " Show diff of the current file from scms. Who needs Tortoise svn any more ;)
 Bundle 'sudar/vim-scmdiff.git'
 
+" Snippet manager
+Bundle 'msanders/snipmate.vim'
+
 " vim-scripts repos
+" ---------------------------------------------------------------------------
+" Makes serarching easier
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+
 " Has a smart status line
 Bundle 'SmartusLine' 
+
 " Automatically highlight HTML tags 
 Bundle 'MatchTag'
 
+" HTML Source explorer
+Bundle 'html-source-explorer'
+
+" Tag generation and syntax highlights
+Bundle 'easytags.vim'
+
 " non github repos
+" ---------------------------------------------------------------------------
+" Shows the list of files in the current directory. Who needs. Textmate any more ;)
+" Make sure you have ruby mappings enabled in vim and compile the C extention
+" after installing this Plugin
 Bundle 'git://git.wincent.com/command-t.git'
+" Command T mappings. Who needs Textmate anymore ;)
+nnoremap <silent> <Leader>t :CommandT<CR>
+nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 " Color Schemes
+" ---------------------------------------------------------------------------
+" Color Schemes explorer
+Bundle 'Color-Scheme-Explorer'
+
 " Programmer Color scheme
 Bundle 'pw' 
 
+" Light ColorScheme
+Bundle 'lightdiff'
+
+Bundle 'Eddie.vim'
+Bundle 'desert256.vim'
+Bundle 'ciaranm/inkpot'
+Bundle '256-grayvim'
+
+" Set the default color scheme
+colorscheme desert256
+
+" color schemes
+if &t_Co >= 256 || has("gui_running")
+   colorscheme mustang
+endif
 
 " Show diff of changes that have been made after the file has been opended
 if !exists(":DiffOrig")
@@ -98,25 +151,14 @@ let mapleader=","
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" Command T mappings. Who needs Textmate anymore ;)
-nnoremap <silent> <Leader>t :CommandT<CR>
-nnoremap <silent> <Leader>b :CommandTBuffer<CR>
-
 " Mapping for tabs
 nmap <silent> <Leader>h :tabp<CR>
 nmap <silent> <Leader>l :tabn<CR>
-
-" Enable Tags bar in the side
-nmap <F8> :TagbarToggle<CR>
 
 " File type specific settings
 filetype plugin indent on
 autocmd filetype python set expandtab
 
-" color schemes
-if &t_Co >= 256 || has("gui_running")
-   colorscheme mustang
-endif
 
 if &t_Co > 2 || has("gui_running")
    	" switch syntax highlighting on, when the terminal has colors
