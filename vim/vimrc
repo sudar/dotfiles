@@ -22,18 +22,18 @@ Bundle 'majutsushi/tagbar.git'
 " Enable Tags bar in the side
 nmap <F8> :TagbarToggle<CR>
 
-" Syntac Highlighter
+" Syntax Highlighter
 Bundle 'scrooloose/syntastic.git'
 let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
 nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 
-" Zen Coding. Expands HTML apprevations. Need to decide between one of these
+" Zen Coding. Expands HTML abbreviations. Need to decide between one of these
 Bundle 'mattn/zencoding-vim.git' 
-let g:use_zen_complete_tag = 1 " for tag autocomplete.
+let g:use_zen_complete_tag = 1 " for tag auto complete.
 " Similar to Zen coding. But uses <c-e> as shortcut
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-" Automtically close tags, quotes etc
+" Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
 
 " Show diff of the current file from scms. Who needs Tortoise svn any more ;)
@@ -44,7 +44,7 @@ Bundle 'msanders/snipmate.vim'
 
 " vim-scripts repos
 " ---------------------------------------------------------------------------
-" Makes serarching easier
+" Makes searching easier
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 
@@ -60,10 +60,13 @@ Bundle 'html-source-explorer'
 " Tag generation and syntax highlights
 Bundle 'easytags.vim'
 
+" Bulk Comments. 
+Bundle 'comments.vim'
+
 " non github repos
 " ---------------------------------------------------------------------------
 " Shows the list of files in the current directory. Who needs. Textmate any more ;)
-" Make sure you have ruby mappings enabled in vim and compile the C extention
+" Make sure you have ruby mappings enabled in vim and compile the C extension
 " after installing this Plugin
 Bundle 'git://git.wincent.com/command-t.git'
 " Command T mappings. Who needs Textmate anymore ;)
@@ -91,10 +94,10 @@ colorscheme desert256
 
 " color schemes
 if &t_Co >= 256 || has("gui_running")
-   colorscheme mustang
+   colorscheme Eddie 
 endif
 
-" Show diff of changes that have been made after the file has been opended
+" Show diff of changes that have been made after the file has been opened
 if !exists(":DiffOrig")
 	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
              \ | wincmd p | diffthis
@@ -108,7 +111,7 @@ set nowrap        " don't wrap lines
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start
                   " allow backspacing over everything in insert mode
-set autoindent    " always set autoindenting on
+set autoindent    " always set auto indenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
 set shiftwidth=4  " number of spaces to use for autoindenting
@@ -154,6 +157,16 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " Mapping for tabs
 nmap <silent> <Leader>h :tabp<CR>
 nmap <silent> <Leader>l :tabn<CR>
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+nmap <leader>0 10gt
 
 " File type specific settings
 filetype plugin indent on
