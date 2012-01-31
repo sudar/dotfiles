@@ -66,7 +66,7 @@ Bundle 'comments.vim'
 " non github repos
 " ---------------------------------------------------------------------------
 " Shows the list of files in the current directory. Who needs. Textmate any more ;)
-" Make sure you have ruby mappings enabled in vim and compile the C extension
+" Make sure you have ruby mappings enabled in Vim and compile the C extension
 " after installing this Plugin
 Bundle 'git://git.wincent.com/command-t.git'
 " Command T mappings. Who needs Textmate anymore ;)
@@ -75,7 +75,8 @@ nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 " Color Schemes
 " ---------------------------------------------------------------------------
-" Color Schemes explorer
+
+" Color Schemes explorer. Browse through the different color schmes
 Bundle 'Color-Scheme-Explorer'
 
 " Programmer Color scheme
@@ -84,6 +85,7 @@ Bundle 'pw'
 " Light ColorScheme
 Bundle 'lightdiff'
 
+" 256 color schemes
 Bundle 'Eddie.vim'
 Bundle 'desert256.vim'
 Bundle 'ciaranm/inkpot'
@@ -94,7 +96,7 @@ colorscheme desert256
 
 " color schemes
 if &t_Co >= 256 || has("gui_running")
-   colorscheme Eddie 
+   colorscheme desert 
 endif
 
 " Show diff of changes that have been made after the file has been opened
@@ -168,10 +170,12 @@ nmap <leader>8 8gt
 nmap <leader>9 9gt
 nmap <leader>0 10gt
 
+" Escape insert mode without pressing esc
+:imap jj <Esc>
+
 " File type specific settings
 filetype plugin indent on
 autocmd filetype python set expandtab
-
 
 if &t_Co > 2 || has("gui_running")
    	" switch syntax highlighting on, when the terminal has colors
