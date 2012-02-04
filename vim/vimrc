@@ -60,8 +60,11 @@ Bundle 'html-source-explorer'
 " Tag generation and syntax highlights
 Bundle 'easytags.vim'
 
-" Bulk Comments. 
+" Bulk (Un)Comment line. 
 Bundle 'comments.vim'
+
+" Open an auto complete popup
+Bundle 'AutoComplPop'
 
 " non github repos
 " ---------------------------------------------------------------------------
