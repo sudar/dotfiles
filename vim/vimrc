@@ -274,6 +274,9 @@ cnoremap <C-K>      <C-U>
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
+" This shows what you are typing as a command.  I love this!
+set showcmd
+
 " ----------------------------------------------------------------------------
 " Key mappings
 " ------------
