@@ -131,6 +131,9 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
+" Use tab for completion
+Bundle 'ervandew/supertab'
+
 " vim-scripts repos
 " ---------------------------------------------------------------------------
 
@@ -320,6 +323,10 @@ nmap Q gqap
 
 " Escape insert mode without pressing esc
 :imap jj <Esc>
+
+" Create Blank Newlines and stay in Normal mode
+nnoremap <silent> zj o<Esc>
+nnoremap <silent> zk O<Esc>
 
 " Map F1 key to Esc. Would be interested in those situations where you hit f1 by default
 inoremap <F1> <ESC>
