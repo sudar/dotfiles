@@ -39,6 +39,39 @@ Bundle 'Raimondi/delimitMate'
 " Show diff of the current file from scms. Who needs Tortoise svn any more ;)
 Bundle 'sudar/vim-scmdiff.git'
 
+" Smart find and replace
+Bundle 'tpope/vim-abolish'
+
+" Surround - Easily change, add and delete around surroundings
+Bundle 'tpope/vim-surround'
+" Key mappings
+" Normal mode
+"-----------
+"ds  - delete a surrounding
+"cs  - change a surrounding
+"ys  - add a surrounding
+"yS  - add a surrounding and place the surrounded text on a new line + indent it
+"yss - add a surrounding to the whole line
+"ySs - add a surrounding to the whole line, place it on a new line + indent it
+"ySS - same as ySs
+
+"Visual mode
+"-----------
+"s   - in visual mode, add a surrounding
+"S   - in visual mode, add a surrounding but place text on new line + indent it
+
+"Insert mode
+"-----------
+"<CTRL-s> - in insert mode, add a surrounding
+"<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
+"<CTRL-g>s - same as <CTRL-s>
+"<CTRL-g>S - same as <CTRL-s><CTRL-s>
+
+" ---------------------------------------------------------------------------
+  
+"  Repeat the last command. Press . to repeat the last command.
+Bundle "tpope/vim-repeat"
+
 " Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
 " Dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -74,6 +107,15 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" Additional Mapping
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -99,14 +141,22 @@ Bundle 'FuzzyFinder'
 " Has a smart status line
 Bundle 'SmartusLine' 
 
-" Automatically highlight HTML tags 
-Bundle 'MatchTag'
+" Automatically match tags and braces in different files. 
+Bundle 'matchit.zip'
+" Python match support
+Bundle 'python_match.vim'
 
 " Tag generation and syntax highlights
 Bundle 'easytags.vim'
 
 " Bulk (Un)Comment line. 
 Bundle 'comments.vim'
+
+" Smart yanking
+Bundle 'YankRing.vim'
+
+" Color Parenthsis in multiple colors 
+Bundle 'Rainbow-Parenthsis-Bundle'
 
 " non github repos
 " ---------------------------------------------------------------------------
@@ -152,43 +202,74 @@ endif
 
 " ---------------------------------------------------------------------------
 " Common settings
-set hidden
 
-set nowrap        " don't wrap lines
+set hidden		  " Hides buffer instead of closing them
+
 set tabstop=4     " a tab is four spaces
-set backspace=indent,eol,start
-                  " allow backspacing over everything in insert mode
+set shiftwidth=4  " number of spaces to use for autoindenting
+set softtabstop=4
+set expandtab
+set nowrap        " don't wrap lines
+
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set auto indenting on
 set copyindent    " copy the previous indentation on autoindenting
 set number        " always show line numbers
-set shiftwidth=4  " number of spaces to use for autoindenting
+
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
-set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,
-                  "    case-sensitive otherwise
-set smarttab      " insert tabs on the start of a line according to
-                  "    shiftwidth, not tabstop
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
+set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 
+" Set to auto read when a file is changed from the outside
+set autoread
+
+" History related settings
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
+
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
 set nobackup
 set noswapfile
+set wildignore=*.swp,*.bak,*.pyc,*.class
+
+" Search related settings
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+set gdefault	  " Make search/replace global
+
+" Clear highlighted searches
+nmap <silent> ,/ :nohlsearch<CR>
+
+" Use Tab for moving to next matching tag
+nnoremap <tab> %
+vnoremap <tab> %
 
 " Enable automatic spell correction
 set spell
+
+" Enable Mouse
+set mouse=a
 
 " Highlight current line and column
 au WinLeave * set nocursorline " nocursorcolumn
 au WinEnter * set cursorline " cursorcolumn
 set cursorline " cursorcolumn
+
+" Command Mode settings
+" ----------------------------------------------------------------------------
+
+" Bash like keys for the command line
+cnoremap <C-A>      <Home>
+cnoremap <C-E>      <End>
+cnoremap <C-K>      <C-U>
+
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
 
 " ----------------------------------------------------------------------------
 " Key mappings
@@ -197,8 +278,17 @@ set cursorline " cursorcolumn
 " Paste without messing up formatting.
 set pastetoggle=<F2>
 
+"Select previously pasted text for quick formatting.
+nnoremap <leader>v V`]
+
 " change the mapleader from \ to ,
 let mapleader=","
+
+" Map ; to : so that you can save pressing shift
+nnoremap ; :
+
+" forgot sudo while opening the file
+cmap w!! w !sudo tee % >/dev/null
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -218,11 +308,41 @@ nmap <leader>8 8gt
 nmap <leader>9 9gt
 nmap <leader>0 10gt
 
+" Easy window navigation. Prevents another keypress.
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" Use Q for formatting the current paragraph (or selection)
+vmap Q gq
+nmap Q gqap
+
 " Escape insert mode without pressing esc
 :imap jj <Esc>
 
+" Map F1 key to Esc. Would be interested in those situations where you hit f1 by default
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+"Move a line of text using ALT+[jk] 
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
 " File type specific settings
 filetype plugin indent on
+
+" -------- HTML/CSS -----------------------
+"Fold HTML Tag
+nnoremap <leader>ft Vatzf
+
+"Sort CSS properties
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+
+" -------- Python -----------------------
 autocmd filetype python set expandtab
 
 if &t_Co > 2 || has("gui_running")
