@@ -110,7 +110,7 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " Additional Mapping
 inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
 inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
@@ -160,6 +160,12 @@ Bundle 'YankRing.vim'
 
 " Color Parenthsis in multiple colors 
 Bundle 'Rainbow-Parenthsis-Bundle'
+" Enable Rainbow Parenthsis
+if exists("g:btm_rainbow_color") && g:btm_rainbow_color
+   call rainbow_parenthsis#LoadSquare ()
+   call rainbow_parenthsis#LoadRound ()
+   call rainbow_parenthsis#Activate ()
+endif
 
 " non github repos
 " ---------------------------------------------------------------------------
