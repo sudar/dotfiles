@@ -1,6 +1,11 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+if &t_Co > 2 || has("gui_running")
+   	" switch syntax highlighting on, when the terminal has colors
+    syntax on
+endif
+
 " Vundle configurations.
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -99,7 +104,7 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
@@ -160,12 +165,6 @@ Bundle 'YankRing.vim'
 
 " Color Parenthsis in multiple colors 
 Bundle 'Rainbow-Parenthsis-Bundle'
-" Enable Rainbow Parenthsis
-if exists("g:btm_rainbow_color") && g:btm_rainbow_color
-   call rainbow_parenthsis#LoadSquare ()
-   call rainbow_parenthsis#LoadRound ()
-   call rainbow_parenthsis#Activate ()
-endif
 
 " non github repos
 " ---------------------------------------------------------------------------
@@ -364,7 +363,10 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 " -------- Python -----------------------
 autocmd filetype python set expandtab
 
-if &t_Co > 2 || has("gui_running")
-   	" switch syntax highlighting on, when the terminal has colors
-    syntax on
+" Enable Rainbow Parenthsis
+let g:btm_rainbow_color=1
+if exists("g:btm_rainbow_color") && g:btm_rainbow_color
+   call rainbow_parenthsis#LoadSquare ()
+   call rainbow_parenthsis#LoadRound ()
+   call rainbow_parenthsis#Activate ()
 endif
