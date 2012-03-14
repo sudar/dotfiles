@@ -163,8 +163,11 @@ Bundle 'comments.vim'
 " Smart yanking
 Bundle 'YankRing.vim'
 
-" Color Parenthsis in multiple colors 
+" Color Parenthesis in multiple colors 
 Bundle 'Rainbow-Parenthsis-Bundle'
+
+" Display TODO from different opened files.
+Bundle "TaskList.vim"
 
 " non github repos
 " ---------------------------------------------------------------------------
@@ -173,13 +176,13 @@ Bundle 'Rainbow-Parenthsis-Bundle'
 " after installing this Plugin
 Bundle 'git://git.wincent.com/command-t.git'
 " Command T mappings. Who needs Textmate anymore ;)
-nnoremap <silent> <Leader>t :CommandT<CR>
+nnoremap <silent> <Leader>tt :CommandT<CR>
 nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
 " Color Schemes
 " ---------------------------------------------------------------------------
 
-" Color Schemes explorer. Browse through the different color schmes
+" Color Schemes explorer. Browse through the different color schemes
 Bundle 'Color-Scheme-Explorer'
 
 " Programmer Color scheme
@@ -209,6 +212,7 @@ if !exists(":DiffOrig")
 endif
 
 " ---------------------------------------------------------------------------
+
 " Common settings
 
 set hidden		  " Hides buffer instead of closing them
@@ -362,6 +366,10 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
 " -------- Python -----------------------
 autocmd filetype python set expandtab
+
+" --------- TODO Plugin ------------------------------------------------------------------
+"
+Bundle "davidoc/taskpaper.vim"
 
 " Enable Rainbow Parenthsis
 let g:btm_rainbow_color=1
