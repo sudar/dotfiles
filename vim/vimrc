@@ -1,11 +1,6 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-if &t_Co > 2 || has("gui_running")
-   	" switch syntax highlighting on, when the terminal has colors
-    syntax on
-endif
-
 " Vundle configurations.
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -21,6 +16,11 @@ Bundle 'tpope/vim-fugitive'
 
 " Navigate the document like a pro. Who needs a mouse any more ;)
 Bundle 'Lokaltog/vim-easymotion'
+
+" Enable tag list. Make sure you have ctags installed
+Bundle "taglist.vim"
+let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
+nnoremap <silent> <F7> :TlistToggle<CR>
 
 " Opens a toolbar with method and class indexes
 Bundle 'majutsushi/tagbar.git' 
@@ -72,11 +72,11 @@ Bundle 'tpope/vim-surround'
 "<CTRL-g>s - same as <CTRL-s>
 "<CTRL-g>S - same as <CTRL-s><CTRL-s>
 
-" ---------------------------------------------------------------------------
-  
 "  Repeat the last command. Press . to repeat the last command.
 Bundle "tpope/vim-repeat"
 
+" ---------------------------------------------------------------------------
+  
 " Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
 " Dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -139,6 +139,15 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 " Use tab for completion
 Bundle 'ervandew/supertab'
 
+" ---------------------------------------------------------------------------
+
+" Edit taskpaper files in vim
+Bundle "davidoc/taskpaper.vim"
+
+" Tag generation and syntax highlights. Make sure ctags is installed
+Bundle 'xolox/vim-easytags'
+let g:easytags_by_filetype="~/.vim/tags/" " store the tags in separate files inside this folder
+
 " vim-scripts repos
 " ---------------------------------------------------------------------------
 
@@ -146,22 +155,17 @@ Bundle 'ervandew/supertab'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 
-" Has a smart status line
-Bundle 'SmartusLine' 
-
 " Automatically match tags and braces in different files. 
 Bundle 'matchit.zip'
 " Python match support
 Bundle 'python_match.vim'
-
-" Tag generation and syntax highlights
-Bundle 'easytags.vim'
 
 " Bulk (Un)Comment line. 
 Bundle 'comments.vim'
 
 " Smart yanking
 Bundle 'YankRing.vim'
+nmap <Leader>yy :YRShow<CR>
 
 " Color Parenthesis in multiple colors 
 Bundle 'Rainbow-Parenthsis-Bundle'
@@ -179,8 +183,7 @@ Bundle 'git://git.wincent.com/command-t.git'
 nnoremap <silent> <Leader>tt :CommandT<CR>
 nnoremap <silent> <Leader>b :CommandTBuffer<CR>
 
-" Color Schemes
-" ---------------------------------------------------------------------------
+" ------------------ Color Schemes ---------------------------------------------------------
 
 " Color Schemes explorer. Browse through the different color schemes
 Bundle 'Color-Scheme-Explorer'
@@ -222,16 +225,17 @@ set nowrap        " don't wrap lines
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set auto indenting on
 set copyindent    " copy the previous indentation on autoindenting
+
 set number        " always show line numbers
+set ruler         " Show the current line number in the status bar
 
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
 
 " ---------------------------------------------------------------------------
-
 " Common settings
-
+" ----------------------------------------------------------------------------
 set hidden		  " Hides buffer instead of closing them. You can use <C-o> and <C-i> to iterate the buffers.
 
 " Set to auto read when a file is changed from the outside
@@ -274,6 +278,7 @@ au WinLeave * set nocursorline " nocursorcolumn
 au WinEnter * set cursorline " cursorcolumn
 set cursorline " cursorcolumn
 
+" ----------------------------------------------------------------------------
 " Command Mode settings
 " ----------------------------------------------------------------------------
 
@@ -290,7 +295,7 @@ set showcmd
 
 " ----------------------------------------------------------------------------
 " Key mappings
-" ------------
+" ----------------------------------------------------------------------------
 "  
 " Paste without messing up formatting.
 set pastetoggle=<F2>
@@ -353,11 +358,18 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-" File type specific settings
-filetype plugin indent on
-
 " Automatically cd into the directory that the file is in
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+
+" ----------------------------------------------------------------------------
+" File type specific settings
+" ----------------------------------------------------------------------------
+filetype plugin indent on
+
+if &t_Co > 2 || has("gui_running")
+   	" switch syntax highlighting on, when the terminal has colors
+    syntax on
+endif
 
 " -------- HTML/CSS -----------------------
 "Fold HTML Tag
@@ -366,17 +378,45 @@ nnoremap <leader>ft Vatzf
 "Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
+" -------- JavaScript -------------------------------------------------------------
+au FileType javascript call JavaScriptFold() "The default folding in JavaScript is broken
+au FileType javascript setl fen
+au FileType javascript setl nocindent
+
+function! JavaScriptFold()
+    setl foldmethod=syntax
+    setl foldlevelstart=1
+    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
+
+    function! FoldText()
+    return substitute(getline(v:foldstart), '{.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
+
+" -------- PHP --------------------------------------------------------------------
+let php_folding = 1        "Set PHP folding of classes and functions.
+let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
+let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
+let php_noShortTags = 1    "Disable PHP short tags.
+
 " -------- Python -----------------------
 autocmd filetype python set expandtab
 
-" --------- TODO Plugin ------------------------------------------------------------------
-"
-Bundle "davidoc/taskpaper.vim"
+" -------- Perl -----------------------
+let perl_fold=1               " Perl
 
-" Enable Rainbow Parenthsis
-let g:btm_rainbow_color=1
-if exists("g:btm_rainbow_color") && g:btm_rainbow_color
-   call rainbow_parenthsis#LoadSquare ()
-   call rainbow_parenthsis#LoadRound ()
-   call rainbow_parenthsis#Activate ()
-endif
+" -------- R -----------------------
+let r_syntax_folding=1        " R
+
+" -------- Ruby -----------------------
+let ruby_fold=1               " Ruby
+
+" -------- Shell Scripts -----------------------
+let sh_fold_enabled=1         " sh
+
+" -------- Vim Scripts -----------------------
+let vimsyn_folding='af'       " Vim script
+
+" -------- XML Files -----------------------
+let xml_syntax_folding=1      " XML
