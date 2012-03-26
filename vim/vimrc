@@ -344,8 +344,8 @@ nmap Q gqap
 :imap jj <Esc>
 
 " Create Blank Newlines and stay in Normal mode
-nnoremap <silent> zj o<Esc>
-nnoremap <silent> zk O<Esc>
+nnoremap <silent> Zj o<Esc>
+nnoremap <silent> Zk O<Esc>
 
 " Map F1 key to Esc. Would be interested in those situations where you hit f1 by default
 inoremap <F1> <ESC>
@@ -360,6 +360,10 @@ vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Automatically cd into the directory that the file is in
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+
+" Save and load folds while closing and opening files
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
 
 " ----------------------------------------------------------------------------
 " File type specific settings
