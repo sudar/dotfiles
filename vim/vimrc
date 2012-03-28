@@ -287,6 +287,10 @@ set cursorline " cursorcolumn
 " ----------------------------------------------------------------------------
 " Command Mode settings
 " ----------------------------------------------------------------------------
+" Open command window by default, which will show the recent commands
+nnoremap : q:i
+nnoremap / q/i
+nnoremap ? q?i
 
 " Bash like keys for the command line
 cnoremap <C-A>      <Home>
