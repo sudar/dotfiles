@@ -220,18 +220,21 @@ set expandtab     " Expand tab to spaces
 set tabstop=4     " Width of a tab is 4
 set shiftwidth=4  " number of spaces to use for auto indenting
 set softtabstop=4 " When backspace is used to delete spaces, delete 4 at a time. This is equal to tabstop and shfitwidth
+
 set nowrap        " don't wrap lines
+set scrolloff=5   " Show atleast 5 lines around the cursor
 
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set auto indenting on
 set copyindent    " copy the previous indentation on autoindenting
-
-set number        " always show line numbers
-set ruler         " Show the current line number in the status bar
+set smartindent   " Set intent smartly
 
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+
+set number        " always show line numbers
+set ruler         " Show the current line number in the status bar
 
 " ---------------------------------------------------------------------------
 " Common settings
@@ -245,13 +248,16 @@ set autoread
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 
+" Visual settings
 set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
+" Filesystem handling settings
 set nobackup
 set noswapfile
-set wildignore=*.swp,*.bak,*.pyc,*.class
+set wildignore=*.swp,*.bak,*.pyc,*.class "Ignore these files while doing file completion
+set wildmode=longest,list " Start file completion with the longest match
 
 " Search related settings
 set ignorecase    " ignore case when searching
