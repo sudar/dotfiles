@@ -141,9 +141,6 @@ Bundle 'ervandew/supertab'
 
 " ---------------------------------------------------------------------------
 
-" Edit taskpaper files in vim
-Bundle "davidoc/taskpaper.vim"
-
 " Tag generation and syntax highlights. Make sure ctags is installed
 Bundle 'xolox/vim-easytags'
 let g:easytags_by_filetype="~/.vim/tags/" " store the tags in separate files inside this folder
@@ -167,23 +164,12 @@ Bundle 'comments.vim'
 Bundle 'YankRing.vim'
 nmap <Leader>yy :YRShow<CR>
 
-" Color Parenthesis in multiple colors 
-Bundle 'Rainbow-Parenthsis-Bundle'
-
-" Display TODO from different opened files.
+" Display TODO from different opened files. Press <leader>tt to see the list
 Bundle "TaskList.vim"
 
-" non github repos
 " ---------------------------------------------------------------------------
-" Shows the list of files in the current directory. Who needs. Textmate any more ;)
-" Make sure you have ruby mappings enabled in Vim and compile the C extension
-" after installing this Plugin
-Bundle 'git://git.wincent.com/command-t.git'
-" Command T mappings. Who needs Textmate anymore ;)
-nnoremap <silent> <Leader>tt :CommandT<CR>
-nnoremap <silent> <Leader>b :CommandTBuffer<CR>
-
-" ------------------ Color Schemes ---------------------------------------------------------
+" Color Schemes 
+" ---------------------------------------------------------------------------
 
 " Color Schemes explorer. Browse through the different color schemes
 Bundle 'Color-Scheme-Explorer'
@@ -289,11 +275,6 @@ set cursorline " cursorcolumn
 " ----------------------------------------------------------------------------
 " Command Mode settings
 " ----------------------------------------------------------------------------
-" Open command window by default, which will show the recent commands
-nnoremap : q:i
-nnoremap / q/i
-nnoremap ? q?i
-
 " Bash like keys for the command line
 cnoremap <C-A>      <Home>
 cnoremap <C-E>      <End>
@@ -441,10 +422,12 @@ function! JavaScriptFold()
 endfunction
 
 " -------- PHP --------------------------------------------------------------------
-let php_folding = 1        "Set PHP folding of classes and functions.
+let php_folding = 2        "Set PHP folding of classes and functions and all {}
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
 let php_noShortTags = 1    "Disable PHP short tags.
+let php_baselib = 1        "for highlighting baselib functions
+let php_alt_comparisons= 1 "to highlight comparison operators in an alternate colour
 
 " -------- Python -----------------------
 autocmd filetype python set expandtab
