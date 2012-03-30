@@ -19,7 +19,9 @@ Bundle 'Lokaltog/vim-easymotion'
 
 " Enable tag list. Make sure you have ctags installed
 Bundle "taglist.vim"
-let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
+if executable("/usr/local/Cellar/ctags/5.8/bin/ctags")
+    let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
+endif
 nnoremap <silent> <F7> :TlistToggle<CR>
 
 " Opens a toolbar with method and class indexes
