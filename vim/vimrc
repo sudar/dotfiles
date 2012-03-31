@@ -15,6 +15,7 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 
 " Navigate the document like a pro. Who needs a mouse any more ;)
+" Press <leader><Leader>j or <Leader><Leader>k
 Bundle 'Lokaltog/vim-easymotion'
 
 " Enable tag list. Make sure you have ctags installed
@@ -44,6 +45,7 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'Raimondi/delimitMate'
 
 " Show diff of the current file from scms. Who needs Tortoise svn any more ;)
+" Press :D to check the diff
 Bundle 'sudar/vim-scmdiff.git'
 
 " Smart find and replace
@@ -89,55 +91,6 @@ Bundle 'honza/snipmate-snippets'
 Bundle 'garbas/vim-snipmate'
 
 " ---------------------------------------------------------------------------
-" Open an auto complete popup. Who needs an IDE anymore.
-Bundle 'Shougo/neocomplcache'
-
-" configurations. More configurations at https://github.com/Shougo/neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-" inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" Additional Mapping
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
 " Use tab for completion
 Bundle 'ervandew/supertab'
 
@@ -400,12 +353,15 @@ if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
-" -------- HTML/CSS -----------------------
+" -------- HTML----------------------------------------------------------------
 "Fold HTML Tag
 nnoremap <leader>ft Vatzf
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 
+" ---------CSS ---------------------------------------------------------------
 "Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " -------- JavaScript -------------------------------------------------------------
 au FileType javascript call JavaScriptFold() "The default folding in JavaScript is broken
@@ -423,7 +379,10 @@ function! JavaScriptFold()
     setl foldtext=FoldText()
 endfunction
 
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
 " -------- PHP --------------------------------------------------------------------
+" Config for folding
 let php_folding = 2        "Set PHP folding of classes and functions and all {}
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
@@ -431,8 +390,14 @@ let php_noShortTags = 1    "Disable PHP short tags.
 let php_baselib = 1        "for highlighting baselib functions
 let php_alt_comparisons= 1 "to highlight comparison operators in an alternate colour
 
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
 " -------- Python -----------------------
 autocmd filetype python set expandtab
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+" -------- C -----------------------
+autocmd FileType c set omnifunc=ccomplete#Complete
 
 " -------- Perl -----------------------
 let perl_fold=1               " Perl
@@ -451,3 +416,4 @@ let vimsyn_folding='af'       " Vim script
 
 " -------- XML Files -----------------------
 let xml_syntax_folding=1      " XML
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
