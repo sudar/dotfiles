@@ -122,6 +122,12 @@ nmap <Leader>yy :YRShow<CR>
 " Display TODO from different opened files. Press <leader>tt to see the list
 Bundle "TaskList.vim"
 
+" Publish blog posts from Vim. Who needs Windows Live editor any more ;)
+Bundle 'VimRepress'
+" Blog configuration
+let VIMPRESS = [{'username':'admin',
+                \'blog_url':'http://sudarmuthu.com/wpfiles'
+                \}]
 " ---------------------------------------------------------------------------
 " Color Schemes 
 " ---------------------------------------------------------------------------
