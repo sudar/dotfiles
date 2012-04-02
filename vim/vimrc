@@ -44,6 +44,14 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
 
+" Allows you to split and joins lines and reformat them
+Bundle "AndrewRadev/splitjoin.vim"
+nmap <Leader>j :SplitjoinJoin<cr>
+nmap <Leader>s :SplitjoinSplit<cr>
+
+"Allows to align variable declarations
+Bundle "Align"
+
 " Show diff of the current file from scms. Who needs Tortoise svn any more ;)
 " Press :D to check the diff
 Bundle 'sudar/vim-scmdiff.git'
@@ -352,7 +360,7 @@ augroup end
 " ----------------------------------------------------------------------------
 " File type specific settings
 " ----------------------------------------------------------------------------
-filetype plugin indent on
+filetype plugin indent on " Enable filetype specific features including intend
 
 if &t_Co > 2 || has("gui_running")
    	" switch syntax highlighting on, when the terminal has colors
