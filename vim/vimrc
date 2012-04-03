@@ -396,6 +396,9 @@ endfunction
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
 " -------- PHP --------------------------------------------------------------------
+" PHP Integration for vim
+Bundle 'spf13/PIV'
+
 " Config for folding
 let php_folding = 2        "Set PHP folding of classes and functions and all {}
 let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
