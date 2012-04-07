@@ -126,6 +126,7 @@ Bundle 'comments.vim'
 " Smart yanking
 Bundle 'YankRing.vim'
 nmap <Leader>yy :YRShow<CR>
+let g:yankring_history_dir = '~/.vim/yankring'
 
 " Display TODO from different opened files. Press <leader>tt to see the list
 Bundle "TaskList.vim"
