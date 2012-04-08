@@ -45,15 +45,16 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'Raimondi/delimitMate'
 
 " Allows you to split and joins lines and reformat them
+" Alternatively you can also use :s/<[^>]*>/\r&\r/g followed by :g/^$/d
 Bundle "AndrewRadev/splitjoin.vim"
-nmap <Leader>j :SplitjoinJoin<cr>
-nmap <Leader>s :SplitjoinSplit<cr>
+nmap <Leader>sjj :SplitjoinJoin<cr>
+nmap <Leader>sjs :SplitjoinSplit<cr>
 
 "Allows to align variable declarations
 Bundle "Align"
 
 " Show diff of the current file from scms. Who needs Tortoise svn any more ;)
-" Press :D to check the diff
+" Press :D to check the diff. <leader>s to toggle diff view
 Bundle 'sudar/vim-scmdiff.git'
 
 " Smart find and replace
@@ -97,6 +98,11 @@ Bundle "tomtom/tlib_vim"
 Bundle 'honza/snipmate-snippets'
 " Add the main Plugin
 Bundle 'garbas/vim-snipmate'
+
+" ---------------------------------------------------------------------------
+" Markdown support
+Bundle 'swaroopch/vim-markdown'
+Bundle 'swaroopch/vim-markdown-preview'
 
 " ---------------------------------------------------------------------------
 " Use tab for completion
@@ -220,7 +226,6 @@ set ignorecase    " ignore case when searching
 set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
-set gdefault	  " Make search/replace global
 
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
@@ -237,10 +242,8 @@ set spelllang=en_us
 " Enable Mouse
 set mouse=a
 
-" Highlight current line and column
-au WinLeave * set nocursorline " nocursorcolumn
-au WinEnter * set cursorline " cursorcolumn
-set cursorline " cursorcolumn
+" Highlight current line 
+set cursorline 
 
 " ----------------------------------------------------------------------------
 " Command Mode settings
@@ -435,3 +438,17 @@ let vimsyn_folding='af'       " Vim script
 " -------- XML Files -----------------------
 let xml_syntax_folding=1      " XML
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+
+" -------- Text/Markdown -----------------------
+" Text mode
+command TextMode setlocal nolist wrap linebreak scrolloff=999
+
+" Plain text files are Markdown
+autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
+autocmd BufNewFile,BufRead *.text setlocal ft=markdown
+autocmd FileType markdown TextMode
+autocmd BufNewFile,BufRead requirements.txt setlocal ft=
+
+" Allow these file extensions to be accessed via 'gf' of only the name, for
+" e.g. gf on [[AnotherPage]] should go to AnotherPage.md
+set suffixesadd=.md,.txt
