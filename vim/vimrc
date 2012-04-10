@@ -456,3 +456,13 @@ autocmd BufNewFile,BufRead requirements.txt setlocal ft=
 " Allow these file extensions to be accessed via 'gf' of only the name, for
 " e.g. gf on [[AnotherPage]] should go to AnotherPage.md
 set suffixesadd=.md,.txt
+
+" ---------------------------------------------------------------------------
+" Abbreviations
+" ---------------------------------------------------------------------------
+" Common Typos
+abbr teh the
+
+" Lines
+abbr -- ------------
+abbr ==== ===============
