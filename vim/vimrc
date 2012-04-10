@@ -143,6 +143,10 @@ Bundle 'VimRepress'
 let VIMPRESS = [{'username':'admin',
                 \'blog_url':'http://sudarmuthu.com/wpfiles'
                 \}]
+
+"Post to twitter from vim
+Bundle 'TwitVim'
+
 " ---------------------------------------------------------------------------
 " Color Schemes 
 " ---------------------------------------------------------------------------
