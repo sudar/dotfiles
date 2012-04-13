@@ -43,6 +43,8 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
 
 " Allows you to split and joins lines and reformat them
 " Alternatively you can also use :s/<[^>]*>/\r&\r/g followed by :g/^$/d
