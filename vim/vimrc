@@ -98,6 +98,7 @@ Bundle "tomtom/tlib_vim"
 Bundle 'honza/snipmate-snippets'
 " Add the main Plugin
 Bundle 'garbas/vim-snipmate'
+let g:snips_author='Sudar'
 
 " ---------------------------------------------------------------------------
 " Markdown support
