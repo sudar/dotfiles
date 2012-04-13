@@ -367,6 +367,13 @@ augroup vimrcAutoView
 augroup end
 
 " ----------------------------------------------------------------------------
+" Code Formatting settings
+" ----------------------------------------------------------------------------
+" Move { from separate lines into the end of the previous line
+map <leader>cf :g/^\s*{\s*$/normal kJ <CR>
+
+
+" ----------------------------------------------------------------------------
 " File type specific settings
 " ----------------------------------------------------------------------------
 filetype plugin indent on " Enable filetype specific features including intend
