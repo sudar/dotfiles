@@ -1,0 +1,40 @@
+#
+# git config file
+#
+
+[user]
+	;Replace your own name and email address
+	name = Sudar
+	email = sudar@sudarmuthu.com
+
+[color]
+        diff = auto
+        status = auto
+        branch = auto
+        interactive = auto
+        ui = true
+        pager = true
+
+[color "branch"]
+        current = yellow reverse
+        local = yellow
+        remote = green
+
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
+
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
+
+[alias]
+        ci = commit
+        co = checkout
+        st = status
+        df = diff
+        ph = push origin master
+        pl = pull origin master
