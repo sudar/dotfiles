@@ -58,6 +58,9 @@ Bundle 'scrooloose/syntastic.git'
 let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
 nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 
+" Show signs at locations which are of interest in Quickfix window
+Bundle 'tomtom/quickfixsigns_vim'
+
 " Bulk (Un)Comment line. 
 Bundle 'comments.vim'
 
