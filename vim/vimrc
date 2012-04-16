@@ -1,29 +1,52 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+" ---------------------------------------------------------------------------
 " Vundle configurations.
+" ---------------------------------------------------------------------------
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
 Bundle 'gmarik/vundle'
 
-" original repos on github
+" ---------------------------------------------------------------------------
+" Source Control Management
 " ---------------------------------------------------------------------------
 " Git wrapper for vim. Who needs git bash any more ;)
 Bundle 'tpope/vim-fugitive'
 
+" Show diff of the current file from scms. Who needs Tortoise svn any more ;)
+" Press :D to check the diff. <leader>s to toggle diff view
+Bundle 'sudar/vim-scmdiff.git'
+
+" Show diff of changes that have been made after the file has been opened
+if !exists(":DiffOrig")
+	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+             \ | wincmd p | diffthis
+endif
+
+" ---------------------------------------------------------------------------
+" Navigation
+" ---------------------------------------------------------------------------
 " Navigate the document like a pro. Who needs a mouse any more ;)
 " Press <leader><Leader>j or <Leader><Leader>k
 Bundle 'Lokaltog/vim-easymotion'
 
+" ---------------------------------------------------------------------------
+" Source code handling
+" ---------------------------------------------------------------------------
+" TODO: Need to decide between one of these two
 " Enable tag list. Make sure you have ctags installed
 Bundle "taglist.vim"
 if executable("/usr/local/Cellar/ctags/5.8/bin/ctags")
     let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
 endif
 nnoremap <silent> <F7> :TlistToggle<CR>
+
+" Tag generation and syntax highlights. Make sure ctags is installed
+Bundle 'xolox/vim-easytags'
+let g:easytags_by_filetype="~/.vim/tags/" " store the tags in separate files inside this folder
 
 " Opens a toolbar with method and class indexes
 Bundle 'majutsushi/tagbar.git' 
@@ -35,16 +58,29 @@ Bundle 'scrooloose/syntastic.git'
 let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
 nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 
-" Zen Coding. Expands HTML abbreviations. Need to decide between one of these
-Bundle 'mattn/zencoding-vim.git' 
-let g:use_zen_complete_tag = 1 " for tag auto complete.
-" Similar to Zen coding. But uses <c-e> as shortcut
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Bulk (Un)Comment line. 
+Bundle 'comments.vim'
 
 " Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
-let delimitMate_expand_cr = 1
-let delimitMate_expand_space = 1
+let delimitMate_expand_cr=1
+let delimitMate_expand_space=1
+
+" Automatically match tags and braces in different files. 
+Bundle 'matchit.zip'
+" Python match support
+Bundle 'python_match.vim'
+
+" Use tab for completion
+Bundle 'ervandew/supertab'
+
+" Smart yanking
+Bundle 'YankRing.vim'
+nmap <Leader>yy :YRShow<CR>
+let g:yankring_history_dir = '~/.vim/yankring'
+
+" Display TODO from different opened files. Press <leader>tt to see the list
+Bundle "TaskList.vim"
 
 " Allows you to split and joins lines and reformat them
 " Alternatively you can also use :s/<[^>]*>/\r&\r/g followed by :g/^$/d
@@ -53,14 +89,8 @@ nmap <Leader>sjj :SplitjoinJoin<cr>
 nmap <Leader>sjs :SplitjoinSplit<cr>
 
 "Allows to align variable declarations
+" Use the <leader>t= shortcut
 Bundle "Align"
-
-" Show diff of the current file from scms. Who needs Tortoise svn any more ;)
-" Press :D to check the diff. <leader>s to toggle diff view
-Bundle 'sudar/vim-scmdiff.git'
-
-" Smart find and replace
-Bundle 'tpope/vim-abolish'
 
 " Surround - Easily change, add and delete around surroundings
 Bundle 'tpope/vim-surround'
@@ -91,7 +121,20 @@ Bundle 'tpope/vim-surround'
 Bundle "tpope/vim-repeat"
 
 " ---------------------------------------------------------------------------
-  
+" Searching 
+" ---------------------------------------------------------------------------
+" Smart find and replace
+Bundle 'tpope/vim-abolish'
+" To use ack inside vim. You need to install ack. Either do brew install ack or use aptitude
+Bundle 'mileszs/ack.vim'
+
+" Makes searching easier
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+
+" ---------------------------------------------------------------------------
+" Snippets
+" ---------------------------------------------------------------------------
 " Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
 " Dependencies
 Bundle "MarcWeber/vim-addon-mw-utils"
@@ -103,43 +146,8 @@ Bundle 'garbas/vim-snipmate'
 let g:snips_author='Sudar'
 
 " ---------------------------------------------------------------------------
-" Markdown support
-Bundle 'swaroopch/vim-markdown'
-Bundle 'swaroopch/vim-markdown-preview'
-
+" External Applications
 " ---------------------------------------------------------------------------
-" Use tab for completion
-Bundle 'ervandew/supertab'
-
-" ---------------------------------------------------------------------------
-
-" Tag generation and syntax highlights. Make sure ctags is installed
-Bundle 'xolox/vim-easytags'
-let g:easytags_by_filetype="~/.vim/tags/" " store the tags in separate files inside this folder
-
-" vim-scripts repos
-" ---------------------------------------------------------------------------
-
-" Makes searching easier
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-
-" Automatically match tags and braces in different files. 
-Bundle 'matchit.zip'
-" Python match support
-Bundle 'python_match.vim'
-
-" Bulk (Un)Comment line. 
-Bundle 'comments.vim'
-
-" Smart yanking
-Bundle 'YankRing.vim'
-nmap <Leader>yy :YRShow<CR>
-let g:yankring_history_dir = '~/.vim/yankring'
-
-" Display TODO from different opened files. Press <leader>tt to see the list
-Bundle "TaskList.vim"
-
 " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
 Bundle 'VimRepress'
 " Blog configuration
@@ -177,13 +185,9 @@ if &t_Co >= 256 || has("gui_running")
    colorscheme desert 
 endif
 
-" Show diff of changes that have been made after the file has been opened
-if !exists(":DiffOrig")
-	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-             \ | wincmd p | diffthis
-endif
-
-" ----------------- Space and Tab related settings ----------------------------
+" ---------------------------------------------------------------------------
+" Space and Tab related settings 
+" ---------------------------------------------------------------------------
 
 set expandtab     " Expand tab to spaces
 set tabstop=4     " Width of a tab is 4
@@ -241,16 +245,38 @@ nmap <silent> ,/ :nohlsearch<CR>
 nnoremap <tab> %
 vnoremap <tab> %
 
-" Enable automatic spell correction
-set spell
-set spellfile=~/.vim/spell/en.utf-8.add " custom spell check file
-set spelllang=en_us
-
 " Enable Mouse
 set mouse=a
 
 " Highlight current line 
 set cursorline 
+
+" ----------------------------------------------------------------------------
+" Spelling
+" ----------------------------------------------------------------------------
+set spell
+set spellfile=~/.vim/spell/en.utf-8.add " custom spell check file
+set spelllang=en_us
+
+" ----------------------------------------------------------------------------
+" Key mappings
+" ----------------------------------------------------------------------------
+  
+" Paste without messing up formatting.
+set pastetoggle=<F2>
+
+" change the mapleader from \ to ,
+let mapleader=","
+
+" Map ' to : so that you can save pressing shift
+nnoremap ' :
+
+" forgot sudo while opening the file
+cmap w!! w !sudo tee % >/dev/null
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " ----------------------------------------------------------------------------
 " Command Mode settings
@@ -267,48 +293,14 @@ cnoremap <C-N> <Down>
 set showcmd
 
 " ----------------------------------------------------------------------------
-" Key mappings
+" Visual Mode settings
 " ----------------------------------------------------------------------------
-"  
-" Paste without messing up formatting.
-set pastetoggle=<F2>
-
 "Select previously pasted text for quick formatting.
 nnoremap <leader>v V`]
 
-" change the mapleader from \ to ,
-let mapleader=","
-
-" Map ' to : so that you can save pressing shift
-nnoremap ' :
-
-" forgot sudo while opening the file
-cmap w!! w !sudo tee % >/dev/null
-
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-" Mapping for tabs
-nmap <silent> <Leader>h :tabp<CR>
-nmap <silent> <Leader>l :tabn<CR>
-nmap <leader>1 1gt
-nmap <leader>2 2gt
-nmap <leader>3 3gt
-nmap <leader>4 4gt
-nmap <leader>5 5gt
-nmap <leader>6 6gt
-nmap <leader>7 7gt
-nmap <leader>8 8gt
-nmap <leader>9 9gt
-nmap <leader>0 10gt
-
-" Easy window navigation. Prevents another keypress.
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
+" ----------------------------------------------------------------------------
+" Normal Mode settings
+" ----------------------------------------------------------------------------
 " Use Q for formatting the current paragraph (or selection)
 vmap Q gq
 nmap Q gqap
@@ -330,6 +322,33 @@ nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" ----------------------------------------------------------------------------
+" Window/tab settings
+" ----------------------------------------------------------------------------
+" Mapping for tabs
+nmap <silent> <Leader>h :tabp<CR>
+nmap <silent> <Leader>l :tabn<CR>
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+nmap <leader>0 10gt
+
+" Easy window navigation. Prevents another keypress.
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+" ----------------------------------------------------------------------------
+" Buffer open/close
+" ----------------------------------------------------------------------------
 
 " Automatically cd into the directory that the file is in
 autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
@@ -374,7 +393,6 @@ augroup end
 " Move { from separate lines into the end of the previous line
 map <leader>cf :g/^\s*{\s*$/normal kJ <CR>
 
-
 " ----------------------------------------------------------------------------
 " File type specific settings
 " ----------------------------------------------------------------------------
@@ -389,6 +407,12 @@ endif
 "Fold HTML Tag
 nnoremap <leader>ft Vatzf
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+" Zen Coding. Expands HTML abbreviations. TODO: Need to decide between one of these
+Bundle 'mattn/zencoding-vim.git' 
+let g:use_zen_complete_tag = 1 " for tag auto complete.
+" Similar to Zen coding. But uses <c-e> as shortcut
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " ---------CSS ---------------------------------------------------------------
 "Sort CSS properties
@@ -415,7 +439,7 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
 " -------- PHP --------------------------------------------------------------------
 " PHP Integration for vim
-Bundle 'spf13/PIV'
+" Bundle 'spf13/PIV'
 
 " Config for folding
 let php_folding = 2        "Set PHP folding of classes and functions and all {}
@@ -466,6 +490,10 @@ autocmd BufNewFile,BufRead requirements.txt setlocal ft=
 " Allow these file extensions to be accessed via 'gf' of only the name, for
 " e.g. gf on [[AnotherPage]] should go to AnotherPage.md
 set suffixesadd=.md,.txt
+
+" Markdown support
+Bundle 'swaroopch/vim-markdown'
+Bundle 'swaroopch/vim-markdown-preview'
 
 " ---------------------------------------------------------------------------
 " Abbreviations
