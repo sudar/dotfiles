@@ -56,6 +56,8 @@ nmap <F8> :TagbarToggle<CR>
 " Syntax Highlighter
 Bundle 'scrooloose/syntastic.git'
 let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
+let g:syntastic_auto_jump=1 "Automatically jump to the first error
+let g:syntastic_auto_loc_list=1
 nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 
 " Show signs at locations which are of interest in Quickfix window
@@ -124,10 +126,11 @@ Bundle 'tpope/vim-surround'
 Bundle "tpope/vim-repeat"
 
 " ---------------------------------------------------------------------------
-" Searching 
+" Searching/Replacing
 " ---------------------------------------------------------------------------
 " Smart find and replace
 Bundle 'tpope/vim-abolish'
+
 " To use ack inside vim. You need to install ack. Either do brew install ack or use aptitude
 Bundle 'mileszs/ack.vim'
 
@@ -439,6 +442,10 @@ function! JavaScriptFold()
 endfunction
 
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
+" Syntastic options
+let g:syntastic_javascript_checker="jslint" "Use jslint as the checker
+let g:syntastic_javascript_jslint_conf = "--sloppy" "options for jslint
 
 " -------- PHP --------------------------------------------------------------------
 " PHP Integration for vim
