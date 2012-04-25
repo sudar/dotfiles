@@ -460,7 +460,8 @@ let php_baselib = 1        "for highlighting baselib functions
 let php_alt_comparisons= 1 "to highlight comparison operators in an alternate colour
 
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-
+" Surround configuration for PHP. Adds yss- command
+autocmd FileType php let b:surround_45 = "<?php \r ?>"
 " -------- Python -----------------------
 autocmd filetype python set expandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
