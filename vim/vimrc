@@ -105,6 +105,7 @@ Bundle 'tpope/vim-surround'
 "ds  - delete a surrounding
 "cs  - change a surrounding
 "ysiw(  - add a surrounding
+"ys2aw" - add a surrounding for two words
 "yS  - add a surrounding and place the surrounded text on a new line + indent it
 "yss - add a surrounding to the whole line
 "ySs - add a surrounding to the whole line, place it on a new line + indent it
@@ -426,7 +427,8 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " -------- JavaScript -------------------------------------------------------------
-au FileType javascript call JavaScriptFold() "The default folding in JavaScript is broken
+"The default folding in JavaScript is broken. So let's fix it
+au FileType javascript call JavaScriptFold() 
 au FileType javascript setl fen
 au FileType javascript setl nocindent
 
@@ -441,11 +443,20 @@ function! JavaScriptFold()
     setl foldtext=FoldText()
 endfunction
 
+" autocomplete options
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
 " Syntastic options
 let g:syntastic_javascript_checker="jslint" "Use jslint as the checker
 let g:syntastic_javascript_jslint_conf = "--sloppy" "options for jslint
+
+" code formatter for JavaScript using jsbeautify
+Bundle 'maksimr/vim-jsbeautify'
+Bundle 'einars/js-beautify'
+
+" jsbeautify options
+let g:jsbeautify_file = fnameescape("/Users/sudarm/code/dotfiles/vim/vim/bundle/js-beautify/beautify.js") " set path to js-beautify file
+let g:jsbeautify = {"indent_size": 4, "jslint_happy": "true", "space_before_conditional": "true"}
 
 " -------- PHP --------------------------------------------------------------------
 " PHP Integration for vim
