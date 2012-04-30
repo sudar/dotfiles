@@ -34,7 +34,8 @@
 [alias]
         ci = commit
         co = checkout
-        st = status
-        df = diff
+        st = status -sb
+        df = diff --word-diff
         ph = push origin master
         pl = pull origin master
+        lg = log --oneline --decorate
