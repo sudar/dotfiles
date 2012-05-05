@@ -521,6 +521,14 @@ Bundle 'swaroopch/vim-markdown'
 Bundle 'swaroopch/vim-markdown-preview'
 
 " ---------------------------------------------------------------------------
+" Arduino
+" ---------------------------------------------------------------------------
+" Syntax highlighting for Arduino
+Bundle 'sudar/Arduino-syntax-file'
+
+autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
+autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
+" ---------------------------------------------------------------------------
 " Abbreviations
 " ---------------------------------------------------------------------------
 " Common Typos
