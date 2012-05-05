@@ -426,6 +426,9 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
+" Syntax highlight for CSS
+Bundle 'kight/CSS3-syntax-file-for-vim'
+
 " -------- JavaScript -------------------------------------------------------------
 "The default folding in JavaScript is broken. So let's fix it
 au FileType javascript call JavaScriptFold() 
