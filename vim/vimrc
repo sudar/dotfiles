@@ -64,7 +64,7 @@ nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 Bundle 'tomtom/quickfixsigns_vim'
 
 " Bulk (Un)Comment line. 
-Bundle 'comments.vim'
+Bundle 'sudar/comments.vim'
 
 " Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
