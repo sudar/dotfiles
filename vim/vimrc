@@ -543,6 +543,17 @@ Bundle 'sudar/Arduino-syntax-file'
 
 autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
 autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
+
+autocmd FileType arduino set omnifunc=ccomplete#CompleteTags
+
+" Add Arduino snippets
+Bundle 'sudar/vim-arduino-snippets'
+
+" Add c snippets to Arduino
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {} 
+let g:snipMate.scope_aliases['arduino'] = 'arduino,c'
+
 " ---------------------------------------------------------------------------
 " Abbreviations
 " ---------------------------------------------------------------------------
