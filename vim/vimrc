@@ -69,7 +69,6 @@ Bundle 'sudar/comments.vim'
 " Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
 let delimitMate_expand_cr=1
-let delimitMate_expand_space=1
 
 " Automatically match tags and braces in different files. 
 Bundle 'matchit.zip'
