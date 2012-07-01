@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# setups proper syslins
+# setups proper syslinks
 
 # Bash files
 ln -sv $PWD/bash/bashrc ~/.bashrc
@@ -16,3 +16,6 @@ ln -sv $PWD/vim/vim ~/.vim
 
 # Install vundle
 git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+# ignore changes to the yankring history file
+git update-index --assume-unchanged vim/vim/yankring/yankring_history_v2.txt
