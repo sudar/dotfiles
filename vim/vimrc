@@ -79,13 +79,17 @@ Bundle 'python_match.vim'
 " Use tab for completion
 Bundle 'ervandew/supertab'
 
+" Display TODO from different opened files.
+Bundle "TaskList.vim"
+map <leader>to <Plug>TaskList
+
+" ---------------------------------------------------------------------------
+" Common edit functionalities
+" ---------------------------------------------------------------------------
 " Smart yanking
 Bundle 'YankRing.vim'
 nmap <Leader>yy :YRShow<CR>
 let g:yankring_history_dir = '~/.vim/yankring'
-
-" Display TODO from different opened files. Press <leader>tt to see the list
-Bundle "TaskList.vim"
 
 " Allows you to split and joins lines and reformat them
 " Alternatively you can also use :s/<[^>]*>/\r&\r/g followed by :g/^$/d
@@ -134,10 +138,20 @@ Bundle 'tpope/vim-abolish'
 
 " To use ack inside vim. You need to install ack. Either do brew install ack or use aptitude
 Bundle 'mileszs/ack.vim'
+if executable("/usr/bin/ack-grep")
+    " Need this in my Ubuntu install
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+endif
 
 " Makes searching easier
 Bundle 'L9'
 Bundle 'FuzzyFinder'
+
+" Search related settings
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
 
 " ---------------------------------------------------------------------------
 " Snippets
@@ -150,6 +164,8 @@ Bundle "tomtom/tlib_vim"
 Bundle 'honza/snipmate-snippets'
 " Add the main Plugin
 Bundle 'garbas/vim-snipmate'
+
+" Snipmate options
 let g:snips_author='Sudar'
 
 " ---------------------------------------------------------------------------
@@ -233,17 +249,13 @@ set title                " change the terminal's title
 set visualbell           " don't beep
 set noerrorbells         " don't beep
 
+" ---------------------------------------------------------------------------
 " Filesystem handling settings
+" ---------------------------------------------------------------------------
 set nobackup
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class "Ignore these files while doing file completion
 set wildmode=longest,list " Start file completion with the longest match
-
-" Search related settings
-set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
 
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
@@ -476,6 +488,7 @@ let php_alt_comparisons= 1 "to highlight comparison operators in an alternate co
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " Surround configuration for PHP. Adds yss- command
 autocmd FileType php let b:surround_45 = "<?php \r ?>"
+
 " -------- Python -----------------------
 autocmd filetype python set expandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
