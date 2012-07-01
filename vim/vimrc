@@ -92,7 +92,6 @@ nmap <Leader>yy :YRShow<CR>
 let g:yankring_history_dir = '~/.vim/yankring'
 
 " Allows you to split and joins lines and reformat them
-" Alternatively you can also use :s/<[^>]*>/\r&\r/g followed by :g/^$/d
 Bundle "AndrewRadev/splitjoin.vim"
 nmap <Leader>sjj :SplitjoinJoin<cr>
 nmap <Leader>sjs :SplitjoinSplit<cr>
@@ -410,7 +409,7 @@ augroup end
 " Code Formatting settings
 " ----------------------------------------------------------------------------
 " Move { from separate lines into the end of the previous line
-map <leader>cf :g/^\s*{\s*$/normal kJ <CR>
+command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
 
 " ----------------------------------------------------------------------------
 " File type specific settings
@@ -426,6 +425,9 @@ endif
 "Fold HTML Tag
 nnoremap <leader>ft Vatzf
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+
+" Move Tags to separate lines. Copied from http://stackoverflow.com/a/9987878/24949
+command! MoveTags :s/<[^>]*>/\r&\r/g | :g/^$/d
 
 " Zen Coding. Expands HTML abbreviations. TODO: Need to decide between one of these
 Bundle 'mattn/zencoding-vim.git' 
@@ -517,7 +519,7 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 
 " -------- Text/Markdown -----------------------
 " Text mode
-command TextMode setlocal nolist wrap linebreak scrolloff=999
+command! TextMode setlocal nolist wrap linebreak scrolloff=999
 
 " Plain text files are Markdown
 autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
