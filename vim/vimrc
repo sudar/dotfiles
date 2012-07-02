@@ -462,6 +462,9 @@ function! JavaScriptFold()
     setl foldtext=FoldText()
 endfunction
 
+" YUI Syntax highlight
+Bundle 'yui/editor-extras', {'rtp': 'vim/'}
+
 " autocomplete options
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
