@@ -179,6 +179,9 @@ let VIMPRESS = [{'username':'admin',
 "Post to twitter from vim
 Bundle 'TwitVim'
 
+" Export syntax highlighted code into rtf. This only works in Mac
+Bundle 'aniero/vim-copy-as-rtf'
+
 " ---------------------------------------------------------------------------
 " Color Schemes 
 " ---------------------------------------------------------------------------
