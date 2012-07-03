@@ -96,8 +96,16 @@ nmap <Leader>sjj :SplitjoinJoin<cr>
 nmap <Leader>sjs :SplitjoinSplit<cr>
 
 "Allows to align variable declarations
-" Use the <leader>t= shortcut
-Bundle "Align"
+Bundle "godlygeek/tabular"
+" Options
+if exists(":Tabularize")
+  nmap <Leader>t= :Tabularize /=<CR>
+  vmap <Leader>t= :Tabularize /=<CR>
+  nmap <Leader>t=> :Tabularize /=><CR>
+  vmap <Leader>t=> :Tabularize /=><CR>
+  nmap <Leader>t: :Tabularize /:\zs<CR>
+  vmap <Leader>t: :Tabularize /:\zs<CR>
+endif
 
 " Surround - Easily change, add and delete around surroundings
 Bundle 'tpope/vim-surround'
