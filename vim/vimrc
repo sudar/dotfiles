@@ -432,6 +432,8 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " -------- HTML----------------------------------------------------------------
+autocmd FileType html TextMode
+
 "Fold HTML Tag
 nnoremap <leader>ft Vatzf
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
