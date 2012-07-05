@@ -536,8 +536,7 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 command! TextMode setlocal nolist wrap linebreak scrolloff=999
 
 " Plain text files are Markdown
-autocmd BufNewFile,BufRead *.txt setlocal ft=markdown
-autocmd BufNewFile,BufRead *.text setlocal ft=markdown
+autocmd BufNewFile,BufRead *.txt,*.text,*.md,*.markdown setlocal ft=markdown
 autocmd FileType markdown TextMode
 autocmd BufNewFile,BufRead requirements.txt setlocal ft=
 
@@ -555,9 +554,10 @@ Bundle 'swaroopch/vim-markdown-preview'
 " Syntax highlighting for Arduino
 Bundle 'sudar/Arduino-syntax-file'
 
-autocmd! BufNewFile,BufRead *.pde setlocal ft=arduino
-autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
+" Associate files to Arduino filetype
+autocmd! BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
 
+" Autocomplete
 autocmd FileType arduino set omnifunc=ccomplete#CompleteTags
 
 " Add Arduino snippets
