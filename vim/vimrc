@@ -377,14 +377,11 @@ map <C-l> <C-w>l
 " Buffer open/close
 " ----------------------------------------------------------------------------
 
-" Automatically cd into the directory that the file is in
-autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
-
 " Save and load folds while closing and opening files
 let g:skipview_files = [
             \ '[EXAMPLE PLUGIN BUFFER]'
             \ ]
-function! MakeViewCheck()
+function! HasFileName()
     if has('quickfix') && &buftype =~ 'nofile'
         " Buffer is marked as not a file
         return 0
@@ -410,9 +407,12 @@ endfunction
 augroup vimrcAutoView
     autocmd!
     " Autosave & Load Views.
-    autocmd BufWritePost,BufLeave,WinLeave ?* if MakeViewCheck() | mkview | endif
-    autocmd BufWinEnter ?* if MakeViewCheck() | silent loadview | endif
+    autocmd BufWritePost,BufLeave,WinLeave ?* if HasFileName() | mkview | endif
+    autocmd BufWinEnter ?* if HasFileName() | silent loadview | endif
 augroup end
+
+" Automatically cd into the directory that the file is in
+autocmd BufEnter ?* if HasFileName() | execute "chdir ".escape(expand("%:p:h"), ' ') | endif
 
 " ----------------------------------------------------------------------------
 " Code Formatting settings
