@@ -192,7 +192,9 @@ let VIMPRESS = [{'username':'admin',
 Bundle 'TwitVim'
 
 " Export syntax highlighted code into rtf. This only works in Mac
-Bundle 'aniero/vim-copy-as-rtf'
+if executable('pbcopy') && executable('textutil')
+    Bundle 'aniero/vim-copy-as-rtf'
+endif
 
 " ---------------------------------------------------------------------------
 " Color Schemes 
