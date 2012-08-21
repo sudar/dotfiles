@@ -585,5 +585,8 @@ abbr teh the
 abbr -- ------------
 abbr ==== ===============
 
+" Insert current date in insert mode
+iab <expr> dts strftime("%b %d, %Y")
+
 " custom folder for misc stuff
 set rtp+=~/.vim/custom/
