@@ -25,9 +25,11 @@ alias remove="sudo aptitude remove"
 alias search="sudo aptitude search"
 
 # exclude .svn and .git while doing grep
-alias grep='grep --exclude-dir=".svn" --exclude-dir=".git"'
+alias grepe='grep --exclude-dir=".svn" --exclude-dir=".git"'
 
 # color svn diff. Make sure colordiff is installed
 alias svnd="svn diff | colordiff | less -R"
 function svndiff () { svn diff $@ | colordiff | less -R; }
 alias gitd="git diff --color"
+
+alias devsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
