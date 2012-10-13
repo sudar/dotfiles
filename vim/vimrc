@@ -182,11 +182,7 @@ let g:snips_author='Sudar'
 " External Applications
 " ---------------------------------------------------------------------------
 " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
-Bundle 'VimRepress'
-" Blog configuration
-let VIMPRESS = [{'username':'admin',
-                \'blog_url':'http://sudarmuthu.com/wpfiles'
-                \}]
+Bundle 'sudar/VimRepress'
 
 "Post to twitter from vim
 Bundle 'TwitVim'
