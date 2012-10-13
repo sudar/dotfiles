@@ -9,6 +9,7 @@ ln -sv $PWD/bash/bash_aliases ~/.bash_aliases
 
 # git files
 ln -sv $PWD/git/gitconfig ~/.gitconfig
+ln -sv $PWD/git/gitignore ~/.gitignore
 
 # vim files
 ln -sv $PWD/vim/vimrc ~/.vimrc

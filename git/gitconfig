@@ -39,3 +39,5 @@
         ph = push origin master
         pl = pull origin master
         lg = log --oneline --decorate
+[core]
+	excludesfile = /home/sudar/.gitignore
