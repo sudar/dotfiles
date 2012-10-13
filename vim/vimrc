@@ -550,9 +550,9 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 command! TextMode setlocal nolist wrap linebreak scrolloff=999
 
 " Plain text files are Markdown
-autocmd BufNewFile,BufRead *.txt,*.text,*.md,*.markdown setlocal ft=markdown
+autocmd BufNew,BufNewFile,BufRead *.txt,*.text,*.md,*.markdown setlocal ft=markdown
 autocmd FileType markdown TextMode
-autocmd BufNewFile,BufRead requirements.txt setlocal ft=
+autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
 
 " Allow these file extensions to be accessed via 'gf' of only the name, for
 " e.g. gf on [[AnotherPage]] should go to AnotherPage.md
@@ -569,7 +569,7 @@ Bundle 'swaroopch/vim-markdown-preview'
 Bundle 'sudar/Arduino-syntax-file'
 
 " Associate files to Arduino filetype
-autocmd! BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
+autocmd! BufNew,BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
 
 " Autocomplete
 autocmd FileType arduino set omnifunc=ccomplete#CompleteTags
