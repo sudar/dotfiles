@@ -33,3 +33,9 @@ function svndiff () { svn diff $@ | colordiff | less -R; }
 alias gitd="git diff --color"
 
 alias devsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
+
+# add more to cat command
+cat()
+{
+   /bin/cat "$@" | more
+}
