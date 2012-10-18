@@ -440,6 +440,9 @@ if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
+" -------- JADE ----------------------------------------------------------------
+Bundle 'digitaltoad/vim-jade'
+
 " -------- HTML----------------------------------------------------------------
 autocmd FileType html TextMode
 
