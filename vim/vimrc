@@ -440,6 +440,17 @@ if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
+" -------- Doxygen -----------------------
+Bundle "DoxygenToolkit.vim"
+" create doxygen comment
+map <F5> :Dox<CR>
+
+"doxygen options
+let g:DoxygenToolkit_authorName="Sudar <http://sudarmuthu.com> <http://hardwarefun.com>"
+let g:DoxygenToolkit_licenseTag="BEERWARE ;)"
+
+" Load doxygen syntax
+let g:load_doxygen_syntax=1
 " -------- JADE ----------------------------------------------------------------
 Bundle 'digitaltoad/vim-jade'
 
@@ -528,6 +539,17 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " -------- C -----------------------
 autocmd FileType c set omnifunc=ccomplete#Complete
+
+" -------- C++ -----------------------
+" switch between header/source with F4
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+" -------- Pig -----------------------
+Bundle 'sudar/pig.vim'
+
+augroup filetypedetect
+  au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
+augroup END
 
 " -------- Perl -----------------------
 let perl_fold=1               " Perl
