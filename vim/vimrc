@@ -594,10 +594,10 @@ Bundle 'swaroopch/vim-markdown-preview'
 Bundle 'sudar/Arduino-syntax-file'
 
 " Associate files to Arduino filetype
-autocmd! BufNew,BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino
+autocmd! BufNew,BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino cindent
 
 " Autocomplete
-autocmd FileType arduino set omnifunc=ccomplete#CompleteTags
+autocmd FileType arduino set omnifunc=ccomplete#Complete
 
 " Add Arduino snippets
 Bundle 'sudar/vim-arduino-snippets'
