@@ -459,6 +459,8 @@ let g:use_zen_complete_tag = 1 " for tag auto complete.
 " Similar to Zen coding. But uses <c-e> as shortcut
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
+" jsbeautify key options
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " ---------CSS ---------------------------------------------------------------
 "Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
@@ -467,11 +469,13 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 " Syntax highlight for CSS
 Bundle 'kight/CSS3-syntax-file-for-vim'
 
+" jsbeautify key options
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
 " -------- JavaScript -------------------------------------------------------------
 "The default folding in JavaScript is broken. So let's fix it
 au FileType javascript call JavaScriptFold() 
 au FileType javascript setl fen
-au FileType javascript setl nocindent
 
 function! JavaScriptFold()
     setl foldmethod=syntax
@@ -496,11 +500,11 @@ let g:syntastic_javascript_jslint_conf = "--sloppy" "options for jslint
 
 " code formatter for JavaScript using jsbeautify
 Bundle 'maksimr/vim-jsbeautify'
-Bundle 'einars/js-beautify'
+"The actual beautifier
+Bundle 'einars/js-beautify' 
 
-" jsbeautify options
-let g:jsbeautify_file = fnameescape("/Users/sudarm/code/dotfiles/vim/vim/bundle/js-beautify/beautify.js") " set path to js-beautify file
-let g:jsbeautify = {"indent_size": 4, "jslint_happy": "true", "space_before_conditional": "true"}
+" jsbeautify key options
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 
 " -------- PHP --------------------------------------------------------------------
 " PHP Integration for vim
