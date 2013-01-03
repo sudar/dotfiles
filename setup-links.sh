@@ -14,6 +14,7 @@ ln -sv $PWD/git/gitignore ~/.gitignore
 # vim files
 ln -sv $PWD/vim/vimrc ~/.vimrc
 ln -sv $PWD/vim/vim ~/.vim
+ln -sv $PWD/vim/vimpressrc ~/.vimpressrc
 
 # Install vundle
 git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
