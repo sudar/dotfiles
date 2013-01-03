@@ -2,8 +2,8 @@
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -19,13 +19,18 @@ alias free="free -m"
 
 # exclude .svn and .git while doing grep
 alias grepe='grep --exclude-dir=".svn" --exclude-dir=".git"'
+# enable color for grep
+alias grep='grep --color=always'
 
 # color svn diff. Make sure colordiff is installed
 alias svnd="svn diff | colordiff | less -R"
 function svndiff () { svn diff $@ | colordiff | less -R; }
 alias gitd="git diff --color"
 
-alias devsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
+alias delsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
+
+# exclude .svn or .git files while doing zip
+alias zipx="zip -x '*/.git/*' -x '*/.svn/*'"
 
 # add more to cat command
 cat()
