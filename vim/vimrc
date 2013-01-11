@@ -545,7 +545,10 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " -------- Pig -----------------------
+"  Pig syntax
 Bundle 'sudar/pig.vim'
+" Pig snippets
+Bundle 'rverk/snipmate-pig'
 
 augroup filetypedetect
   au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
