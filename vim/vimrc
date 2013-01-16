@@ -481,7 +481,7 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Syntax highlight for CSS
-Bundle 'kight/CSS3-syntax-file-for-vim'
+Bundle 'JulesWang/css.vim'
 
 " jsbeautify key options
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
@@ -559,7 +559,7 @@ map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " -------- Pig -----------------------
 "  Pig syntax
-Bundle 'sudar/pig.vim'
+Bundle 'motus/pig.vim'
 " Pig snippets
 Bundle 'rverk/snipmate-pig'
 
