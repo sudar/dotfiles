@@ -172,11 +172,14 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 " Additional snippets for snipmate
 Bundle 'honza/snipmate-snippets'
+
 " Add the main Plugin
 Bundle 'garbas/vim-snipmate'
 
 " Snipmate options
 let g:snips_author='Sudar'
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {} 
 
 " ---------------------------------------------------------------------------
 " External Applications
@@ -533,6 +536,16 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " Surround configuration for PHP. Adds yss- command
 autocmd FileType php let b:surround_45 = "<?php \r ?>"
 
+" -------- WordPress -----------------------
+"  Syntax file
+"Bundle 'kloppster/Wordpress-Vim-Syntax'
+Bundle 'Greduan/Wordpress-Vim-Syntax'
+
+" snippets
+
+" Add PHP snippets to WordPress
+let g:snipMate.scope_aliases['wordpress'] = 'wordpress,php'
+
 " -------- Python -----------------------
 autocmd filetype python set expandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -606,8 +619,6 @@ autocmd FileType arduino set omnifunc=ccomplete#Complete
 Bundle 'sudar/vim-arduino-snippets'
 
 " Add c snippets to Arduino
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {} 
 let g:snipMate.scope_aliases['arduino'] = 'arduino,c'
 
 " ---------------------------------------------------------------------------
