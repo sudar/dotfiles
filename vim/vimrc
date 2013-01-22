@@ -436,7 +436,7 @@ command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
 " ----------------------------------------------------------------------------
 " File type specific settings
 " ----------------------------------------------------------------------------
-filetype plugin indent on " Enable filetype specific features including intend
+filetype plugin indent on " Enable filetype specific features including indend
 
 if &t_Co > 2 || has("gui_running")
    	" switch syntax highlighting on, when the terminal has colors
@@ -636,3 +636,6 @@ iab <expr> dts strftime("%b %d, %Y")
 
 " custom folder for misc stuff
 set rtp+=~/.vim/custom/
+
+" Open up Man pages from Vim itself. eg: Man printf
+runtime! ftplugin/man.vim
