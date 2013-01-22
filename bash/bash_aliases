@@ -29,6 +29,9 @@ alias gitd="git diff --color"
 
 alias delsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
 
+# Use vi as the editor for svn
+export SVN_EDITOR=vi
+
 # exclude .svn or .git files while doing zip
 alias zipx="zip -x '*/.git/*' -x '*/.svn/*'"
 
