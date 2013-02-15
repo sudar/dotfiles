@@ -13,8 +13,8 @@ HISTCONTROL=ignoredups:ignorespace
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=10000
+HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -58,7 +58,7 @@ xterm*|rxvt*)
     ;;
 esac
 
-# set the commond line mode to vi mode. Use vi command edting everywhere :) who need to use arrow keys anymore ;)
+# set the command line mode to vi mode. Use vi command editing everywhere :) who need to use arrow keys anymore ;)
 set -o vi
 
 # Alias definitions.
