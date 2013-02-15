@@ -40,4 +40,15 @@
         pl = pull origin master
         lg = log --oneline --decorate
 [core]
-	excludesfile = /home/sudar/.gitignore
+	excludesfile = ~/.gitignore
+
+[url "git://github.com/"]
+	insteadOf = "gh://"
+	pushInsteadOf = "gh://"
+	# Example: git clone ghg://ntschutta/emacs
+[url "git@github.com:"]
+	insteadOf = "ghs://"
+	pushInsteadOf = "ghs://"
+[url "git@github.com:sudar/"]
+    insteadOf = "ghsm://"
+    pushInsteadOf = "ghsm://"
