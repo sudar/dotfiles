@@ -6,6 +6,7 @@
 ln -sv $PWD/bash/bashrc ~/.bashrc
 ln -sv $PWD/bash/bash_profile ~/.bash_profile
 ln -sv $PWD/bash/bash_aliases ~/.bash_aliases
+ln -sv $PWD/bash/bash_gitprompt ~/.bash_gitprompt
 
 # git files
 ln -sv $PWD/git/gitconfig ~/.gitconfig
