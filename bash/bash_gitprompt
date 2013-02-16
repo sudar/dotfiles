@@ -51,9 +51,9 @@ function prompt_func() {
     if [[ $USER == sudar* ]]
     then
         #The lowercase w is the full current working directory and W is last part of current directory
-        prompt="${TITLEBAR}${BLUE}\h${COLOR_NONE}:${RED}\w${GREEN}$(parse_git_branch)"
+        prompt="${TITLEBAR}${BLUE}\h${WHITE}:${RED}\w${GREEN}$(parse_git_branch)"
     else
-        prompt="${TITLEBAR}${GREEN}\u${COLOR_NONE}@${BLUE}\h${COLOR_NONE}:${RED}\w${GREEN}$(parse_git_branch)"
+        prompt="${TITLEBAR}${GREEN}\u${WHITE}@${BLUE}\h${COLOR_NONE}:${RED}\w${GREEN}$(parse_git_branch)"
     fi
     
     if test $previous_return_value -eq 0
