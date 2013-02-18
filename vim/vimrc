@@ -223,6 +223,67 @@ if &t_Co >= 256 || has("gui_running")
 endif
 
 " ---------------------------------------------------------------------------
+" file type specific Bundles.
+" ---------------------------------------------------------------------------
+" They need to present before setting filetype, because of this bug https://github.com/gmarik/vundle/issues/176#issuecomment-12996848
+
+" doxygen
+Bundle "DoxygenToolkit.vim"
+
+" Jade
+Bundle 'digitaltoad/vim-jade'
+
+" Zen Coding. Expands HTML abbreviations. TODO: Need to decide between one of these
+Bundle 'mattn/zencoding-vim.git' 
+let g:use_zen_complete_tag = 1 " for tag auto complete.
+" Similar to Zen coding. But uses <c-e> as shortcut
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" Syntax highlight for CSS
+Bundle 'JulesWang/css.vim'
+
+" YUI Syntax highlight
+Bundle 'yui/editor-extras', {'rtp': 'vim/'}
+
+" code formatter for JavaScript using jsbeautify
+Bundle 'maksimr/vim-jsbeautify'
+"The actual beautifier
+Bundle 'einars/js-beautify' 
+
+" code formatter for JavaScript using jsbeautify
+Bundle 'maksimr/vim-jsbeautify'
+"The actual beautifier
+Bundle 'einars/js-beautify' 
+
+"  Syntax file
+"  will use this once this pull request is accepted - https://github.com/kloppster/Wordpress-Vim-Syntax/pull/2
+"Bundle 'kloppster/Wordpress-Vim-Syntax'
+Bundle 'Greduan/Wordpress-Vim-Syntax'
+
+"  Pig syntax
+Bundle 'motus/pig.vim'
+" Pig snippets
+Bundle 'rverk/snipmate-pig'
+
+" Markdown support
+Bundle 'swaroopch/vim-markdown'
+Bundle 'swaroopch/vim-markdown-preview'
+
+" Syntax highlighting for Arduino
+Bundle 'sudar/Arduino-syntax-file'
+
+" Add Arduino snippets
+Bundle 'sudar/vim-arduino-snippets'
+
+" ---------------------------------------------------------------------------
+" custom folder for misc stuff
+" ---------------------------------------------------------------------------
+set rtp+=~/.vim/custom/
+
+" Open up Man pages from Vim itself. eg: Man printf
+runtime! ftplugin/man.vim
+
+" ---------------------------------------------------------------------------
 " Space and Tab related settings 
 " ---------------------------------------------------------------------------
 
@@ -444,7 +505,6 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " -------- Doxygen -----------------------
-Bundle "DoxygenToolkit.vim"
 " create doxygen comment
 map <F5> :Dox<CR>
 
@@ -454,8 +514,9 @@ let g:DoxygenToolkit_licenseTag="BEERWARE ;)"
 
 " Load doxygen syntax
 let g:load_doxygen_syntax=1
+
 " -------- JADE ----------------------------------------------------------------
-Bundle 'digitaltoad/vim-jade'
+"
 
 " -------- HTML----------------------------------------------------------------
 autocmd FileType html TextMode
@@ -467,21 +528,13 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 " Move Tags to separate lines. Copied from http://stackoverflow.com/a/9987878/24949
 command! MoveTags :s/<[^>]*>/\r&\r/g | :g/^$/d
 
-" Zen Coding. Expands HTML abbreviations. TODO: Need to decide between one of these
-Bundle 'mattn/zencoding-vim.git' 
-let g:use_zen_complete_tag = 1 " for tag auto complete.
-" Similar to Zen coding. But uses <c-e> as shortcut
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-
 " jsbeautify key options
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+
 " ---------CSS ---------------------------------------------------------------
 "Sort CSS properties
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-" Syntax highlight for CSS
-Bundle 'JulesWang/css.vim'
 
 " jsbeautify key options
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
@@ -502,9 +555,6 @@ function! JavaScriptFold()
     setl foldtext=FoldText()
 endfunction
 
-" YUI Syntax highlight
-Bundle 'yui/editor-extras', {'rtp': 'vim/'}
-
 " autocomplete options
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 
@@ -512,17 +562,10 @@ autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 let g:syntastic_javascript_checker="jslint" "Use jslint as the checker
 let g:syntastic_javascript_jslint_conf = "--sloppy" "options for jslint
 
-" code formatter for JavaScript using jsbeautify
-Bundle 'maksimr/vim-jsbeautify'
-"The actual beautifier
-Bundle 'einars/js-beautify' 
-
 " jsbeautify key options
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 
 " -------- PHP --------------------------------------------------------------------
-" PHP Integration for vim
-" Bundle 'spf13/PIV'
 
 " Config for folding
 let php_folding = 2        "Set PHP folding of classes and functions and all {}
@@ -537,12 +580,6 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType php let b:surround_45 = "<?php \r ?>"
 
 " -------- WordPress -----------------------
-"  Syntax file
-"Bundle 'kloppster/Wordpress-Vim-Syntax'
-Bundle 'Greduan/Wordpress-Vim-Syntax'
-
-" snippets
-
 " Add PHP snippets to WordPress
 let g:snipMate.scope_aliases['wordpress'] = 'wordpress,php'
 
@@ -558,14 +595,7 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
 
 " -------- Pig -----------------------
-"  Pig syntax
-Bundle 'motus/pig.vim'
-" Pig snippets
-Bundle 'rverk/snipmate-pig'
 
-augroup filetypedetect
-  au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
-augroup END
 
 " -------- Perl -----------------------
 let perl_fold=1               " Perl
@@ -599,24 +629,14 @@ autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
 " e.g. gf on [[AnotherPage]] should go to AnotherPage.md
 set suffixesadd=.md,.txt
 
-" Markdown support
-Bundle 'swaroopch/vim-markdown'
-Bundle 'swaroopch/vim-markdown-preview'
-
 " ---------------------------------------------------------------------------
 " Arduino
 " ---------------------------------------------------------------------------
-" Syntax highlighting for Arduino
-Bundle 'sudar/Arduino-syntax-file'
-
 " Associate files to Arduino filetype
 autocmd! BufNew,BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino cindent
 
 " Autocomplete
 autocmd FileType arduino set omnifunc=ccomplete#Complete
-
-" Add Arduino snippets
-Bundle 'sudar/vim-arduino-snippets'
 
 " Add c snippets to Arduino
 let g:snipMate.scope_aliases['arduino'] = 'arduino,c'
@@ -633,9 +653,3 @@ abbr ==== ===============
 
 " Insert current date in insert mode
 iab <expr> dts strftime("%b %d, %Y")
-
-" custom folder for misc stuff
-set rtp+=~/.vim/custom/
-
-" Open up Man pages from Vim itself. eg: Man printf
-runtime! ftplugin/man.vim
