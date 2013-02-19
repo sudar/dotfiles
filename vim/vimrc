@@ -270,7 +270,7 @@ Bundle 'swaroopch/vim-markdown'
 Bundle 'swaroopch/vim-markdown-preview'
 
 " Syntax highlighting for Arduino
-Bundle 'sudar/Arduino-syntax-file'
+Bundle 'sudar/vim-arduino-syntax'
 
 " Add Arduino snippets
 Bundle 'sudar/vim-arduino-snippets'
@@ -621,7 +621,7 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 command! TextMode setlocal nolist wrap linebreak scrolloff=999
 
 " Plain text files are Markdown
-autocmd BufNew,BufNewFile,BufRead *.txt,*.text,*.md,*.markdown setlocal ft=markdown
+autocmd BufNewFile,BufRead *.txt,*.text setlocal ft=markdown
 autocmd FileType markdown TextMode
 autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
 
@@ -632,9 +632,6 @@ set suffixesadd=.md,.txt
 " ---------------------------------------------------------------------------
 " Arduino
 " ---------------------------------------------------------------------------
-" Associate files to Arduino filetype
-autocmd! BufNew,BufNewFile,BufRead *.pde,*.ino setlocal ft=arduino cindent
-
 " Autocomplete
 autocmd FileType arduino set omnifunc=ccomplete#Complete
 
