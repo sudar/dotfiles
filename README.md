@@ -1,7 +1,7 @@
 What is this?
 =================
 
-This repo contains my config files for the following programs. Feel free to use entire files or snippets from them for your own use
+This repo contains my config files for the following programs. Feel free to use entire files or snippets from them for your own use.
 
  - vim/macvim
  - bash

@@ -38,6 +38,7 @@
         df = diff --word-diff
         ph = push origin master
         pl = pull origin master
+        plr = pull --rebase origin master
         lg = log --oneline --decorate
 [core]
 	excludesfile = ~/.gitignore
