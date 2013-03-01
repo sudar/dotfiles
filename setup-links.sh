@@ -17,6 +17,9 @@ ln -sv $PWD/vim/vimrc ~/.vimrc
 ln -sv $PWD/vim/vim ~/.vim
 ln -sv $PWD/vim/vimpressrc ~/.vimpressrc
 
+# screen files
+ln -sv $PWD/screen/screenrc ~/.screenrc
+
 # Install vundle
 git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 

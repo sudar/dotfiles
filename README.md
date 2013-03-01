@@ -6,6 +6,7 @@ This repo contains my config files for the following programs. Feel free to use 
  - vim/macvim
  - bash
  - git
+ - screen
 
 Inspiration
 ================

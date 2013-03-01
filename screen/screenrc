@@ -1,0 +1,8 @@
+# ~/.screenrc file for Screen
+# https://github.com/sudar/dotfiles
+
+# Scrollback buffer size
+defscrollback 10000
+
+# so it won't seem like there is a delay when entering copy mode
+msgminwait 0
