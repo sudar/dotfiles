@@ -1,5 +1,9 @@
 set nocompatible               " be iMproved
-filetype off                   " required!
+" vim exists with a non-zero exit code, if filetype off is called without filetype on,
+" which messes up when vim is used as the editor for git commits
+" Vundle requires to turn filetype off, because of this bug https://github.com/gmarik/vundle/issues/176#issuecomment-12996848
+filetype on
+filetype off
 
 " ---------------------------------------------------------------------------
 " Vundle configurations.
@@ -256,12 +260,16 @@ Bundle 'maksimr/vim-jsbeautify'
 Bundle 'einars/js-beautify' 
 
 "  Syntax file
-"  will use this once this pull request is accepted - https://github.com/kloppster/Wordpress-Vim-Syntax/pull/2
-"Bundle 'kloppster/Wordpress-Vim-Syntax'
-Bundle 'Greduan/Wordpress-Vim-Syntax'
+Bundle 'kloppster/Wordpress-Vim-Syntax'
+
+" WordPress snippets
+Bundle 'sudar/vim-wordpress-snippets'
 
 "  Pig syntax
-Bundle 'motus/pig.vim'
+"  Will use this once this pull request is accepted https://github.com/motus/pig.vim/pull/2
+"Bundle 'motus/pig.vim'
+Bundle 'sudar/pig.vim'
+
 " Pig snippets
 Bundle 'rverk/snipmate-pig'
 
