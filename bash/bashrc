@@ -18,23 +18,9 @@ additional_files="~"
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -93,6 +79,11 @@ fi
 # HDFS Alias
 if [ -f $additional_files/bash/hdfs_aliases ]; then
     . $additional_files/bash/hdfs_aliases
+fi
+
+# bash history settings
+if [ -f $additional_files/bash/bash_history_options ]; then
+    . $additional_files/bash/bash_history_options
 fi
 
 # load machine specific settings here

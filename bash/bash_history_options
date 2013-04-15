@@ -1,0 +1,27 @@
+##############################################################################
+# Options to configure how bash stores command history
+
+# Author: Sudar (http://sudarmuthu.com)
+# Repo: https://github.com/sudar/dotfiles
+##############################################################################
+
+# don't put duplicate lines in the history.
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# Allow for a larger history file
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+# Ignore frequent commands from history
+HISTIGNORE="&:ls:bg:fg:history:pwd:git st:clear:cd:free:svn st:svn up"
+
+# record timestamp as well
+HISTTIMEFORMAT='%F %T '
+
+# store each command immediately
+PROMPT_COMMAND='history -a'
