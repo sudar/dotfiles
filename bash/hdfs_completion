@@ -1,0 +1,40 @@
+##############################################################################
+# Hadoop hdfs bash completion
+##############################################################################
+
+_hfs()
+{
+  local cur prev
+
+  COMPREPLY=()
+  cur=${COMP_WORDS[COMP_CWORD]}
+  prev=${COMP_WORDS[COMP_CWORD-1]}
+
+  if [ "$prev" == hfs ]; then
+    COMPREPLY=( $( compgen -W '-ls -lsr -du -dus -count -mv -cp -rm \
+      -rmr -expunge -put -get -copyFromLocal -moveToLocal -mkdir -setrep \
+      -touchz -test -stat -tail -chmod -chown -chgrp -help' -- $cur ) )
+  fi
+
+  if [ "$prev" == -ls ] || \
+     [ "$prev" == -lsr ] || \
+     [ "$prev" == -du ] || \
+     [ "$prev" == -dus ] || \
+     [ "$prev" == -cat ] || \
+     [ "$prev" == -mkdir ] || \
+     [ "$prev" == -put ] || \
+     [ "$prev" == -get ] || \
+     [ "$prev" == -rm ] || \
+     [ "$prev" == -rmr ] || \
+     [ "$prev" == -tail ] || \
+     [ "$prev" == -cp ] || [ "$prev" == hcp ]; then
+    if [ -z "$cur" ]; then
+      COMPREPLY=( $( compgen -W "$( hfs -ls /user/`whoami`/ 2>&-|grep -v ^Found|awk '{print $8}' )" -- "$cur" ) )
+    elif [ `echo $cur | grep \/$` ]; then
+      COMPREPLY=( $( compgen -W "$( hfs -ls $cur 2>&-|grep -v ^Found|awk '{print $8}' )" -- "$cur" ) )
+    else
+      COMPREPLY=( $( compgen -W "$( hfs -ls $cur* 2>&-|grep -v ^Found|awk '{print $8}' )" -- "$cur" ) )
+    fi
+  fi
+} &&
+complete -F _hfs hfs

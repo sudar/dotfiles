@@ -1,24 +1,31 @@
 #! /bin/bash
 
-# setups proper syslinks
+############################################
+# Setup proper symlinks and additional files
+############################################
+
+# wrapper for sed . `-E` is used so that it is compatible in both Mac and Ubuntu.
+_sed() {
+	sed -E "$1" $2 > $2.tmp && mv $2.tmp $2
+}
+
+_sed "/^additional_files=/s#\"[^\"]*\"#\"$PWD\"#g" $PWD/bash/bashrc
 
 # Bash files
 ln -sv $PWD/bash/bashrc ~/.bashrc
 ln -sv $PWD/bash/bash_profile ~/.bash_profile
-ln -sv $PWD/bash/bash_aliases ~/.bash_aliases
-ln -sv $PWD/bash/bash_gitprompt ~/.bash_gitprompt
 
 # git files
 ln -sv $PWD/git/gitconfig ~/.gitconfig
 ln -sv $PWD/git/gitignore ~/.gitignore
 
+# screen files
+ln -sv $PWD/screen/screenrc ~/.screenrc
+
 # vim files
 ln -sv $PWD/vim/vimrc ~/.vimrc
 ln -sv $PWD/vim/vim ~/.vim
 ln -sv $PWD/vim/vimpressrc ~/.vimpressrc
-
-# screen files
-ln -sv $PWD/screen/screenrc ~/.screenrc
 
 # Install vundle
 git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle

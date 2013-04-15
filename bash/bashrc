@@ -1,6 +1,19 @@
+##############################################################################
+# This is the ~/.bashrc file that I use, which evolved over a period of time.
+# Feel free to use the entire file or parts of it.
+# 
+# Author: Sudar (http://sudarmuthu.com)
+# Repo: https://github.com/sudar/dotfiles
+#
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+#
+##############################################################################
+
+# Path where additional files are present.
+# This line will be replaced by the setup script.
+additional_files="~"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -42,8 +55,8 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes -a -f ~/.bash_gitprompt ]; then
-    . ~/.bash_gitprompt
+if [ "$color_prompt" = yes -a -f $additional_files/bash/bash_gitprompt ]; then
+    . $additional_files/bash/bash_gitprompt
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -61,20 +74,25 @@ esac
 # set the command line mode to vi mode. Use vi command editing everywhere :) who need to use arrow keys anymore ;)
 set -o vi
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
+fi
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f $additional_files/bash/bash_aliases ]; then
+    . $additional_files/bash/bash_aliases
+fi
+
+# HDFS Alias
+if [ -f $additional_files/bash/hdfs_aliases ]; then
+    . $additional_files/bash/hdfs_aliases
 fi
 
 # load machine specific settings here

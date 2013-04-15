@@ -1,0 +1,43 @@
+##############################################################################
+# Hadoop HDFS specific alias
+##############################################################################
+
+# HDFS autocomplete
+if [ -f $additional_files/bash/hdfs_completion ]; then
+    . $additional_files/bash/hdfs_completion
+fi
+
+alias hfs='hadoop fs'
+alias hls='hadoop fs -ls'
+alias hrm='hadoop fs -rm'
+alias hrmr='hadoop fs -rmr'
+alias hput='hadoop fs -put'
+alias hget='hadoop fs -get'
+alias hpush='hadoop fs -copyFromLocal'
+alias hpull='hadoop fs -copyToLocal'
+alias hcat='hadoop fs -cat'
+alias hmkdir='hadoop fs -mkdir'
+alias hcp='hadoop fs -cp'
+alias hchmod='hadoop fs -chmod'
+alias hmv='hadoop fs -mv'
+alias hgetmerge='hadoop fs -getmerge'
+alias hkill='hadoop job -kill'
+
+# concatenate all part files in given directory
+hpartcat () { hadoop fs -cat $1/part-* ; }
+
+# concatenate all part files in given directory, piped to less
+hpartless () { hadoop fs -cat $1/part-* | less ; }
+
+# get total size of files in given directory
+# note: doesn't recurse, gives only sum of first-level files
+hdu () { hadoop fs -ls $1 | awk '{tot+=$5} END {print tot}' ; }
+
+# get total size of files in given directory, print human readable
+# human readable code http://bit.ly/O5AWU
+hduh () { hadoop fs -ls $1 | awk '{tot+=$5} END {print tot}' | \
+   awk '{sum=$1;
+        hum[1024**4]="Tb";hum[1024**3]="Gb";hum[1024**2]="Mb";hum[1024]="Kb";
+        for (x=1024**3; x>=1024; x/=1024){
+                if (sum>=x) { printf "%.2f %s\n",sum/x,hum[x];break }
+   }}' ; }
