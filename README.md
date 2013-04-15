@@ -17,7 +17,7 @@ Installation
 
 Download or clone the entire source code from github and then run the following command.
 
-`sh setup-links.sh`
+`./setup-links.sh`
 
 This command will create symbolic references in the home directory. If the config files exists already, then they are not overwritten.
 
