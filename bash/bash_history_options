@@ -14,8 +14,8 @@ shopt -s histappend
 
 # Allow for a larger history file
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=10000
-HISTFILESIZE=20000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # Ignore frequent commands from history
 HISTIGNORE="&:ls:bg:fg:history:pwd:git st:clear:cd:free:svn st:svn up"
@@ -23,5 +23,6 @@ HISTIGNORE="&:ls:bg:fg:history:pwd:git st:clear:cd:free:svn st:svn up"
 # record timestamp as well
 HISTTIMEFORMAT='%F %T '
 
+# This was causing the gitprompt not to work properly, so I have moved it inside gitprompt
 # store each command immediately
-PROMPT_COMMAND='history -a'
+#PROMPT_COMMAND='history -a'
