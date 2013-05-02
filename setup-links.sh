@@ -16,8 +16,7 @@ ln -sv $PWD/bash/bashrc ~/.bashrc
 ln -sv $PWD/bash/bash_profile ~/.bash_profile
 
 # git files
-ln -sv $PWD/git/gitconfig ~/.gitconfig
-ln -sv $PWD/git/gitignore ~/.gitignore
+ln -sv $PWD/git/gitconfig ~/.gitconfig       # You might have to adjust some paths in this file
 
 # screen files
 ln -sv $PWD/screen/screenrc ~/.screenrc

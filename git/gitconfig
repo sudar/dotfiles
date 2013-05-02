@@ -38,18 +38,23 @@
         df = diff --word-diff
         ph = push origin master
         pl = pull origin master
+        pht = push origin master --tags
+        plt = pull origin master --tags
         plr = pull --rebase origin master
         lg = log --oneline --decorate
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/Dropbox/code/dotfiles/git/gitignore
+	attributesfile = ~/Dropbox/code/dotfiles/git/git_attributes_file
 
 [url "git://github.com/"]
 	insteadOf = "gh://"
 	pushInsteadOf = "gh://"
 	# Example: git clone ghg://ntschutta/emacs
+	#
 [url "git@github.com:"]
 	insteadOf = "ghs://"
 	pushInsteadOf = "ghs://"
+
 [url "git@github.com:sudar/"]
     insteadOf = "ghsm://"
     pushInsteadOf = "ghsm://"
