@@ -14,36 +14,37 @@ if [ -x /usr/bin/dircolors ]; then
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias grep='grep --color=always'
+    alias fgrep='fgrep --color=always'
+    alias egrep='egrep --color=always'
 fi
+
+# color svn diff. Make sure colordiff is installed
+alias svnd="svn diff | colordiff | less -R"
+function svndiff () { svn diff $@ | colordiff | less -R; }
 
 # some more ls aliases
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias free="free -m"
-
-# exclude .svn and .git while doing grep
+#------------------------------------------------------------------------------
+# exclude .svn and .git
+#------------------------------------------------------------------------------
 alias grepe='grep --exclude-dir=".svn" --exclude-dir=".git"'
-# enable color for grep
-alias grep='grep --color=always'
 
-# color svn diff. Make sure colordiff is installed
-alias svnd="svn diff | colordiff | less -R"
-function svndiff () { svn diff $@ | colordiff | less -R; }
-alias gitd="git diff --color"
-
-alias delsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
-
-# Use vi as the editor for svn
-export SVN_EDITOR=vi
+# exclude .svn or .git files while doing diff
+alias diff="diff --exclude='.svn' --exclude='.git'"
 
 # exclude .svn or .git files while doing zip
-alias zipx="zip -x '*/.git/*' -x '*/.svn/*'"
+alias zip="zip -x '*/.git/*' -x '*/.svn/*'"
 
+# delete .svn/* from a folder
+alias delsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
+
+#------------------------------------------------------------------------------
+# Enhance built-in commands
+#------------------------------------------------------------------------------
 # add more to cat command
 cat()
 {
@@ -52,3 +53,36 @@ cat()
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# Use vi as the editor for svn
+export SVN_EDITOR=vi
+
+#------------------------------------------------------------------------------
+# Make the output more human readable
+#------------------------------------------------------------------------------
+
+alias free="free -m"
+alias df="df -h"
+alias du="du -h"
+
+#-------------------------------------------------------------
+# File & strings related functions:
+#-------------------------------------------------------------
+
+# Find a file with a pattern in name:
+function ff() { find . -type f -iname '*'"$*"'*' -ls ; }
+
+# Find a file with pattern $1 in name and Execute $2 on it:
+function fe() { find . -type f -iname '*'"${1:-}"'*' \
+-exec ${2:-file} {} \;  ; }
+
+#-------------------------------------------------------------
+# useful functions:
+#-------------------------------------------------------------
+
+function my_ip() # Get IP adress on ethernet.
+{
+    MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' |
+      sed -e s/addr://)
+    echo ${MY_IP:-"Not connected"}
+}
