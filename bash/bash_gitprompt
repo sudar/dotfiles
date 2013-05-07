@@ -60,9 +60,9 @@ function prompt_func() {
     if [[ $USER == sudar* ]]  # you might have to customize the username in your case
     then
         #The lowercase w is the full current working directory and W is last part of current directory
-        prompt="${TITLEBAR}${BLUE}\h${WHITE}:${RED}\w${GREEN}$(parse_git_branch)"
+        prompt="${TITLEBAR}${HOST_COLOR}\h${WHITE}:${RED}\w${GREEN}$(parse_git_branch)"
     else
-        prompt="${TITLEBAR}${GREEN}\u${WHITE}@${BLUE}\h${COLOR_NONE}:${RED}\w${GREEN}$(parse_git_branch)"
+        prompt="${TITLEBAR}${GREEN}\u${WHITE}@${HOST_COLOR}\h${COLOR_NONE}:${RED}\w${GREEN}$(parse_git_branch)"
     fi
     
     if test $previous_return_value -eq 0
