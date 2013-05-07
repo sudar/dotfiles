@@ -51,7 +51,13 @@ function git_dirty_flag {
 
 function prompt_func() {
     previous_return_value=$?;
-    if [[ $USER == sudar* ]]
+
+	if [[ -z ${HOST_COLOR} ]]  # If host color is not set, then use BLUE
+	then
+		HOST_COLOR="$BLUE"
+	fi
+
+    if [[ $USER == sudar* ]]  # you might have to customize the username in your case
     then
         #The lowercase w is the full current working directory and W is last part of current directory
         prompt="${TITLEBAR}${BLUE}\h${WHITE}:${RED}\w${GREEN}$(parse_git_branch)"

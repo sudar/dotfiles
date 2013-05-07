@@ -18,10 +18,21 @@ additional_files="$HOME/Dropbox/code/dotfiles"
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# If there is a machine specific file then load it.
+if [ -f ~/.bash_specific ]; then
+    . ~/.bash_specific
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# set the command line mode to vi mode. Use vi command editing everywhere :) who need to use arrow keys anymore ;)
+set -o vi
+
+#-----------------------------------------------------------------------------------
+# Prompt and color settings
+#-----------------------------------------------------------------------------------
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -57,9 +68,9 @@ xterm*|rxvt*)
     ;;
 esac
 
-# set the command line mode to vi mode. Use vi command editing everywhere :) who need to use arrow keys anymore ;)
-set -o vi
-
+#-----------------------------------------------------------------------------------
+# Load additional files
+#-----------------------------------------------------------------------------------
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -84,9 +95,4 @@ fi
 # bash history settings
 if [ -f $additional_files/bash/bash_history_options ]; then
     . $additional_files/bash/bash_history_options
-fi
-
-# load machine specific settings here
-if [ -f ~/.bash_specific ]; then
-    . ~/.bash_specific
 fi
