@@ -13,7 +13,7 @@
 
 # Path where additional files are present.
 # This line will be replaced by the setup script.
-additional_files="~"
+additional_files="$HOME/Dropbox/code/dotfiles"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
