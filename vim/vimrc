@@ -188,6 +188,9 @@ let g:snipMate.scope_aliases = {}
 " ---------------------------------------------------------------------------
 " External Applications
 " ---------------------------------------------------------------------------
+" Make writing Blog posts easier. Run :WriterToggle
+Bundle 'honza/writer.vim'
+
 " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
 Bundle 'sudar/VimRepress'
 
@@ -254,11 +257,6 @@ Bundle 'maksimr/vim-jsbeautify'
 "The actual beautifier
 Bundle 'einars/js-beautify' 
 
-" code formatter for JavaScript using jsbeautify
-Bundle 'maksimr/vim-jsbeautify'
-"The actual beautifier
-Bundle 'einars/js-beautify' 
-
 "  Syntax file
 Bundle 'kloppster/Wordpress-Vim-Syntax'
 
@@ -266,9 +264,7 @@ Bundle 'kloppster/Wordpress-Vim-Syntax'
 Bundle 'sudar/vim-wordpress-snippets'
 
 "  Pig syntax
-"  Will use this once this pull request is accepted https://github.com/motus/pig.vim/pull/2
-"Bundle 'motus/pig.vim'
-Bundle 'sudar/pig.vim'
+Bundle 'motus/pig.vim'
 
 " Pig snippets
 Bundle 'rverk/snipmate-pig'
@@ -655,6 +651,7 @@ abbr teh the
 " Lines
 abbr -- ------------
 abbr ==== ===============
+abbr #### ###############
 
 " Insert current date in insert mode
 iab <expr> dts strftime("%b %d, %Y")
