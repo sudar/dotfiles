@@ -8,43 +8,44 @@
 	email = sudar@sudarmuthu.com
 
 [color]
-        diff = auto
-        status = auto
-        branch = auto
-        interactive = auto
-        ui = true
-        pager = true
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
 
 [color "branch"]
-        current = yellow reverse
-        local = yellow
-        remote = green
+    current = yellow reverse
+    local = yellow
+    remote = green
 
 [color "diff"]
-        meta = yellow bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 
 [color "status"]
-        added = yellow
-        changed = green
-        untracked = cyan
+    added = yellow
+    changed = green
+    untracked = cyan
 
 [alias]
-        ci = commit
-        co = checkout
-        st = status -sb
-        df = diff --word-diff
-        ph = push origin master
-        pl = pull origin master
-        pht = push origin master --tags
-        plt = pull origin master --tags
-        plr = pull --rebase origin master
-        lg = log --oneline --decorate
+    ci = commit
+    co = checkout
+    st = status -sb
+    df = diff --word-diff
+    ph = push origin master
+    pl = pull origin master
+    pht = push origin master --tags
+    plt = pull origin master --tags
+    plr = pull --rebase origin master
+    lg = log --oneline --decorate
+    info = remote -v
 [core]
-	excludesfile = ~/Dropbox/code/dotfiles/git/gitignore
-	attributesfile = ~/Dropbox/code/dotfiles/git/git_attributes_file
+    excludesfile = ~/Dropbox/code/dotfiles/git/gitignore
+    attributesfile = ~/Dropbox/code/dotfiles/git/git_attributes_file
 
 [url "git://github.com/"]
 	insteadOf = "gh://"
