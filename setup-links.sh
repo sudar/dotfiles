@@ -31,3 +31,9 @@ git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
 # ignore changes to the yankring history file
 git update-index --assume-unchanged vim/vim/yankring/yankring_history_v2.txt
+
+# git files
+ln -sv $PWD/git/gitconfig ~/.gitconfig       # You might have to adjust some paths in this file
+
+# install and setup scripts from git contrib
+source get-git-contrib.sh

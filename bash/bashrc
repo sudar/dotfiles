@@ -78,6 +78,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+# Git command completion
+if [ -f $additional_files/git/git-contrib/completion/git-completion.bash ]; then
+    . $additional_files/git/git-contrib/completion/git-completion.bash
+fi
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
