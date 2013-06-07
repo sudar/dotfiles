@@ -15,8 +15,9 @@ _sed "/^additional_files=/s#\"[^\"]*\"#\"$PWD\"#g" $PWD/bash/bashrc
 ln -sv $PWD/bash/bashrc ~/.bashrc
 ln -sv $PWD/bash/bash_profile ~/.bash_profile
 
-# git files
-ln -sv $PWD/git/gitconfig ~/.gitconfig       # You might have to adjust some paths in this file
+if [ "$TERM_PROGRAM" == "Apple_Terminal" ]; then
+    ln -sv $PWD/bash/profile ~/.profile
+fi
 
 # screen files
 ln -sv $PWD/screen/screenrc ~/.screenrc

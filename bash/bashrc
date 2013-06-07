@@ -23,6 +23,16 @@ if [ -f ~/.bash_specific ]; then
     . ~/.bash_specific
 fi
 
+# Load machine specific bash files
+if [ "$TERM_PROGRAM" == "Apple_Terminal" -a -f $additional_files/specific/bash_specific_mac ]; then
+    # if mac
+    . $additional_files/specific/bash_specific_mac
+else
+    if [ -f $additional_files/specific/bash_specific_ubuntu ]; then
+        . $additional_files/specific/bash_specific_ubuntu
+    fi
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
