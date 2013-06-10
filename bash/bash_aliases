@@ -86,3 +86,14 @@ function my_ip() # Get IP adress on ethernet.
       sed -e s/addr://)
     echo ${MY_IP:-"Not connected"}
 }
+
+
+#-------------------------------------------------------------
+# Set the title of the terminal. This works only in Mac
+#-------------------------------------------------------------
+ssh()
+{
+    printf "\e]1;`echo $* | sed -Ee 's/^.+\@//'`\a"
+    command ssh $*
+    printf "\e]1;bash\a"
+}
