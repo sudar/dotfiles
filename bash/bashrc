@@ -9,6 +9,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 #
+
 ##############################################################################
 
 # Path where additional files are present.
@@ -36,9 +37,6 @@ fi
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# set the command line mode to vi mode. Use vi command editing everywhere :) who need to use arrow keys anymore ;)
-set -o vi
 
 #-----------------------------------------------------------------------------------
 # Prompt and color settings
@@ -110,4 +108,10 @@ fi
 # bash history settings
 if [ -f $additional_files/bash/bash_history_options ]; then
     . $additional_files/bash/bash_history_options
+fi
+
+# Commands to customize programs that use Readline
+# http://www.gnu.org/software/bash/manual/html_node/Readline-Init-File.html
+if [ -f $additional_files/bash/inputrc ]; then
+    export INPUTRC=$additional_files/bash/inputrc
 fi
