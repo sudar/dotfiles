@@ -43,15 +43,17 @@
     plr = pull --rebase origin master
     lg = log --oneline --decorate
     info = remote -v
+
 [core]
     excludesfile = ~/Dropbox/code/dotfiles/git/gitignore
     attributesfile = ~/Dropbox/code/dotfiles/git/git_attributes_file
+    editor = vim
 
 [url "git://github.com/"]
 	insteadOf = "gh://"
 	pushInsteadOf = "gh://"
 	# Example: git clone ghg://ntschutta/emacs
-	#
+	
 [url "git@github.com:"]
 	insteadOf = "ghs://"
 	pushInsteadOf = "ghs://"
