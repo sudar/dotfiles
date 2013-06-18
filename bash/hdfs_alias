@@ -22,6 +22,7 @@ alias hchmod='hadoop fs -chmod'
 alias hmv='hadoop fs -mv'
 alias hgetmerge='hadoop fs -getmerge'
 alias hkill='hadoop job -kill'
+alias hqueue='hadoop queue -showacls'
 
 # concatenate all part files in given directory
 hpartcat () { hadoop fs -cat $1/part-* ; }
