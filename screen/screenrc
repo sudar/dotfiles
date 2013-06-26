@@ -2,7 +2,11 @@
 # https://github.com/sudar/dotfiles
 
 # Scrollback buffer size
+# use ctrl + [ to go to scroll mode.
+# in scroll mode, use vi navigation commands to move around
 defscrollback 10000
 
 # so it won't seem like there is a delay when entering copy mode
 msgminwait 0
+
+bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
