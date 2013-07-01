@@ -1,4 +1,5 @@
 set nocompatible               " be iMproved
+
 " vim exists with a non-zero exit code, if filetype off is called without filetype on,
 " which messes up when vim is used as the editor for git commits
 " Vundle requires to turn filetype off, because of this bug https://github.com/gmarik/vundle/issues/176#issuecomment-12996848
@@ -20,14 +21,13 @@ Bundle 'gmarik/vundle'
 " Git wrapper for vim. Who needs git bash any more ;)
 Bundle 'tpope/vim-fugitive'
 
-" Show diff of the current file from scms. Who needs Tortoise svn any more ;)
-" Press :D to check the diff. <leader>s to toggle diff view
-Bundle 'sudar/vim-scmdiff.git'
+" Highlight changes. Jump between changes using ]h and [h
+if has('signs')
+    Bundle 'airblade/vim-gitgutter'
 
-" Show diff of changes that have been made after the file has been opened
-if !exists(":DiffOrig")
-	command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-             \ | wincmd p | diffthis
+    " Options for gitgutter. More available at https://github.com/airblade/vim-gitgutter
+    let g:gitgutter_escape_grep = 1   " Use raw grep
+    let g:gitgutter_eager = 0         " Don't run eagerly
 endif
 
 " ---------------------------------------------------------------------------
@@ -40,33 +40,37 @@ Bundle 'Lokaltog/vim-easymotion'
 " ---------------------------------------------------------------------------
 " Source code handling
 " ---------------------------------------------------------------------------
-" TODO: Need to decide between one of these two
-" Enable tag list. Make sure you have ctags installed
-Bundle "taglist.vim"
-if executable("/usr/local/Cellar/ctags/5.8/bin/ctags")
-    let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
+if has('gui_running')
+    " Enable tag list. Make sure you have ctags installed
+    " Bundle "taglist.vim"
+    Bundle "yazug/vim-taglist-plus"
+    if executable("/usr/local/Cellar/ctags/5.8/bin/ctags")
+        let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
+    endif
+
+    let Tlist_Use_Right_Window = 1
+    let Tlist_Use_SingleClick = 1
+    nnoremap <silent> <F7> :TlistToggle<CR>
+    nnoremap <silent> <F3> :TlistShowPrototype<CR>
+    set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
+
+    " Tag generation and syntax highlights. Make sure ctags is installed
+    "Bundle 'xolox/vim-easytags'
+    "let g:easytags_by_filetype="~/.vim/tags/" " store the tags in separate files inside this folder
+
+    " Opens a toolbar with method and class indexes
+    " Bundle 'majutsushi/tagbar.git' 
+    " Enable Tags bar in the side
+    " nmap <F8> :TagbarToggle<CR>
 endif
 
-let Tlist_Use_Right_Window = 1
-let Tlist_Use_SingleClick = 1
-nnoremap <silent> <F7> :TlistToggle<CR>
-nnoremap <silent> <F3> :TlistShowPrototype<CR>
-set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
-
-" Tag generation and syntax highlights. Make sure ctags is installed
-Bundle 'xolox/vim-easytags'
-let g:easytags_by_filetype="~/.vim/tags/" " store the tags in separate files inside this folder
-
-" Opens a toolbar with method and class indexes
-Bundle 'majutsushi/tagbar.git' 
-" Enable Tags bar in the side
-nmap <F8> :TagbarToggle<CR>
-
-" Syntax Highlighter
-Bundle 'scrooloose/syntastic.git'
-let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
-let g:syntastic_auto_loc_list=1
-nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
+if v:version > 702
+    " Syntax Highlighter
+    Bundle 'scrooloose/syntastic.git'
+    let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
+    let g:syntastic_auto_loc_list=1
+    nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
+endif
 
 " Show signs at locations which are of interest in Quickfix window
 Bundle 'tomtom/quickfixsigns_vim'
@@ -88,7 +92,7 @@ Bundle 'ervandew/supertab'
 
 " Display TODO from different opened files.
 Bundle "TaskList.vim"
-map <leader>to <Plug>TaskList
+map <Leader>to <Plug>TaskList
 
 " ---------------------------------------------------------------------------
 " Common edit functionalities
@@ -147,25 +151,38 @@ Bundle "tpope/vim-repeat"
 " ---------------------------------------------------------------------------
 " Searching/Replacing
 " ---------------------------------------------------------------------------
-" Smart find and replace
+" Smart abbreviation, Coercion, find and replace
+" abbreviations are stored in after/plugin/abolish.vim
+" :S for smart search and replace
 Bundle 'tpope/vim-abolish'
+" :cr{} Following options are used for coercion
+" c: camelCase
+" m: MixedCase
+" _: snake_case
+" s: snake_case
+" u: SNAKE_UPPERCASE
+" U: SNAKE_UPPERCASE
+" -: dash-case (not reversible)
 
 " To use ack inside vim. You need to install ack. Either do brew install ack or use aptitude
 Bundle 'mileszs/ack.vim'
-if executable("/usr/bin/ack-grep")
-    " Need this in my Ubuntu install
-    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-endif
+"if executable("/usr/bin/ack-grep")
+    "" Need this in my Ubuntu install
+    "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+"endif
 
 " Makes searching easier
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
 
 " Search related settings
-set ignorecase    " ignore case when searching
+set ignorecase    " ignore case when searching. use \C to force case sensitiveness
 set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
 set hlsearch      " highlight search terms
 set incsearch     " show search matches as you type
+
+" Clear highlighted searches
+nmap <silent> ,/ :nohlsearch<CR>
 
 " ---------------------------------------------------------------------------
 " Snippets
@@ -175,7 +192,7 @@ set incsearch     " show search matches as you type
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 " Additional snippets for snipmate
-Bundle 'honza/snipmate-snippets'
+Bundle 'honza/vim-snipmate'
 
 " Add the main Plugin
 Bundle 'garbas/vim-snipmate'
@@ -188,23 +205,32 @@ let g:snipMate.scope_aliases = {}
 " ---------------------------------------------------------------------------
 " External Applications
 " ---------------------------------------------------------------------------
-" Make writing Blog posts easier. Run :WriterToggle
-Bundle 'honza/writer.vim'
+
+if has("gui_macvim")
+
+    " Make writing Blog posts easier. Run :WriterToggle
+    Bundle 'honza/writer.vim'
+
+    " Export syntax highlighted code into rtf. This only works in Mac
+    if executable('pbcopy') && executable('textutil')
+        Bundle 'zerowidth/vim-copy-as-rtf'
+    endif
+endif
 
 " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
-Bundle 'sudar/VimRepress'
+Bundle 'pentie/VimRepress'
 
 "Post to twitter from vim
 Bundle 'TwitVim'
 
-" Export syntax highlighted code into rtf. This only works in Mac
-if executable('pbcopy') && executable('textutil')
-    Bundle 'aniero/vim-copy-as-rtf'
-endif
-
 " ---------------------------------------------------------------------------
 " Color Schemes 
 " ---------------------------------------------------------------------------
+
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux'
+  set t_Co=16
+endif
 
 " Color Schemes explorer. Browse through the different color schemes
 Bundle 'Color-Scheme-Explorer'
@@ -222,11 +248,10 @@ Bundle 'ciaranm/inkpot'
 Bundle '256-grayvim'
 
 " Set the default color scheme
-colorscheme desert256
-
-" color schemes
-if &t_Co >= 256 || has("gui_running")
+if has("gui_running")
    colorscheme desert 
+else
+    colorscheme inkpot
 endif
 
 " ---------------------------------------------------------------------------
@@ -240,11 +265,22 @@ Bundle "DoxygenToolkit.vim"
 " Jade
 Bundle 'digitaltoad/vim-jade'
 
-" Zen Coding. Expands HTML abbreviations. TODO: Need to decide between one of these
+" Zen Coding. Expands HTML abbreviations.
 Bundle 'mattn/zencoding-vim.git' 
+" Language specific settings
+let g:user_zen_settings = {
+\  'php' : {
+\    'extends' : 'html',
+\    'filters' : 'c',
+\  },
+\  'xml' : {
+\    'extends' : 'html',
+\  },
+\  'haml' : {
+\    'extends' : 'html',
+\  },
+\}
 let g:use_zen_complete_tag = 1 " for tag auto complete.
-" Similar to Zen coding. But uses <c-e> as shortcut
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " Syntax highlight for CSS
 Bundle 'JulesWang/css.vim'
@@ -270,8 +306,8 @@ Bundle 'motus/pig.vim'
 Bundle 'rverk/snipmate-pig'
 
 " Markdown support
-Bundle 'swaroopch/vim-markdown'
-Bundle 'swaroopch/vim-markdown-preview'
+Bundle 'tpope/vim-markdown'
+"Bundle 'swaroopch/vim-markdown-preview'
 
 " Syntax highlighting for Arduino
 Bundle 'sudar/vim-arduino-syntax'
@@ -297,7 +333,7 @@ set shiftwidth=4  " number of spaces to use for auto indenting
 set softtabstop=4 " When backspace is used to delete spaces, delete 4 at a time. This is equal to tabstop and shfitwidth
 
 set nowrap        " don't wrap lines
-set scrolloff=5   " Show atleast 5 lines around the cursor
+set scrolloff=5   " Show at least 5 lines around the cursor
 
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set autoindent    " always set auto indenting on
@@ -307,6 +343,7 @@ set smartindent   " Set intent smartly
 set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
 set showmatch     " set show matching parenthesis
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop
+set wildmenu      " Enhance auto completion
 
 set number        " always show line numbers
 set ruler         " Show the current line number in the status bar
@@ -333,6 +370,8 @@ set noerrorbells         " don't beep
 " ---------------------------------------------------------------------------
 if has('gui_running')
     set guioptions=egmrLt "Disable Toolbar"
+    set cursorline " Highlight current line 
+    set mouse=a " Enable Mouse
 endif
 
 " ---------------------------------------------------------------------------
@@ -342,19 +381,6 @@ set nobackup
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.o,*.hex,*.elf "Ignore these files while doing file completion
 set wildmode=longest,list " Start file completion with the longest match
-
-" Clear highlighted searches
-nmap <silent> ,/ :nohlsearch<CR>
-
-" Use Tab for moving to next matching tag
-nnoremap <tab> %
-vnoremap <tab> %
-
-" Enable Mouse
-set mouse=a
-
-" Highlight current line 
-set cursorline 
 
 " ----------------------------------------------------------------------------
 " Spelling
@@ -482,12 +508,6 @@ function! HasFileName()
     endif
     return 1
 endfunction
-augroup vimrcAutoView
-    autocmd!
-    " Autosave & Load Views.
-    autocmd BufWritePost,BufLeave,WinLeave ?* if HasFileName() | mkview | endif
-    autocmd BufWinEnter ?* if HasFileName() | silent loadview | endif
-augroup end
 
 " Automatically cd into the directory that the file is in
 autocmd BufEnter ?* if HasFileName() | execute "chdir ".escape(expand("%:p:h"), ' ') | endif
@@ -508,15 +528,20 @@ if &t_Co > 2 || has("gui_running")
     syntax on
 endif
 
-" -------- Doxygen -----------------------
+" -------- Doxygen -------------------------------------------------------------
+" doxygen options
+let g:DoxygenToolkit_authorName="Sudar <http://sudarmuthu.com> <http://hardwarefun.com>"
+let g:DoxygenToolkit_licenseTag="BEERWARE ;)"
+let g:DoxygenToolkit_briefTag_pre=""
+"let g:DoxygenToolkit_cinoptions="c0C0"
+
 " create doxygen comment
 map <F5> :Dox<CR>
 
-"doxygen options
-let g:DoxygenToolkit_authorName="Sudar <http://sudarmuthu.com> <http://hardwarefun.com>"
-let g:DoxygenToolkit_licenseTag="BEERWARE ;)"
+" Other options available at http://www.vim.org/scripts/script.php?script_id=987
+" DoxAuthor:, DoxLic:,  DoxBox:
 
-" Load doxygen syntax
+" Load the build-in global doxygen syntax
 let g:load_doxygen_syntax=1
 
 " -------- JADE ----------------------------------------------------------------
@@ -533,7 +558,7 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 command! MoveTags :s/<[^>]*>/\r&\r/g | :g/^$/d
 
 " jsbeautify key options
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+autocmd FileType html noremap <buffer> <c-l> :call HtmlBeautify()<cr>
 
 " ---------CSS ---------------------------------------------------------------
 "Sort CSS properties
@@ -541,7 +566,7 @@ nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " jsbeautify key options
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType css noremap <buffer> <c-l> :call CSSBeautify()<cr>
 
 " -------- JavaScript -------------------------------------------------------------
 "The default folding in JavaScript is broken. So let's fix it
@@ -647,9 +672,10 @@ let g:snipMate.scope_aliases['arduino'] = 'arduino,c'
 " ---------------------------------------------------------------------------
 " Common Typos
 abbr teh the
+abbr adn and
 
 " Lines
-abbr -- ------------
+abbr ---- ------------
 abbr ==== ===============
 abbr #### ###############
 
