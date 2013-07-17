@@ -87,6 +87,8 @@ Bundle 'matchit.zip'
 " Python match support
 Bundle 'python_match.vim'
 
+set matchpairs+=<:>
+
 " Use tab for completion
 Bundle 'ervandew/supertab'
 
