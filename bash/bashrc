@@ -19,12 +19,24 @@ additional_files="$HOME/Dropbox/code/dotfiles"
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Color code definitions
+        RED="\[\033[0;31m\]"
+     YELLOW="\[\033[0;33m\]"
+      GREEN="\[\033[0;32m\]"
+       BLUE="\[\033[0;34m\]"
+  LIGHT_RED="\[\033[1;31m\]"
+LIGHT_GREEN="\[\033[1;32m\]"
+      WHITE="\[\033[1;37m\]"
+ LIGHT_GRAY="\[\033[0;37m\]"
+ COLOR_NONE="\[\e[m\]"
+     PURPLE="\[\033[1;35m\]"
+
 # If there is a machine specific file then load it.
 if [ -f ~/.bash_specific ]; then
     . ~/.bash_specific
 fi
 
-# Load machine specific bash files
+# Load machine specific bash files. This is very specific to my setup
 if [ "$TERM_PROGRAM" == "Apple_Terminal" -a -f $additional_files/specific/bash_specific_mac ]; then
     # if mac
     . $additional_files/specific/bash_specific_mac
@@ -37,44 +49,6 @@ fi
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-#-----------------------------------------------------------------------------------
-# Prompt and color settings
-#-----------------------------------------------------------------------------------
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# force colored prompt, if the terminal has the capability;
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes -a -f $additional_files/bash/bash_gitprompt ]; then
-    . $additional_files/bash/bash_gitprompt
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 #-----------------------------------------------------------------------------------
 # Load additional files
@@ -101,7 +75,7 @@ if [ -f $additional_files/bash/bash_aliases ]; then
 fi
 
 # HDFS Alias
-if [ -f $additional_files/bash/hdfs_aliases ]; then
+if [ "$GRID" == "Y" -a -f $additional_files/bash/hdfs_aliases ]; then
     . $additional_files/bash/hdfs_aliases
 fi
 
@@ -115,3 +89,54 @@ fi
 if [ -f $additional_files/bash/inputrc ]; then
     export INPUTRC=$additional_files/bash/inputrc
 fi
+
+#-----------------------------------------------------------------------------------
+# Prompt and color settings
+#-----------------------------------------------------------------------------------
+
+if [[ -z ${HOST_COLOR} ]]  # If host color is not set, then use BLUE
+then
+    HOST_COLOR="$BLUE"
+fi
+
+if [[ $USER == sudar* ]]  # you might have to customize the username in your case
+then
+    #The lowercase w is the full current working directory and W is last part of current directory
+    PS1_PRE="${HOST_COLOR}\h${WHITE}:${RED}\w${COLOR_NONE}"
+else
+    PS1_PRE="${GREEN}\u${WHITE}@${HOST_COLOR}\h${WHITE}:${RED}\w${COLOR_NONE}"
+fi
+
+if [ -f $additional_files/git/git-contrib/completion/git-prompt.sh ]; then
+
+    # Configure options for git prompt. Check full options at
+    # https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+    export GIT_PS1_SHOWDIRTYSTATE=Y
+    export GIT_PS1_SHOWSTASHSTATE=Y
+    export GIT_PS1_SHOWUNTRACKEDFILES=Y
+    export GIT_PS1_SHOWUPSTREAM="auto"
+    export GIT_PS1_SHOWCOLORHINTS=Y
+
+    . $additional_files/git/git-contrib/completion/git-prompt.sh
+
+    GIT_PROMPT="Y"
+
+fi
+
+PS1_POST="\\\$ "
+
+if [ "$GIT_PROMPT" == "Y" ]; then
+    # Configure prompt
+    PROMPT_COMMAND='__git_ps1 "$PS1_PRE" "$PS1_POST"'
+else
+    PS1="${PS1_PRE}${PS1_POST} "
+fi
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
