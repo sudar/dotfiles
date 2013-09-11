@@ -61,3 +61,6 @@
 [url "git@github.com:sudar/"]
     insteadOf = "ghsm://"
     pushInsteadOf = "ghsm://"
+
+[help]
+	autocorrect = 1
