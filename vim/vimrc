@@ -88,6 +88,7 @@ Bundle 'matchit.zip'
 Bundle 'python_match.vim'
 
 set matchpairs+=<:>
+set iskeyword+=:
 
 " Use tab for completion
 Bundle 'ervandew/supertab'
