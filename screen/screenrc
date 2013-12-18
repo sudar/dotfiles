@@ -10,3 +10,12 @@ defscrollback 10000
 msgminwait 0
 
 bind b eval "writebuf" "exec sh -c 'pbcopy < /tmp/screen-exchange'"
+
+# no annoying audible bell, please
+vbell on
+
+# detach on hangup
+autodetach on
+
+# don't display the copyright page
+startup_message off
