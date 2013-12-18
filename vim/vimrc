@@ -37,12 +37,14 @@ endif
 " Press <leader><Leader>j or <Leader><Leader>k
 Bundle 'Lokaltog/vim-easymotion'
 
+" open items from quickfix window in a new tab
+set switchbuf+=usetab,newtab
+
 " ---------------------------------------------------------------------------
 " Source code handling
 " ---------------------------------------------------------------------------
 if has('gui_running')
     " Enable tag list. Make sure you have ctags installed
-    " Bundle "taglist.vim"
     Bundle "yazug/vim-taglist-plus"
     if executable("/usr/local/Cellar/ctags/5.8/bin/ctags")
         let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
@@ -54,14 +56,6 @@ if has('gui_running')
     nnoremap <silent> <F3> :TlistShowPrototype<CR>
     set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
 
-    " Tag generation and syntax highlights. Make sure ctags is installed
-    "Bundle 'xolox/vim-easytags'
-    "let g:easytags_by_filetype="~/.vim/tags/" " store the tags in separate files inside this folder
-
-    " Opens a toolbar with method and class indexes
-    " Bundle 'majutsushi/tagbar.git' 
-    " Enable Tags bar in the side
-    " nmap <F8> :TagbarToggle<CR>
 endif
 
 if v:version > 702
@@ -87,15 +81,24 @@ Bundle 'matchit.zip'
 " Python match support
 Bundle 'python_match.vim'
 
+" Set ":" as part of the word
 set matchpairs+=<:>
 set iskeyword+=:
 
 " Use tab for completion
-Bundle 'ervandew/supertab'
+"Bundle 'ervandew/supertab'
 
 " Display TODO from different opened files.
 Bundle "TaskList.vim"
 map <Leader>to <Plug>TaskList
+
+" Open docs for current function. use gK
+Bundle 'Keithbsmiley/investigate.vim'
+
+if has("gui_macvim")
+    " Auto complete on steroids
+    Bundle "Valloric/YouCompleteMe"
+endif
 
 " ---------------------------------------------------------------------------
 " Common edit functionalities
@@ -269,9 +272,9 @@ Bundle "DoxygenToolkit.vim"
 Bundle 'digitaltoad/vim-jade'
 
 " Zen Coding. Expands HTML abbreviations.
-Bundle 'mattn/zencoding-vim.git' 
+Bundle 'mattn/emmet-vim' 
 " Language specific settings
-let g:user_zen_settings = {
+let g:user_emmet_settings = {
 \  'php' : {
 \    'extends' : 'html',
 \    'filters' : 'c',
@@ -283,7 +286,6 @@ let g:user_zen_settings = {
 \    'extends' : 'html',
 \  },
 \}
-let g:use_zen_complete_tag = 1 " for tag auto complete.
 
 " Syntax highlight for CSS
 Bundle 'JulesWang/css.vim'
