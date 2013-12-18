@@ -12,6 +12,8 @@
 
 ##############################################################################
 
+export GNUTERM='X11'
+
 # Path where additional files are present.
 # This line will be replaced by the setup script.
 additional_files="$HOME/Dropbox/code/dotfiles"

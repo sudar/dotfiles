@@ -22,6 +22,9 @@ fi
 # screen files
 ln -sv $PWD/screen/screenrc ~/.screenrc
 
+# Octave startup file
+ln -sv $PWD/octave/octaverc ~/.octaverc
+
 # git files
 ln -sv $PWD/git/gitconfig ~/.gitconfig       # You might have to adjust some paths in this file
 
