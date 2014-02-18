@@ -30,6 +30,9 @@ if has('signs')
     let g:gitgutter_eager = 0         " Don't run eagerly
 endif
 
+" Autocomplete github issues
+Bundle 'jaxbot/github-issues.vim'
+
 " ---------------------------------------------------------------------------
 " Navigation
 " ---------------------------------------------------------------------------
