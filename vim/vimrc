@@ -30,9 +30,6 @@ if has('signs')
     let g:gitgutter_eager = 0         " Don't run eagerly
 endif
 
-" Autocomplete github issues
-Bundle 'jaxbot/github-issues.vim'
-
 " ---------------------------------------------------------------------------
 " Navigation
 " ---------------------------------------------------------------------------
@@ -46,21 +43,6 @@ set switchbuf+=usetab,newtab
 " ---------------------------------------------------------------------------
 " Source code handling
 " ---------------------------------------------------------------------------
-if has('gui_running')
-    " Enable tag list. Make sure you have ctags installed
-    Bundle "yazug/vim-taglist-plus"
-    if executable("/usr/local/Cellar/ctags/5.8/bin/ctags")
-        let Tlist_Ctags_Cmd="/usr/local/Cellar/ctags/5.8/bin/ctags" " I need this in my MAC
-    endif
-
-    let Tlist_Use_Right_Window = 1
-    let Tlist_Use_SingleClick = 1
-    nnoremap <silent> <F7> :TlistToggle<CR>
-    nnoremap <silent> <F3> :TlistShowPrototype<CR>
-    set statusline=%<%f%=%([%{Tlist_Get_Tagname_By_Line()}]%)
-
-endif
-
 if v:version > 702
     " Syntax Highlighter
     Bundle 'scrooloose/syntastic.git'
@@ -88,9 +70,6 @@ Bundle 'python_match.vim'
 set matchpairs+=<:>
 set iskeyword+=:
 
-" Use tab for completion
-"Bundle 'ervandew/supertab'
-
 " Display TODO from different opened files.
 Bundle "TaskList.vim"
 map <Leader>to <Plug>TaskList
@@ -102,7 +81,66 @@ let g:investigate_use_dash=1
 if has("gui_macvim")
     " Auto complete on steroids
     Bundle "Valloric/YouCompleteMe"
+
+    let g:ycm_seed_identifiers_with_syntax=1 "load language keywords in identifier list
+    nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+    " YouCompleteMe and ultisnips compatibility
+    " Got the code from https://github.com/Valloric/YouCompleteMe/issues/420
+
+    function! g:UltiSnips_Complete()
+        call UltiSnips#ExpandSnippet()
+        if g:ulti_expand_res == 0
+            if pumvisible()
+                return "\<C-n>"
+            else
+                call UltiSnips#JumpForwards()
+                if g:ulti_jump_forwards_res == 0
+                return "\<TAB>"
+                endif
+            endif
+        endif
+        return ""
+    endfunction
+
+    func! g:jInYCM()
+        if pumvisible()
+            return "\<C-n>"
+        else
+            return "\<c-j>"
+    endfunction
+
+    func! g:kInYCM()
+        if pumvisible()
+            return "\<C-p>"
+        else
+            return "\<c-k>"
+    endfunction
+
+    inoremap <c-j> <c-r>=g:jInYCM()<cr>
+    au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:kInYCM()<cr>"
+    au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+
+    let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsListSnippets="<c-e>"
+
+else
+    " if you don't have YouCompleteMe installed, then go with default mapping
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 endif
+
+" ---------------------------------------------------------------------------
+" Snippets
+" ---------------------------------------------------------------------------
+" Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
+Bundle 'SirVer/ultisnips'
+
+" Snippet global options
+let g:snips_author='Sudar'
+let g:snips_author_email='sudar@sudarmuthu.com'
 
 " ---------------------------------------------------------------------------
 " Common edit functionalities
@@ -181,10 +219,6 @@ Bundle 'mileszs/ack.vim'
     "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 "endif
 
-" Makes searching easier
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-
 " Search related settings
 set ignorecase    " ignore case when searching. use \C to force case sensitiveness
 set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
@@ -193,24 +227,6 @@ set incsearch     " show search matches as you type
 
 " Clear highlighted searches
 nmap <silent> ,/ :nohlsearch<CR>
-
-" ---------------------------------------------------------------------------
-" Snippets
-" ---------------------------------------------------------------------------
-" Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
-" Dependencies
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-" Additional snippets for snipmate
-Bundle 'honza/vim-snipmate'
-
-" Add the main Plugin
-Bundle 'garbas/vim-snipmate'
-
-" Snipmate options
-let g:snips_author='Sudar'
-let g:snipMate = {}
-let g:snipMate.scope_aliases = {} 
 
 " ---------------------------------------------------------------------------
 " External Applications
@@ -311,12 +327,11 @@ Bundle 'sudar/vim-wordpress-snippets'
 "  Pig syntax
 Bundle 'motus/pig.vim'
 
-" Pig snippets
-Bundle 'rverk/snipmate-pig'
+" Pig snippets. TODO: Make it compatible with UltiSnips
+"Bundle 'rverk/snipmate-pig'
 
 " Markdown support
 Bundle 'tpope/vim-markdown'
-"Bundle 'swaroopch/vim-markdown-preview'
 
 " Syntax highlighting for Arduino
 Bundle 'sudar/vim-arduino-syntax'
@@ -533,7 +548,7 @@ command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
 " ----------------------------------------------------------------------------
 " File type specific settings
 " ----------------------------------------------------------------------------
-filetype plugin indent on " Enable filetype specific features including indend
+filetype plugin indent on " Enable filetype specific features including indent
 
 if &t_Co > 2 || has("gui_running")
    	" switch syntax highlighting on, when the terminal has colors
@@ -622,11 +637,14 @@ autocmd FileType php let b:surround_45 = "<?php \r ?>"
 
 " -------- WordPress -----------------------
 " Add PHP snippets to WordPress
-let g:snipMate.scope_aliases['wordpress'] = 'wordpress,php'
+"let g:snipMate.scope_aliases['wordpress'] = 'wordpress,php'
 
 " -------- Python -----------------------
 autocmd filetype python set expandtab
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+
+" Snippet option
+let g:ultisnips_python_style="doxygen"
 
 " -------- C -----------------------
 autocmd FileType c set omnifunc=ccomplete#Complete
@@ -677,7 +695,7 @@ set suffixesadd=.md,.txt
 autocmd FileType arduino set omnifunc=ccomplete#Complete
 
 " Add c snippets to Arduino
-let g:snipMate.scope_aliases['arduino'] = 'arduino,c'
+"let g:snipMate.scope_aliases['arduino'] = 'arduino,c'
 
 " ---------------------------------------------------------------------------
 " Abbreviations
