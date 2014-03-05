@@ -141,9 +141,13 @@ endif
 " Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
 Bundle 'SirVer/ultisnips'
 
+" Snippets for different languages
+Bundle 'honza/vim-snippe'
+
 " Snippet global options
 let g:snips_author='Sudar'
 let g:snips_author_email='sudar@sudarmuthu.com'
+let g:UltiSnipsEditSplit="vertical"  " :UltiSnipsEdit will split the window.
 
 " ---------------------------------------------------------------------------
 " Common edit functionalities
