@@ -21,7 +21,10 @@ Bundle 'gmarik/vundle'
 " Git wrapper for vim. Who needs git bash any more ;)
 Bundle 'tpope/vim-fugitive'
 
-" Highlight changes. Jump between changes using ]h and [h
+" Highlight changes.
+" Jump between changes using ]c and [c
+" Stage the hunk with <Leader>hs
+" Revert it with <Leader>hr
 if has('signs')
     Bundle 'airblade/vim-gitgutter'
 
