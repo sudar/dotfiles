@@ -1,0 +1,19 @@
+##############################################################################
+# This file controls the behaviour of line input editing for
+# programs that use the GNU Editline library.  Existing
+# programs include mysql
+#
+# Author: Sudar (http://sudarmuthu.com)
+# Repo: https://github.com/sudar/dotfiles
+#
+##############################################################################
+
+# set the command line editing mode to vi mode. 
+# Use vi command editing everywhere :) who need to use arrow keys anymore ;)
+bind -v
+
+# Recursive searching
+bind "^R" em-inc-search-prev
+
+# Auto completion
+bind \\t rl_complete

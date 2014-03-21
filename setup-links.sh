@@ -25,6 +25,9 @@ ln -sv $PWD/screen/screenrc ~/.screenrc
 # inputrc. For programs that use readline library
 ln -sv $PWD/bash/inputrc ~/.inputrc
 
+# editrc. For programs that use editline library
+ln -sv $PWD/bash/editrc ~/.editrc
+
 # Octave startup file
 ln -sv $PWD/octave/octaverc ~/.octaverc
 
