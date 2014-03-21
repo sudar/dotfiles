@@ -9,6 +9,7 @@ This repo contains my config files for the following programs. Feel free to use 
  - screen
  - Readline (inputrc)
  - Editline (exitrc)
+ - ack (ack-grep in Ubuntu)
 
 I use this on a Mac as well as a Ubuntu desktop. In Mac this assumes that you are running `bash` shell. If not, then you might [have to change it](http://hints.macworld.com/article.php?story=20071025221744166).
 

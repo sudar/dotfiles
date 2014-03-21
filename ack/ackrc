@@ -1,0 +1,23 @@
+##############################################################################
+# This file controls the behaviour of ack
+#
+# Author: Sudar (http://sudarmuthu.com)
+# Repo: https://github.com/sudar/dotfiles
+#
+##############################################################################
+
+# specify ignore directories
+
+--ignore-dir=.idea
+--ignore-dir=log
+--ignore-dir=tmp
+
+# add types ack doesn't know about
+
+--type-add=ruby=rake,haml
+--type-add=vim=vimrc
+--type-add=js=json
+--type-set=cucumber=feature
+--type-set=css=sass
+--type-set=MARKDOWN=md,mkd,markdown
+--type-set=RDOC=rdoc
