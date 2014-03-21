@@ -22,6 +22,9 @@ fi
 # screen files
 ln -sv $PWD/screen/screenrc ~/.screenrc
 
+# inputrc. For programs that use readline library
+ln -sv $PWD/bash/inputrc ~/.inputrc
+
 # Octave startup file
 ln -sv $PWD/octave/octaverc ~/.octaverc
 
