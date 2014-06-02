@@ -181,15 +181,16 @@ nmap <Leader>sjs :SplitjoinSplit<cr>
 
 "Allows to align variable declarations
 Bundle "godlygeek/tabular"
-" Options
-if exists(":Tabularize")
-  nmap <Leader>t= :Tabularize /=<CR>
-  vmap <Leader>t= :Tabularize /=<CR>
-  nmap <Leader>t=> :Tabularize /=><CR>
-  vmap <Leader>t=> :Tabularize /=><CR>
-  nmap <Leader>t: :Tabularize /:\zs<CR>
-  vmap <Leader>t: :Tabularize /:\zs<CR>
-endif
+
+" Align PHP Doc statements. Code from http://stackoverflow.com/q/22764695/24949
+command! -range TabDoc :Tabularize/@\w\+\s\+\zs\w\+\|\%(@\w\+.*\)\@<=\u.*/
+
+nmap <Leader>t= :Tabularize /=<CR>
+vmap <Leader>t= :Tabularize /=<CR>
+nmap <Leader>t=> :Tabularize /=><CR>
+vmap <Leader>t=> :Tabularize /=><CR>
+nmap <Leader>t: :Tabularize /:\zs<CR>
+vmap <Leader>t: :Tabularize /:\zs<CR>
 
 " Surround - Easily change, add and delete around surroundings
 Bundle 'tpope/vim-surround'
@@ -320,9 +321,6 @@ endif
 " ---------------------------------------------------------------------------
 " They need to present before setting filetype, because of this bug https://github.com/gmarik/vundle/issues/176#issuecomment-12996848
 
-" doxygen
-Bundle "DoxygenToolkit.vim"
-
 " Jade
 Bundle 'digitaltoad/vim-jade'
 
@@ -351,10 +349,22 @@ Bundle 'yui/editor-extras', {'rtp': 'vim/'}
 " code formatter for JavaScript using jsbeautify
 Bundle 'maksimr/vim-jsbeautify'
 "The actual beautifier
-Bundle 'einars/js-beautify' 
+Bundle 'einars/js-beautify'
 
-"  Syntax file
-Bundle 'kloppster/Wordpress-Vim-Syntax'
+" PHP syntax
+let php_ignore_phpdoc=1
+Bundle 'StanAngeloff/php.vim'
+
+" PHP indent. Need this only till v1.49+ goes into vim distribution
+Bundle '2072/PHP-Indenting-for-VIm'
+
+" PHP autocomplete
+let g:phpcomplete_parse_docblock_comments = 1
+Bundle 'shawncplus/phpcomplete.vim'
+
+" WordPress
+Bundle 'dsawardekar/wordpress.vim'
+let g:wordpress_vim_wordpress_path="~/Dropbox/code/wp/sites/wordpress/"
 
 " WordPress snippets
 Bundle 'sudar/vim-wordpress-snippets'
@@ -575,11 +585,28 @@ endfunction
 " Automatically cd into the directory that the file is in
 autocmd BufEnter ?* if HasFileName() | execute "chdir ".escape(expand("%:p:h"), ' ') | endif
 
+" Close empty buffers. Copied from http://stackoverflow.com/a/6561076/24949
+function! DeleteEmptyBuffers()
+    let [i, n; empty] = [1, bufnr('$')]
+    while i <= n
+        if bufexists(i) && bufname(i) == ''
+            call add(empty, i)
+        endif
+        let i += 1
+    endwhile
+    if len(empty) > 0
+        exe 'bdelete' join(empty)
+    endif
+endfunction
+
 " ----------------------------------------------------------------------------
 " Code Formatting settings
 " ----------------------------------------------------------------------------
 " Move { from separate lines into the end of the previous line
 command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
+
+" Auto increment numbers and dates in visual block
+Bundle 'VisIncr'
 
 " ----------------------------------------------------------------------------
 " File type specific settings
@@ -587,22 +614,13 @@ command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
 filetype plugin indent on " Enable filetype specific features including indent
 
 if &t_Co > 2 || has("gui_running")
-   	" switch syntax highlighting on, when the terminal has colors
+    " switch syntax highlighting on, when the terminal has colors
     syntax on
 endif
 
 " -------- Doxygen -------------------------------------------------------------
-" doxygen options
-let g:DoxygenToolkit_authorName="Sudar <http://sudarmuthu.com> <http://hardwarefun.com>"
-let g:DoxygenToolkit_licenseTag="BEERWARE ;)"
-let g:DoxygenToolkit_briefTag_pre=""
-"let g:DoxygenToolkit_cinoptions="c0C0"
-
-" create doxygen comment
-map <F5> :Dox<CR>
-
-" Other options available at http://www.vim.org/scripts/script.php?script_id=987
-" DoxAuthor:, DoxLic:,  DoxBox:
+" fix formatting in phpdoc
+set formatoptions+=or
 
 " Load the build-in global doxygen syntax
 let g:load_doxygen_syntax=1
