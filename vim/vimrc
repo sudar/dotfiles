@@ -102,6 +102,11 @@ if has("gui_macvim")
     " Auto complete on steroids
     Bundle "Valloric/YouCompleteMe"
 
+    " Disable autocomplete for markdown files
+    let g:ycm_filetype_blacklist = {
+      \ 'markdown' : 1
+      \}
+
     let g:ycm_seed_identifiers_with_syntax=1 "load language keywords in identifier list
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
