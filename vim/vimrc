@@ -43,6 +43,23 @@ Bundle 'Lokaltog/vim-easymotion'
 " open items from quickfix window in a new tab
 set switchbuf+=usetab,newtab
 
+" Unfold the line if going to an exact line number
+nnoremap <expr> G (v:count ? 'Gzv' : 'G')
+
+" ---------------------------------------------------------------------------
+" Status bar
+" ---------------------------------------------------------------------------
+" Add more features to the status bar
+Bundle 'bling/vim-airline'
+let g:airline_theme="bubblegum"
+set laststatus=2
+set fillchars+=stl:\ ,stlnc:\
+
+" Show buffer list in status bar
+Bundle 'bling/vim-bufferline'
+" Don't echo in command bar
+let g:bufferline_echo = 0
+
 " ---------------------------------------------------------------------------
 " Source code handling
 " ---------------------------------------------------------------------------
