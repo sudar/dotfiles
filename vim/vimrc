@@ -74,14 +74,14 @@ endif
 " Show signs at locations which are of interest in Quickfix window
 Bundle 'tomtom/quickfixsigns_vim'
 
-" Bulk (Un)Comment line. 
+" Bulk (Un)Comment line.
 Bundle 'sudar/comments.vim'
 
 " Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
 let delimitMate_expand_cr=1
 
-" Automatically match tags and braces in different files. 
+" Automatically match tags and braces in different files.
 Bundle 'matchit.zip'
 " Python match support
 Bundle 'python_match.vim'
@@ -159,7 +159,7 @@ endif
 Bundle 'SirVer/ultisnips'
 
 " Snippets for different languages
-Bundle 'honza/vim-snippe'
+Bundle 'honza/vim-snippets'
 
 " Snippet global options
 let g:snips_author='Sudar'
@@ -327,7 +327,7 @@ Bundle "DoxygenToolkit.vim"
 Bundle 'digitaltoad/vim-jade'
 
 " Zen Coding. Expands HTML abbreviations.
-Bundle 'mattn/emmet-vim' 
+Bundle 'mattn/emmet-vim'
 " Language specific settings
 let g:user_emmet_settings = {
 \  'php' : {
@@ -410,7 +410,7 @@ set ruler         " Show the current line number in the status bar
 " ---------------------------------------------------------------------------
 " Common settings
 " ----------------------------------------------------------------------------
-set hidden		  " Hides buffer instead of closing them. You can use <C-o> and <C-i> to iterate the buffers.
+"set hidden		  " Hides buffer instead of closing them. You can use <C-o> and <C-i> to iterate the buffers.
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -447,11 +447,12 @@ set wildmode=longest,list " Start file completion with the longest match
 set spell
 set spellfile=~/.vim/spell/en.utf-8.add " custom spell check file
 set spelllang=en_us
+set spellsuggest=best
 
 " ----------------------------------------------------------------------------
 " Key mappings
 " ----------------------------------------------------------------------------
-  
+
 " Paste without messing up formatting.
 set pastetoggle=<F2>
 
@@ -507,7 +508,7 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-"Move a line of text using ALT+[jk] 
+"Move a line of text using ALT+[jk]
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
@@ -632,7 +633,7 @@ autocmd FileType css noremap <buffer> <c-l> :call CSSBeautify()<cr>
 
 " -------- JavaScript -------------------------------------------------------------
 "The default folding in JavaScript is broken. So let's fix it
-au FileType javascript call JavaScriptFold() 
+au FileType javascript call JavaScriptFold()
 au FileType javascript setl fen
 
 function! JavaScriptFold()
