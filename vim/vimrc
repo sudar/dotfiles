@@ -274,7 +274,7 @@ Bundle 'pentie/VimRepress'
 Bundle 'TwitVim'
 
 " ---------------------------------------------------------------------------
-" Color Schemes 
+" Color Schemes
 " ---------------------------------------------------------------------------
 
 " Allow color schemes to do bright colors without forcing bold.
@@ -286,7 +286,7 @@ endif
 Bundle 'Color-Scheme-Explorer'
 
 " Programmer Color scheme
-Bundle 'pw' 
+Bundle 'pw'
 
 " Light ColorScheme
 Bundle 'lightdiff'
@@ -297,13 +297,24 @@ Bundle 'desert256.vim'
 Bundle 'ciaranm/inkpot'
 Bundle '256-grayvim'
 
-" Set the default color scheme
+" 16 color Schemes
+Bundle 'noahfrederick/vim-noctu'
+
+" GUI color Schemes
+Bundle 'noahfrederick/vim-hemisu'
+
+" Everyone is talking about this
+Bundle 'altercation/vim-colors-solarized'
+
 if has("gui_running")
-   colorscheme desert 
+    set background=dark
+    colorscheme solarized
 else
-    colorscheme inkpot
+    colorscheme noctu
 endif
 
+
+" Set the default color scheme
 " ---------------------------------------------------------------------------
 " file type specific Bundles.
 " ---------------------------------------------------------------------------
@@ -418,7 +429,7 @@ set noerrorbells         " don't beep
 " ---------------------------------------------------------------------------
 if has('gui_running')
     set guioptions=egmrLt "Disable Toolbar"
-    set cursorline " Highlight current line 
+    set cursorline " Highlight current line
     set mouse=a " Enable Mouse
 endif
 
