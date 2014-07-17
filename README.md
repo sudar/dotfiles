@@ -7,6 +7,7 @@ This repo contains my config files for the following programs. Feel free to use 
  - bash
  - git
  - screen
+ - sqlite
  - Readline (inputrc)
  - Editline (exitrc)
  - ack (ack-grep in Ubuntu)

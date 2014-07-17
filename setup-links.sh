@@ -22,6 +22,9 @@ fi
 # screen files
 ln -sv $PWD/screen/screenrc ~/.screenrc
 
+# sqlite
+ln -sv $PWD/sqlite/sqliterc ~/.sqliterc
+
 # inputrc. For programs that use readline library
 ln -sv $PWD/bash/inputrc ~/.inputrc
 
