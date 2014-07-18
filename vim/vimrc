@@ -517,6 +517,11 @@ nmap Q gqap
 " Escape insert mode without pressing esc
 :imap jj <Esc>
 
+" When pushing j/k on a line that is wrapped, it navigates to the same line,
+" just to the expected location rather than to the next line
+nnoremap j gj
+nnoremap k gk
+
 " Create Blank Newlines and stay in Normal mode
 nnoremap <silent> Zj o<Esc>
 nnoremap <silent> Zk O<Esc>
