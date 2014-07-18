@@ -18,6 +18,9 @@ Bundle 'gmarik/vundle'
 " ---------------------------------------------------------------------------
 " Source Control Management
 " ---------------------------------------------------------------------------
+" Updated Vim-Git runtime files
+Bundle 'tpope/vim-git'
+
 " Git wrapper for vim. Who needs git bash any more ;)
 Bundle 'tpope/vim-fugitive'
 
