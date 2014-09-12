@@ -69,8 +69,9 @@ let g:bufferline_echo = 0
 if v:version > 702
     " Syntax Highlighter
     Bundle 'scrooloose/syntastic.git'
-    let g:syntastic_check_on_open=1 " Enable syntax check when a file is opened or saved
-    let g:syntastic_auto_loc_list=1
+    let g:syntastic_check_on_open = 1   " Enable syntax check when a file is opened or saved
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_quiet_messages = { "level" : "warnings" }
     nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 endif
 
@@ -79,6 +80,10 @@ Bundle 'tomtom/quickfixsigns_vim'
 
 " Bulk (Un)Comment line.
 Bundle 'sudar/comments.vim'
+
+" Vim-bad-whitespace, highlights bad whitespace
+" use EraseBadWhitespace command to erase bad whitespace
+Bundle 'bitc/vim-bad-whitespace'
 
 " Automatically close tags, quotes etc
 Bundle 'Raimondi/delimitMate'
@@ -89,9 +94,26 @@ Bundle 'matchit.zip'
 " Python match support
 Bundle 'python_match.vim'
 
-" Set ":" as part of the word
+" Add additional match pairs
 set matchpairs+=<:>
-set iskeyword+=:
+
+" Load the build-in global doxygen syntax
+let g:load_doxygen_syntax=1
+
+" Move { from separate lines into the end of the previous line
+command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
+
+"Allows to align variable declarations
+Bundle "godlygeek/tabular"
+" Align PHP Doc statements. Code from http://stackoverflow.com/q/22764695/24949
+command! -range TabDoc :Tabularize/@\w\+\s\+\zs\w\+\|\%(@\w\+.*\)\@<=\u.*/
+
+" Allows you to split and joins lines and reformat them
+" use gS and gJ
+Bundle "AndrewRadev/splitjoin.vim"
+
+" Auto increment numbers and dates in visual block
+Bundle 'VisIncr'
 
 " Display TODO from different opened files.
 Bundle "TaskList.vim"
@@ -172,7 +194,7 @@ Bundle 'honza/vim-snippets'
 " Snippet global options
 let g:snips_author='Sudar'
 let g:snips_author_email='sudar@sudarmuthu.com'
-let g:UltiSnipsEditSplit="vertical"  " :UltiSnipsEdit will split the window.
+let g:UltiSnipsEditSplit="vertical"  ":UltiSnipsEdit will split the window.
 
 " ---------------------------------------------------------------------------
 " Common edit functionalities
@@ -181,24 +203,6 @@ let g:UltiSnipsEditSplit="vertical"  " :UltiSnipsEdit will split the window.
 Bundle 'YankRing.vim'
 nmap <Leader>yy :YRShow<CR>
 let g:yankring_history_dir = '~/.vim/yankring'
-
-" Allows you to split and joins lines and reformat them
-Bundle "AndrewRadev/splitjoin.vim"
-nmap <Leader>sjj :SplitjoinJoin<cr>
-nmap <Leader>sjs :SplitjoinSplit<cr>
-
-"Allows to align variable declarations
-Bundle "godlygeek/tabular"
-
-" Align PHP Doc statements. Code from http://stackoverflow.com/q/22764695/24949
-command! -range TabDoc :Tabularize/@\w\+\s\+\zs\w\+\|\%(@\w\+.*\)\@<=\u.*/
-
-nmap <Leader>t= :Tabularize /=<CR>
-vmap <Leader>t= :Tabularize /=<CR>
-nmap <Leader>t=> :Tabularize /=><CR>
-vmap <Leader>t=> :Tabularize /=><CR>
-nmap <Leader>t: :Tabularize /:\zs<CR>
-vmap <Leader>t: :Tabularize /:\zs<CR>
 
 " Surround - Easily change, add and delete around surroundings
 Bundle 'tpope/vim-surround'
@@ -226,8 +230,11 @@ Bundle 'tpope/vim-surround'
 "<CTRL-g>s - same as <CTRL-s>
 "<CTRL-g>S - same as <CTRL-s><CTRL-s>
 
-"  Repeat the last command. Press . to repeat the last command.
+" Repeat the last command. Press . to repeat the last command.
 Bundle "tpope/vim-repeat"
+
+" Provides paired key mappings
+Bundle "tpope/vim-unimpaired"
 
 " ---------------------------------------------------------------------------
 " Searching/Replacing
@@ -252,19 +259,9 @@ Bundle 'mileszs/ack.vim'
     "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 "endif
 
-" Search related settings
-set ignorecase    " ignore case when searching. use \C to force case sensitiveness
-set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
-
-" Clear highlighted searches
-nmap <silent> ,/ :nohlsearch<CR>
-
 " ---------------------------------------------------------------------------
 " External Applications
 " ---------------------------------------------------------------------------
-
 if has("gui_macvim")
 
     " Make writing Blog posts easier. Run :WriterToggle
@@ -276,6 +273,9 @@ if has("gui_macvim")
     endif
 endif
 
+" Open browser
+Bundle 'tyru/open-browser.vim'
+
 " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
 Bundle 'pentie/VimRepress'
 
@@ -285,7 +285,6 @@ Bundle 'TwitVim'
 " ---------------------------------------------------------------------------
 " Color Schemes
 " ---------------------------------------------------------------------------
-
 " Allow color schemes to do bright colors without forcing bold.
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
@@ -315,15 +314,15 @@ Bundle 'noahfrederick/vim-hemisu'
 " Everyone is talking about this
 Bundle 'altercation/vim-colors-solarized'
 
+" Set the default color scheme
 if has("gui_running")
+    let g:solarized_contrast="high"
     set background=dark
     colorscheme solarized
 else
     colorscheme noctu
 endif
 
-
-" Set the default color scheme
 " ---------------------------------------------------------------------------
 " file type specific Bundles.
 " ---------------------------------------------------------------------------
@@ -351,28 +350,24 @@ let g:user_emmet_settings = {
 " Syntax highlight for CSS
 Bundle 'JulesWang/css.vim'
 
-" YUI Syntax highlight
-Bundle 'yui/editor-extras', {'rtp': 'vim/'}
-
 " code formatter for JavaScript using jsbeautify
 Bundle 'maksimr/vim-jsbeautify'
 "The actual beautifier
 Bundle 'einars/js-beautify'
 
 " PHP syntax
-let php_ignore_phpdoc=1
 Bundle 'StanAngeloff/php.vim'
 
 " PHP indent. Need this only till v1.49+ goes into vim distribution
 Bundle '2072/PHP-Indenting-for-VIm'
 
 " PHP autocomplete
-let g:phpcomplete_parse_docblock_comments = 1
+let g:phpcomplete_parse_docblock_comments=1
 Bundle 'shawncplus/phpcomplete.vim'
 
 " WordPress
-Bundle 'dsawardekar/wordpress.vim'
 let g:wordpress_vim_wordpress_path="~/Dropbox/code/wp/sites/wordpress/"
+Bundle 'dsawardekar/wordpress.vim'
 
 " WordPress snippets
 Bundle 'sudar/vim-wordpress-snippets'
@@ -381,10 +376,7 @@ Bundle 'sudar/vim-wordpress-snippets'
 Bundle 'motus/pig.vim'
 
 " Pig snippets. TODO: Make it compatible with UltiSnips
-"Bundle 'rverk/snipmate-pig'
-
-" Markdown support
-Bundle 'tpope/vim-markdown'
+Bundle 'rverk/snipmate-pig'
 
 " Syntax highlighting for Arduino
 Bundle 'sudar/vim-arduino-syntax'
@@ -401,9 +393,18 @@ set rtp+=~/.vim/custom/
 runtime! ftplugin/man.vim
 
 " ---------------------------------------------------------------------------
-" Space and Tab related settings 
-" ---------------------------------------------------------------------------
+"  ******** All Bundle configuration ends here ********
+" ----------------------------------------------------------------------------
+filetype plugin indent on " Enable filetype specific features including indent
 
+if &t_Co > 2 || has("gui_running")
+    " switch syntax highlighting on, when the terminal has colors
+    syntax on
+endif
+
+" ---------------------------------------------------------------------------
+" Space and Tab related settings
+" ---------------------------------------------------------------------------
 set expandtab     " Expand tab to spaces
 set tabstop=4     " Width of a tab is 4
 set shiftwidth=4  " number of spaces to use for auto indenting
@@ -428,8 +429,6 @@ set ruler         " Show the current line number in the status bar
 " ---------------------------------------------------------------------------
 " Common settings
 " ----------------------------------------------------------------------------
-"set hidden		  " Hides buffer instead of closing them. You can use <C-o> and <C-i> to iterate the buffers.
-
 " Set to auto read when a file is changed from the outside
 set autoread
 
@@ -443,12 +442,27 @@ set visualbell           " don't beep
 set noerrorbells         " don't beep
 
 " ---------------------------------------------------------------------------
+" Search settings
+" ----------------------------------------------------------------------------
+set ignorecase    " ignore case when searching. use \C to force case sensitiveness
+set smartcase     " ignore case if search pattern is all lowercase,case-sensitive otherwise
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+
+" Clear highlighted searches
+nmap <silent> ,/ :nohlsearch<CR>
+
+" ---------------------------------------------------------------------------
 " GUI options
 " ---------------------------------------------------------------------------
 if has('gui_running')
     set guioptions=egmrLt "Disable Toolbar"
     set cursorline " Highlight current line
     set mouse=a " Enable Mouse
+endif
+
+if has("gui_macvim")
+    set guifont=Monaco:h14
 endif
 
 " ---------------------------------------------------------------------------
@@ -470,15 +484,11 @@ set spellsuggest=best
 " ----------------------------------------------------------------------------
 " Key mappings
 " ----------------------------------------------------------------------------
-
-" Paste without messing up formatting.
-set pastetoggle=<F2>
-
 " change the mapleader from \ to ,
 let mapleader=","
 
-" Map ' to : so that you can save pressing shift
-nnoremap ' :
+" Paste without messing up formatting.
+set pastetoggle=<F2>
 
 " forgot sudo while opening the file
 cmap w!! w !sudo tee % >/dev/null
@@ -506,6 +516,37 @@ set showcmd
 " ----------------------------------------------------------------------------
 "Select previously pasted text for quick formatting.
 nnoremap <leader>v V`]
+
+" Function to hide all the text except for the text selected in visual mode.
+" This is great for highlighting parts of the code. Just call the function
+" again to deselect everything.
+function! ToggleSelected(visual) range
+    highlight HideSelected ctermfg=bg ctermbg=bg
+                         \ guifg=bg guibg=bg gui=none term=none cterm=none
+
+    if exists("g:toggle_selected_hide")
+        call matchdelete(g:toggle_selected_hide)
+
+        unlet g:toggle_selected_hide
+        redraw
+
+        if !a:visual
+            return
+        endif
+    endif
+
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+
+    let pattern = '\%^\|\%<'.lnum1.'l\|\%<'.col1.'v\|\%>'.lnum2.'l\|\%>'.col2.'v'
+    let g:toggle_selected_hide = matchadd('HideSelected', pattern, 1000)
+
+    redraw
+endfunction
+
+" Show only selected in Visual Mode
+nmap <silent> <leader>th :cal ToggleSelected(0)<CR>
+vmap <silent> <leader>th :cal ToggleSelected(1)<CR>
 
 " ----------------------------------------------------------------------------
 " Normal Mode settings
@@ -566,7 +607,6 @@ map <C-l> <C-w>l
 " ----------------------------------------------------------------------------
 " Buffer open/close
 " ----------------------------------------------------------------------------
-
 " Save and load folds while closing and opening files
 let g:skipview_files = [
             \ '[EXAMPLE PLUGIN BUFFER]'
@@ -613,105 +653,18 @@ function! DeleteEmptyBuffers()
 endfunction
 
 " ----------------------------------------------------------------------------
-" Code Formatting settings
+" File type specific settings. These should ideally go to /ftplugin/*
 " ----------------------------------------------------------------------------
-" Move { from separate lines into the end of the previous line
-command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
+" -------- Text/Markdown -----------------------
+" Plain text files are Markdown
+autocmd BufNewFile,BufRead *.txt,*.text,*.md setlocal ft=markdown
+autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
 
-" Auto increment numbers and dates in visual block
-Bundle 'VisIncr'
+autocmd FileType markdown setlocal nolist wrap linebreak scrolloff=999
 
-" ----------------------------------------------------------------------------
-" File type specific settings
-" ----------------------------------------------------------------------------
-filetype plugin indent on " Enable filetype specific features including indent
-
-if &t_Co > 2 || has("gui_running")
-    " switch syntax highlighting on, when the terminal has colors
-    syntax on
-endif
-
-" -------- Doxygen -------------------------------------------------------------
-" fix formatting in phpdoc
-set formatoptions+=or
-
-" Load the build-in global doxygen syntax
-let g:load_doxygen_syntax=1
-
-" -------- JADE ----------------------------------------------------------------
-"
-
-" -------- HTML----------------------------------------------------------------
-autocmd FileType html TextMode
-
-"Fold HTML Tag
-nnoremap <leader>ft Vatzf
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-
-" Move Tags to separate lines. Copied from http://stackoverflow.com/a/9987878/24949
-command! MoveTags :s/<[^>]*>/\r&\r/g | :g/^$/d
-
-" jsbeautify key options
-autocmd FileType html noremap <buffer> <c-l> :call HtmlBeautify()<cr>
-
-" ---------CSS ---------------------------------------------------------------
-"Sort CSS properties
-nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-" jsbeautify key options
-autocmd FileType css noremap <buffer> <c-l> :call CSSBeautify()<cr>
-
-" -------- JavaScript -------------------------------------------------------------
-"The default folding in JavaScript is broken. So let's fix it
-au FileType javascript call JavaScriptFold()
-au FileType javascript setl fen
-
-function! JavaScriptFold()
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
-
-    function! FoldText()
-    return substitute(getline(v:foldstart), '{.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
-
-" autocomplete options
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-
-" Syntastic options
-let g:syntastic_javascript_checker="jslint" "Use jslint as the checker
-let g:syntastic_javascript_jslint_conf = "--sloppy" "options for jslint
-
-" jsbeautify key options
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-
-" -------- PHP --------------------------------------------------------------------
-
-" Config for folding
-let php_folding = 2        "Set PHP folding of classes and functions and all {}
-let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
-let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
-let php_noShortTags = 1    "Disable PHP short tags.
-let php_baselib = 1        "for highlighting baselib functions
-let php_alt_comparisons= 1 "to highlight comparison operators in an alternate colour
-
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-" Surround configuration for PHP. Adds yss- command
-autocmd FileType php let b:surround_45 = "<?php \r ?>"
-
-" -------- WordPress -----------------------
-" Add PHP snippets to WordPress
-"let g:snipMate.scope_aliases['wordpress'] = 'wordpress,php'
-
-" -------- Python -----------------------
-autocmd filetype python set expandtab
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-
-" Snippet option
-let g:ultisnips_python_style="doxygen"
+" Allow these file extensions to be accessed via 'gf' of only the name, for
+" e.g. gf on [[AnotherPage]] should go to AnotherPage.md
+set suffixesadd=.md,.txt
 
 " -------- C -----------------------
 autocmd FileType c set omnifunc=ccomplete#Complete
@@ -719,9 +672,6 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 " -------- C++ -----------------------
 " switch between header/source with F4
 map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
-
-" -------- Pig -----------------------
-
 
 " -------- Perl -----------------------
 let perl_fold=1               " Perl
@@ -741,28 +691,6 @@ let vimsyn_folding='af'       " Vim script
 " -------- XML Files -----------------------
 let xml_syntax_folding=1      " XML
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-
-" -------- Text/Markdown -----------------------
-" Text mode
-command! TextMode setlocal nolist wrap linebreak scrolloff=999
-
-" Plain text files are Markdown
-autocmd BufNewFile,BufRead *.txt,*.text setlocal ft=markdown
-autocmd FileType markdown TextMode
-autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
-
-" Allow these file extensions to be accessed via 'gf' of only the name, for
-" e.g. gf on [[AnotherPage]] should go to AnotherPage.md
-set suffixesadd=.md,.txt
-
-" ---------------------------------------------------------------------------
-" Arduino
-" ---------------------------------------------------------------------------
-" Autocomplete
-autocmd FileType arduino set omnifunc=ccomplete#Complete
-
-" Add c snippets to Arduino
-"let g:snipMate.scope_aliases['arduino'] = 'arduino,c'
 
 " ---------------------------------------------------------------------------
 " Abbreviations
