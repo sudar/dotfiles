@@ -9,27 +9,27 @@ filetype off
 " ---------------------------------------------------------------------------
 " Vundle configurations.
 " ---------------------------------------------------------------------------
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " ---------------------------------------------------------------------------
 " Source Control Management
 " ---------------------------------------------------------------------------
 " Updated Vim-Git runtime files
-Bundle 'tpope/vim-git'
+Plugin 'tpope/vim-git'
 
 " Git wrapper for vim. Who needs git bash any more ;)
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Highlight changes.
 " Jump between changes using ]c and [c
 " Stage the hunk with <Leader>hs
 " Revert it with <Leader>hr
 if has('signs')
-    Bundle 'airblade/vim-gitgutter'
+    Plugin 'airblade/vim-gitgutter'
 
     " Options for gitgutter. More available at https://github.com/airblade/vim-gitgutter
     let g:gitgutter_escape_grep = 1   " Use raw grep
@@ -41,7 +41,7 @@ endif
 " ---------------------------------------------------------------------------
 " Navigate the document like a pro. Who needs a mouse any more ;)
 " Press <leader><Leader>j or <Leader><Leader>k
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 
 " open items from quickfix window in a new tab
 set switchbuf+=usetab,newtab
@@ -53,13 +53,13 @@ nnoremap <expr> G (v:count ? 'Gzv' : 'G')
 " Status bar
 " ---------------------------------------------------------------------------
 " Add more features to the status bar
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 let g:airline_theme="bubblegum"
 set laststatus=2
 set fillchars+=stl:\ ,stlnc:\
 
 " Show buffer list in status bar
-Bundle 'bling/vim-bufferline'
+Plugin 'bling/vim-bufferline'
 " Don't echo in command bar
 let g:bufferline_echo = 0
 
@@ -68,7 +68,7 @@ let g:bufferline_echo = 0
 " ---------------------------------------------------------------------------
 if v:version > 702
     " Syntax Highlighter
-    Bundle 'scrooloose/syntastic.git'
+    Plugin 'scrooloose/syntastic.git'
     let g:syntastic_check_on_open = 1   " Enable syntax check when a file is opened or saved
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_quiet_messages = { "level" : "warnings" }
@@ -76,23 +76,23 @@ if v:version > 702
 endif
 
 " Show signs at locations which are of interest in Quickfix window
-Bundle 'tomtom/quickfixsigns_vim'
+Plugin 'tomtom/quickfixsigns_vim'
 
 " Bulk (Un)Comment line.
-Bundle 'sudar/comments.vim'
+Plugin 'sudar/comments.vim'
 
 " Vim-bad-whitespace, highlights bad whitespace
 " use EraseBadWhitespace command to erase bad whitespace
-Bundle 'bitc/vim-bad-whitespace'
+Plugin 'bitc/vim-bad-whitespace'
 
 " Automatically close tags, quotes etc
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 let delimitMate_expand_cr=1
 
 " Automatically match tags and braces in different files.
-Bundle 'matchit.zip'
+Plugin 'matchit.zip'
 " Python match support
-Bundle 'python_match.vim'
+Plugin 'python_match.vim'
 
 " Add additional match pairs
 set matchpairs+=<:>
@@ -107,28 +107,28 @@ set foldnestmax=2
 command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
 
 "Allows to align variable declarations
-Bundle "godlygeek/tabular"
+Plugin 'godlygeek/tabular'
 " Align PHP Doc statements. Code from http://stackoverflow.com/q/22764695/24949
 command! -range TabDoc :Tabularize/@\w\+\s\+\zs\w\+\|\%(@\w\+.*\)\@<=\u.*/
 
 " Allows you to split and joins lines and reformat them
 " use gS and gJ
-Bundle "AndrewRadev/splitjoin.vim"
+Plugin 'AndrewRadev/splitjoin.vim'
 
 " Auto increment numbers and dates in visual block
-Bundle 'VisIncr'
+Plugin 'VisIncr'
 
 " Display TODO from different opened files.
-Bundle "TaskList.vim"
+Plugin 'TaskList.vim'
 map <Leader>to <Plug>TaskList
 
 " Open docs for current function. use gK
-Bundle 'Keithbsmiley/investigate.vim'
+Plugin 'Keithbsmiley/investigate.vim'
 let g:investigate_use_dash=1
 
 if has("gui_macvim")
     " Auto complete on steroids
-    Bundle "Valloric/YouCompleteMe"
+    Plugin 'Valloric/YouCompleteMe'
 
     " Disable autocomplete for markdown files
     let g:ycm_filetype_blacklist = {
@@ -189,10 +189,10 @@ endif
 " Snippets
 " ---------------------------------------------------------------------------
 " Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
-Bundle 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 
 " Snippets for different languages
-Bundle 'honza/vim-snippets'
+Plugin 'honza/vim-snippets'
 
 " Snippet global options
 let g:snips_author='Sudar'
@@ -203,12 +203,12 @@ let g:UltiSnipsEditSplit="vertical"  ":UltiSnipsEdit will split the window.
 " Common edit functionalities
 " ---------------------------------------------------------------------------
 " Smart yanking
-Bundle 'YankRing.vim'
+Plugin 'YankRing.vim'
 nmap <Leader>yy :YRShow<CR>
 let g:yankring_history_dir = '~/.vim/yankring'
 
 " Surround - Easily change, add and delete around surroundings
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 " Key mappings
 " Normal mode
 "-----------
@@ -234,10 +234,10 @@ Bundle 'tpope/vim-surround'
 "<CTRL-g>S - same as <CTRL-s><CTRL-s>
 
 " Repeat the last command. Press . to repeat the last command.
-Bundle "tpope/vim-repeat"
+Plugin 'tpope/vim-repeat'
 
 " Provides paired key mappings
-Bundle "tpope/vim-unimpaired"
+Plugin 'tpope/vim-unimpaired'
 
 " ---------------------------------------------------------------------------
 " Searching/Replacing
@@ -245,7 +245,7 @@ Bundle "tpope/vim-unimpaired"
 " Smart abbreviation, Coercion, find and replace
 " abbreviations are stored in after/plugin/abolish.vim
 " :S for smart search and replace
-Bundle 'tpope/vim-abolish'
+Plugin 'tpope/vim-abolish'
 " :cr{} Following options are used for coercion
 " c: camelCase
 " m: MixedCase
@@ -256,7 +256,7 @@ Bundle 'tpope/vim-abolish'
 " -: dash-case (not reversible)
 
 " To use ack inside vim. You need to install ack. Either do brew install ack or use aptitude
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 "if executable("/usr/bin/ack-grep")
     "" Need this in my Ubuntu install
     "let g:ackprg="ack-grep -H --nocolor --nogroup --column"
@@ -268,22 +268,22 @@ Bundle 'mileszs/ack.vim'
 if has("gui_macvim")
 
     " Make writing Blog posts easier. Run :WriterToggle
-    Bundle 'honza/writer.vim'
+    Plugin 'honza/writer.vim'
 
     " Export syntax highlighted code into rtf. This only works in Mac
     if executable('pbcopy') && executable('textutil')
-        Bundle 'zerowidth/vim-copy-as-rtf'
+        Plugin 'zerowidth/vim-copy-as-rtf'
     endif
 endif
 
 " Open browser
-Bundle 'tyru/open-browser.vim'
+Plugin 'tyru/open-browser.vim'
 
 " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
-Bundle 'pentie/VimRepress'
+Plugin 'pentie/VimRepress'
 
 "Post to twitter from vim
-Bundle 'TwitVim'
+Plugin 'TwitVim'
 
 " ---------------------------------------------------------------------------
 " Color Schemes
@@ -294,28 +294,28 @@ if &t_Co == 8 && $TERM !~# '^linux'
 endif
 
 " Color Schemes explorer. Browse through the different color schemes
-Bundle 'Color-Scheme-Explorer'
+Plugin 'Color-Scheme-Explorer'
 
 " Programmer Color scheme
-Bundle 'pw'
+Plugin 'pw'
 
 " Light ColorScheme
-Bundle 'lightdiff'
+Plugin 'lightdiff'
 
 " 256 color schemes
-Bundle 'Eddie.vim'
-Bundle 'desert256.vim'
-Bundle 'ciaranm/inkpot'
-Bundle '256-grayvim'
+Plugin 'Eddie.vim'
+Plugin 'desert256.vim'
+Plugin 'ciaranm/inkpot'
+Plugin '256-grayvim'
 
 " 16 color Schemes
-Bundle 'noahfrederick/vim-noctu'
+Plugin 'noahfrederick/vim-noctu'
 
 " GUI color Schemes
-Bundle 'noahfrederick/vim-hemisu'
+Plugin 'noahfrederick/vim-hemisu'
 
 " Everyone is talking about this
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 " Set the default color scheme
 if has("gui_running")
@@ -332,10 +332,10 @@ endif
 " They need to present before setting filetype, because of this bug https://github.com/gmarik/vundle/issues/176#issuecomment-12996848
 
 " Jade
-Bundle 'digitaltoad/vim-jade'
+Plugin 'digitaltoad/vim-jade'
 
 " Zen Coding. Expands HTML abbreviations.
-Bundle 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 " Language specific settings
 let g:user_emmet_settings = {
 \  'php' : {
@@ -351,41 +351,41 @@ let g:user_emmet_settings = {
 \}
 
 " Syntax highlight for CSS
-Bundle 'JulesWang/css.vim'
+Plugin 'JulesWang/css.vim'
 
 " code formatter for JavaScript using jsbeautify
-Bundle 'maksimr/vim-jsbeautify'
+Plugin 'maksimr/vim-jsbeautify'
 "The actual beautifier
-Bundle 'einars/js-beautify'
+Plugin 'einars/js-beautify'
 
 " PHP syntax
-Bundle 'StanAngeloff/php.vim'
+Plugin 'StanAngeloff/php.vim'
 
 " PHP indent. Need this only till v1.49+ goes into vim distribution
-Bundle '2072/PHP-Indenting-for-VIm'
+Plugin '2072/PHP-Indenting-for-VIm'
 
 " PHP autocomplete
 let g:phpcomplete_parse_docblock_comments=1
-Bundle 'shawncplus/phpcomplete.vim'
+Plugin 'shawncplus/phpcomplete.vim'
 
 " WordPress
 let g:wordpress_vim_wordpress_path="~/Dropbox/code/wp/sites/wordpress/"
-Bundle 'dsawardekar/wordpress.vim'
+Plugin 'dsawardekar/wordpress.vim'
 
 " WordPress snippets
-Bundle 'sudar/vim-wordpress-snippets'
+Plugin 'sudar/vim-wordpress-snippets'
 
 "  Pig syntax
-Bundle 'motus/pig.vim'
+Plugin 'motus/pig.vim'
 
 " Pig snippets. TODO: Make it compatible with UltiSnips
-Bundle 'rverk/snipmate-pig'
+Plugin 'rverk/snipmate-pig'
 
 " Syntax highlighting for Arduino
-Bundle 'sudar/vim-arduino-syntax'
+Plugin 'sudar/vim-arduino-syntax'
 
 " Add Arduino snippets
-Bundle 'sudar/vim-arduino-snippets'
+Plugin 'sudar/vim-arduino-snippets'
 
 " ---------------------------------------------------------------------------
 " custom folder for misc stuff
