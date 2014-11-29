@@ -47,7 +47,7 @@ ln -sv $PWD/specific/vimpressrc ~/.vimpressrc # put all your private stuff in a 
 
 # Install vundle
 git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-vim +BundleInstall +qall
+vim +PluginInstall! +qall
 
 # ignore changes to the yankring history file
 git update-index --assume-unchanged vim/vim/yankring/yankring_history_v2.txt
