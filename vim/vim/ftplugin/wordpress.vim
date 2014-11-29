@@ -9,5 +9,5 @@
 
 " Syntastic options
 let g:syntastic_wordpress_checkers = ['phpcs']
-let g:syntastic_wordpress_phpcs_args = "--report=csv --standard=/Users/sudarm/Dropbox/code/WordPress-Coding-Standards/bulkwp.ruleset.xml"
+let g:syntastic_wordpress_phpcs_args = "--report=csv --standard=~/Dropbox/code/wp/WordPress-Coding-Standards/bulkwp.ruleset.xml"
 "let g:syntastic_wordpress_phpcs_args = "--report=csv --standard=WordPress-Core"
