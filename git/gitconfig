@@ -41,7 +41,8 @@
     pht = push origin master --tags
     plt = pull origin master --tags
     plr = pull --rebase origin master
-    lg = log --oneline --decorate
+    lg2 = log --oneline --decorate
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     info = remote -v
 
 [core]
@@ -53,7 +54,7 @@
 	insteadOf = "gh://"
 	pushInsteadOf = "gh://"
 	# Example: git clone ghg://ntschutta/emacs
-	
+
 [url "git@github.com:"]
 	insteadOf = "ghs://"
 	pushInsteadOf = "ghs://"
