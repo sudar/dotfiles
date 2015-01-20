@@ -130,59 +130,26 @@ if has("gui_macvim")
     " Auto complete on steroids
     Plugin 'Valloric/YouCompleteMe'
 
+    " config
+    "let g:ycm_seed_identifiers_with_syntax=1 "load language keywords in identifier list
+    let g:ycm_autoclose_preview_window_after_completion = 1 "auto close preview window
+    let g:ycm_min_num_identifier_candidate_chars = 10
+    nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
     " Disable autocomplete for markdown files
     let g:ycm_filetype_blacklist = {
       \ 'markdown' : 1
       \}
 
-    let g:ycm_seed_identifiers_with_syntax=1 "load language keywords in identifier list
-    nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
+    " (via http://stackoverflow.com/a/22253548/1626737)
+    let g:ycm_key_list_select_completion   = ['<C-j>', '<C-n>', '<Down>']
+    let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>', '<Up>']
 
-    " YouCompleteMe and ultisnips compatibility
-    " Got the code from https://github.com/Valloric/YouCompleteMe/issues/420
+    Plugin 'ervandew/supertab'
+    let g:SuperTabDefaultCompletionType    = '<C-n>'
+    let g:SuperTabCrMapping                = 0
 
-    function! g:UltiSnips_Complete()
-        call UltiSnips#ExpandSnippet()
-        if g:ulti_expand_res == 0
-            if pumvisible()
-                return "\<C-n>"
-            else
-                call UltiSnips#JumpForwards()
-                if g:ulti_jump_forwards_res == 0
-                return "\<TAB>"
-                endif
-            endif
-        endif
-        return ""
-    endfunction
-
-    func! g:jInYCM()
-        if pumvisible()
-            return "\<C-n>"
-        else
-            return "\<c-j>"
-    endfunction
-
-    func! g:kInYCM()
-        if pumvisible()
-            return "\<C-p>"
-        else
-            return "\<c-k>"
-    endfunction
-
-    inoremap <c-j> <c-r>=g:jInYCM()<cr>
-    au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:kInYCM()<cr>"
-    au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-
-    let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsListSnippets="<c-e>"
-
-else
-    " if you don't have YouCompleteMe installed, then go with default mapping
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 endif
 
 " ---------------------------------------------------------------------------
@@ -190,6 +157,9 @@ endif
 " ---------------------------------------------------------------------------
 " Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
 Plugin 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Snippets for different languages
 Plugin 'honza/vim-snippets'
@@ -197,6 +167,7 @@ Plugin 'honza/vim-snippets'
 " Snippet global options
 let g:snips_author='Sudar'
 let g:snips_author_email='sudar@sudarmuthu.com'
+let g:snips_author_url='http://sudarmuthu.com'
 let g:UltiSnipsEditSplit="vertical"  ":UltiSnipsEdit will split the window.
 
 " ---------------------------------------------------------------------------
