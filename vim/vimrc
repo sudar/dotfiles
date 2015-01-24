@@ -106,6 +106,9 @@ set foldnestmax=2
 " Move { from separate lines into the end of the previous line
 command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
 
+" Auto format code in VIM
+Plugin 'Chiel92/vim-autoformat'
+
 "Allows to align variable declarations
 Plugin 'godlygeek/tabular'
 " Align PHP Doc statements. Code from http://stackoverflow.com/q/22764695/24949
@@ -323,11 +326,6 @@ let g:user_emmet_settings = {
 
 " Syntax highlight for CSS
 Plugin 'JulesWang/css.vim'
-
-" code formatter for JavaScript using jsbeautify
-Plugin 'maksimr/vim-jsbeautify'
-"The actual beautifier
-Plugin 'einars/js-beautify'
 
 " PHP syntax
 Plugin 'StanAngeloff/php.vim'

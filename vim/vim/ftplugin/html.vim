@@ -4,7 +4,6 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-
 " nice defaults
 setlocal nolist wrap linebreak scrolloff=999
 
@@ -13,6 +12,3 @@ setlocal omnifunc=htmlcomplete#CompleteTags
 
 " Move Tags to separate lines. Copied from http://stackoverflow.com/a/9987878/24949
 command! MoveTags :s/<[^>]*>/\r&\r/g | :g/^$/d
-
-" jsbeautify key options
-noremap <buffer> <c-l> :call HtmlBeautify()<cr>

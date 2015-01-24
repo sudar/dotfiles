@@ -17,8 +17,4 @@ setlocal fen
 set omnifunc=javascriptcomplete#CompleteJS
 
 " Syntastic options
-let g:syntastic_javascript_checker="jslint" "Use jslint as the checker
-let g:syntastic_javascript_jslint_conf = "--sloppy" "options for jslint
-
-" jsbeautify key options
-noremap <buffer>  <c-l> :call JsBeautify()<cr>
+let g:syntastic_javascript_checkers=['jshint'] "Use jshint as the checker
