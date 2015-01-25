@@ -379,10 +379,12 @@ endif
 " ---------------------------------------------------------------------------
 " Space and Tab related settings
 " ---------------------------------------------------------------------------
-set expandtab     " Expand tab to spaces
+set noexpandtab   " Don't expand tab to spaces
 set tabstop=4     " Width of a tab is 4
 set shiftwidth=4  " number of spaces to use for auto indenting
 set softtabstop=4 " When backspace is used to delete spaces, delete 4 at a time. This is equal to tabstop and shfitwidth
+set listchars=tab:\|\ 
+set list
 
 set nowrap        " don't wrap lines
 set scrolloff=5   " Show at least 5 lines around the cursor
