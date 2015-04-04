@@ -49,6 +49,9 @@ set switchbuf+=usetab,newtab
 " Unfold the line if going to an exact line number
 nnoremap <expr> G (v:count ? 'Gzv' : 'G')
 
+" highlight the character which can move directly to (by `f`,`F`,`t`,`T`)
+Plugin 'deris/vim-shot-f'
+
 " ---------------------------------------------------------------------------
 " Unite
 " ---------------------------------------------------------------------------
@@ -107,6 +110,9 @@ if v:version > 702
     let g:syntastic_quiet_messages = { "level" : "warnings" }
     nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 endif
+
+" Highlight current word
+Plugin 'osyo-manga/vim-brightest'
 
 " Show signs at locations which are of interest in Quickfix window
 Plugin 'tomtom/quickfixsigns_vim'
@@ -219,6 +225,13 @@ let g:UltiSnipsEditSplit="vertical"  ":UltiSnipsEdit will split the window.
 Plugin 'YankRing.vim'
 nmap <Leader>yy :YRShow<CR>
 let g:yankring_history_dir = '~/.vim/yankring'
+
+" use ,w ,b ,e to navigate CamelCase and underscore identifiers
+Plugin 'bkad/CamelCaseMotion'
+
+" context aware selection
+" use + and - to change selection region
+Plugin 'terryma/vim-expand-region'
 
 " Surround - Easily change, add and delete around surroundings
 Plugin 'tpope/vim-surround'
