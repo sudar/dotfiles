@@ -102,6 +102,7 @@ if v:version > 702
     " Syntax Highlighter
     Plugin 'scrooloose/syntastic.git'
     let g:syntastic_check_on_open = 1   " Enable syntax check when a file is opened or saved
+    let g:syntastic_loc_list_height = 5
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_quiet_messages = { "level" : "warnings" }
     nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
