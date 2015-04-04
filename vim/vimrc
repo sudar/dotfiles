@@ -386,7 +386,14 @@ Plugin 'StanAngeloff/php.vim'
 " PHP indent. Need this only till v1.49+ goes into vim distribution
 Plugin '2072/PHP-Indenting-for-VIm'
 
-Plugin 'swekaj/php-foldexpr.vim' "PHP code folding
+"PHP code folding
+Plugin 'swekaj/php-foldexpr.vim'
+
+" PHP auto docblock
+Plugin 'tobyS/vmustache' "Dependency
+Plugin 'tobyS/pdv'
+let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates_snip"
+"nnoremap <buffer> <leader>et :call pdv#DocumentWithSnip()<CR>
 
 " PHP autocomplete
 let g:phpcomplete_parse_docblock_comments=1
