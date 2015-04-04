@@ -161,7 +161,7 @@ Plugin 'VisIncr'
 
 " Display TODO from different opened files.
 Plugin 'TaskList.vim'
-map <Leader>to <Plug>TaskList
+map <Leader>to :TaskList<CR>
 
 " Open docs for current function. use gK
 Plugin 'Keithbsmiley/investigate.vim'
