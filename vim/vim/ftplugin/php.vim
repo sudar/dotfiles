@@ -22,9 +22,6 @@ let b:phpfold_text = 1 "Enable the custom foldtext option.
 " autocomplete options
 setlocal omnifunc=phpcomplete#CompletePHP
 
-" Add =; as a word
-setlocal matchpairs+==:;
-
 " Surround configuration for PHP. Adds yss- command
 let b:surround_45 = "<?php \r ?>"
 

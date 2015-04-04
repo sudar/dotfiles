@@ -5,7 +5,7 @@ endif
 let b:did_ftplugin = 1
 
 " nice defaults
-setlocal nolist wrap linebreak scrolloff=999
+setlocal scrolloff=999
 
 " autocomplete
 setlocal omnifunc=htmlcomplete#CompleteTags
