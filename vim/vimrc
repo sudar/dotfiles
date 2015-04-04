@@ -50,18 +50,50 @@ set switchbuf+=usetab,newtab
 nnoremap <expr> G (v:count ? 'Gzv' : 'G')
 
 " ---------------------------------------------------------------------------
+" Unite
+" ---------------------------------------------------------------------------
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/unite.vim'
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+" Open files
+nnoremap <space>f :Unite -buffer-name=files -start-insert file_rec/async:! -default-action=tabopen<cr>
+
+" Open buffers
+nnoremap <space>b :Unite -start-insert -buffer-name=buffer buffer -default-action=tabopen<cr>
+
+" Custom mappings for the unite buffer
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+	" Play nice with supertab
+	let b:SuperTabDisabled=1
+	" Enable navigation with control-j and control-k in insert mode
+	imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+	imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+
+" ---------------------------------------------------------------------------
 " Status bar
 " ---------------------------------------------------------------------------
-" Add more features to the status bar
-Plugin 'bling/vim-airline'
-let g:airline_theme="bubblegum"
-set laststatus=2
-set fillchars+=stl:\ ,stlnc:\
+if has("gui_running")
+    " Add more features to the status bar
+    Plugin 'bling/vim-airline'
+    let g:airline_theme="bubblegum"
+    set laststatus=2
+    set fillchars+=stl:\ ,stlnc:\
 
-" Show buffer list in status bar
-Plugin 'bling/vim-bufferline'
-" Don't echo in command bar
-let g:bufferline_echo = 0
+    " Show expandtab setting in statusline
+    let g:airline_section_y = airline#section#create(['ffenc', ' ', '%{&expandtab?"et":"noet"}'])
+
+    " enable/disable showing only non-zero hunks
+    let g:airline#extensions#hunks#non_zero_only = 1
+
+    " Show buffer list in status bar
+    Plugin 'bling/vim-bufferline'
+    " Don't echo in command bar
+    let g:bufferline_echo = 0
+endif
 
 " ---------------------------------------------------------------------------
 " Source code handling
@@ -141,7 +173,8 @@ if has("gui_macvim")
 
     " Disable autocomplete for markdown files
     let g:ycm_filetype_blacklist = {
-      \ 'markdown' : 1
+      \ 'markdown' : 1,
+	  \ 'unite': 1
       \}
 
     " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
@@ -267,8 +300,8 @@ if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
 
-" Color Schemes explorer. Browse through the different color schemes
-Plugin 'Color-Scheme-Explorer'
+" Color Schemes source for Unite. Browse through the different color schemes
+Plugin 'ujihisa/unite-colorscheme'
 
 " Programmer Color scheme
 Plugin 'pw'
@@ -293,11 +326,11 @@ Plugin 'altercation/vim-colors-solarized'
 
 " Set the default color scheme
 if has("gui_running")
-    let g:solarized_contrast="high"
-    set background=dark
     colorscheme solarized
+    let g:solarized_visibility="low"
 else
     colorscheme noctu
+    set background=light
 endif
 
 " ---------------------------------------------------------------------------
