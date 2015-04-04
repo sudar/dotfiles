@@ -113,9 +113,8 @@ Plugin 'tomtom/quickfixsigns_vim'
 " Bulk (Un)Comment line.
 Plugin 'sudar/comments.vim'
 
-" Vim-bad-whitespace, highlights bad whitespace
-" use EraseBadWhitespace command to erase bad whitespace
-Plugin 'bitc/vim-bad-whitespace'
+"  highlights bad whitespace. use `StripWhitespace` command to erase bad whitespace
+Plugin 'ntpeters/vim-better-whitespace'
 
 " Automatically close tags, quotes etc
 Plugin 'Raimondi/delimitMate'
