@@ -121,15 +121,15 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'Raimondi/delimitMate'
 let delimitMate_expand_cr=1
 
-" Automatically match tags and braces in different files.
-Plugin 'matchit.zip'
-" Python match support
-Plugin 'python_match.vim'
-
 " Add additional match pairs
 set matchpairs+=<:>
 
-" Load the build-in global doxygen syntax
+" Automatically match tags and braces in different files.
+runtime! macros/matchit.vim
+" Python match support
+Plugin 'python_match.vim'
+
+" Load the built-in global doxygen syntax
 let g:load_doxygen_syntax=1
 
 " fold only 2 level max
