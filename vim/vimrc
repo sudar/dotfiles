@@ -132,8 +132,12 @@ Plugin 'python_match.vim'
 " Load the built-in global doxygen syntax
 let g:load_doxygen_syntax=1
 
-" fold only 2 level max
-set foldnestmax=2
+if has("gui_running")
+    " fold only 2 level max
+    set foldnestmax=2
+else
+    set nofoldenable
+endif
 
 " Move { from separate lines into the end of the previous line
 command! MoveBraces :g/^\s*{\s*$/normal kJ <CR>
@@ -283,15 +287,16 @@ if has("gui_macvim")
     endif
 endif
 
-" Open browser
-Plugin 'tyru/open-browser.vim'
+if has("gui_running")
+    " Open browser
+    Plugin 'tyru/open-browser.vim'
 
-" Publish blog posts from Vim. Who needs Windows Live editor any more ;)
-Plugin 'pentie/VimRepress'
+    " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
+    Plugin 'pentie/VimRepress'
 
-"Post to twitter from vim
-Plugin 'TwitVim'
-
+    "Post to twitter from vim
+    Plugin 'TwitVim'
+endif
 " ---------------------------------------------------------------------------
 " Color Schemes
 " ---------------------------------------------------------------------------
