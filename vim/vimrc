@@ -149,6 +149,8 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'godlygeek/tabular'
 " Align PHP Doc statements. Code from http://stackoverflow.com/q/22764695/24949
 command! -range TabDoc :Tabularize/@\w\+\s\+\zs\w\+\|\%(@\w\+.*\)\@<=\u.*/
+" Alight only the first match. Code from http://stackoverflow.com/a/20437260/24949
+command! -nargs=1 -range TabFirst exec <line1> . ',' . <line2> . 'Tabularize /^[^' . escape(<q-args>, '\^$.[?*~') . ']*\zs' . escape(<q-args>, '\^$.[?*~')
 
 " Allows you to split and joins lines and reformat them
 " use gS and gJ
