@@ -9,5 +9,10 @@
 
 " Syntastic options
 let g:syntastic_wordpress_checkers = ['phpcs']
-let g:syntastic_wordpress_phpcs_args = "--report=csv --standard=~/Dropbox/code/wp/WordPress-Coding-Standards/bulkwp.ruleset.xml"
-"let g:syntastic_wordpress_phpcs_args = "--report=csv --standard=WordPress-Core"
+let g:syntastic_wordpress_phpcs_args = "--report=csv --standard=WordPress-Core"
+let g:syntastic_wordpress_phpcs_quiet_messages = { 'regex': [ 'Line indented incorrectly', 'Function name .* is in camel caps format' ] }
+
+" Options for formatting WordPress code
+let g:formatprg_php_wordpress = "/Users/sudar/Dropbox/code/wp/phptidy/phptidy.php"
+let g:formatprg_args_expr_php_wordpress = '"- -q -c=/Users/sudar/Dropbox/code/dotfiles/vim/vim/phptidy-config.php"'
+"let g:formatprg_args_expr_php_wordpress = '"print -q -c=/Users/sudar/Dropbox/code/dotfiles/vim/vim/phptidy-config.php %:p"'
