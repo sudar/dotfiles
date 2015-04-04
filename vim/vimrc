@@ -666,10 +666,13 @@ endfunction
 " ----------------------------------------------------------------------------
 " -------- Text/Markdown -----------------------
 " Plain text files are Markdown
-autocmd BufNewFile,BufRead *.txt,*.text,*.md setlocal ft=markdown
+autocmd BufNewFile,BufReadPost *.txt,*.text,*.md setlocal ft=markdown
 autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
 
-autocmd FileType markdown setlocal nolist wrap linebreak scrolloff=999
+" highlight code inside markdown
+let g:markdown_fenced_languages = ['php', 'sass', 'xml', 'html', 'css', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'erb=eruby', 'sh', 'shell=sh', 'bash=sh', 'make']
+
+autocmd FileType markdown setlocal wrap linebreak scrolloff=999
 
 " Allow these file extensions to be accessed via 'gf' of only the name, for
 " e.g. gf on [[AnotherPage]] should go to AnotherPage.md
