@@ -36,11 +36,12 @@
     co = checkout
     st = status -sb
     df = diff --word-diff
+    phs = push origin staging
+    pls = pull origin staging
     ph = push origin master
     pl = pull origin master
     pht = push origin master --tags
     plt = pull origin master --tags
-    plr = pull --rebase origin master
     lg2 = log --oneline --decorate
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     info = remote -v
