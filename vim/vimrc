@@ -654,6 +654,11 @@ endfunction
 " Automatically cd into the directory that the file is in
 autocmd BufEnter ?* if HasFileName() | execute "chdir ".escape(expand("%:p:h"), ' ') | endif
 
+if has("gui_running")
+    " Move cursor to last position
+	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
+
 " Close empty buffers. Copied from http://stackoverflow.com/a/6561076/24949
 function! DeleteEmptyBuffers()
     let [i, n; empty] = [1, bufnr('$')]
