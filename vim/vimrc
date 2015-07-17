@@ -107,12 +107,14 @@ if v:version > 702
     let g:syntastic_check_on_open = 1   " Enable syntax check when a file is opened or saved
     let g:syntastic_loc_list_height = 5
     let g:syntastic_auto_loc_list = 1
-    let g:syntastic_quiet_messages = { "level" : "warnings" }
+    "let g:syntastic_quiet_messages = { "level" : "warnings" }
     nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 endif
 
 " Highlight current word
-Plugin 'osyo-manga/vim-brightest'
+if has("gui_running")
+	Plugin 'osyo-manga/vim-brightest'
+endif
 
 " Show signs at locations which are of interest in Quickfix window
 Plugin 'tomtom/quickfixsigns_vim'
@@ -204,20 +206,21 @@ endif
 " Snippets
 " ---------------------------------------------------------------------------
 " Snippet manager. When you get all Snippets, who needs Textmate anymore ;)
-Plugin 'SirVer/ultisnips'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+if has("gui_macvim")
+    Plugin 'SirVer/ultisnips'
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" Snippets for different languages
-Plugin 'honza/vim-snippets'
+    " Snippets for different languages
+    Plugin 'honza/vim-snippets'
 
-" Snippet global options
-let g:snips_author='Sudar'
-let g:snips_author_email='sudar@sudarmuthu.com'
-let g:snips_author_url='http://sudarmuthu.com'
-let g:UltiSnipsEditSplit="vertical"  ":UltiSnipsEdit will split the window.
-
+    " Snippet global options
+    let g:snips_author='Sudar'
+    let g:snips_author_email='sudar@sudarmuthu.com'
+    let g:snips_author_url='http://sudarmuthu.com'
+    let g:UltiSnipsEditSplit="vertical"  ":UltiSnipsEdit will split the window.
+endif
 " ---------------------------------------------------------------------------
 " Common edit functionalities
 " ---------------------------------------------------------------------------
