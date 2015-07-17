@@ -40,7 +40,10 @@ fi
 
 # Load machine specific bash files. This is very specific to my setup
 if [ "$TERM_PROGRAM" == "Apple_Terminal" -a -f $additional_files/specific/bash_specific_mac ]; then
-    # if mac
+    # mac default terminal.app
+    . $additional_files/specific/bash_specific_mac
+elif [ "$TERM_PROGRAM" == "iTerm.app" -a -f $additional_files/specific/bash_specific_mac ]; then
+    # mac iterm.app
     . $additional_files/specific/bash_specific_mac
 else
     if [ -f $additional_files/specific/bash_specific_ubuntu ]; then
