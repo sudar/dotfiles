@@ -36,6 +36,7 @@
     co = checkout
     st = status -sb
     df = diff --word-diff
+    dfc = diff --cached
     phs = push origin staging
     pls = pull origin staging
     ph = push origin master
