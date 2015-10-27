@@ -200,6 +200,8 @@ if has("gui_macvim")
     let g:SuperTabDefaultCompletionType    = '<C-n>'
     let g:SuperTabCrMapping                = 0
 
+	" Search for the tag file in the parent directory all the way up to HOME
+	set tags=./tags,tags;~
 endif
 
 " ---------------------------------------------------------------------------
