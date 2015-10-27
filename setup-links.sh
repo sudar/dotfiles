@@ -32,7 +32,7 @@ ln -sv $PWD/bash/inputrc ~/.inputrc
 ln -sv $PWD/bash/editrc ~/.editrc
 
 # ackrc. For ack
-ln -sv $PWD/bash/ackrc ~/.ackrc
+ln -sv $PWD/ack/ackrc ~/.ackrc
 
 # Octave startup file
 ln -sv $PWD/octave/octaverc ~/.octaverc
