@@ -223,6 +223,10 @@ if has("gui_macvim")
     let g:snips_author_url='http://sudarmuthu.com'
     let g:UltiSnipsEditSplit="vertical"  ":UltiSnipsEdit will split the window.
 endif
+
+" Generate random text
+Plugin 'loremipsum'
+
 " ---------------------------------------------------------------------------
 " Common edit functionalities
 " ---------------------------------------------------------------------------
@@ -324,6 +328,9 @@ endif
 if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
+
+" Try different color schemes
+Plugin 'Color-Scheme-Explorer'
 
 " Color Schemes source for Unite. Browse through the different color schemes
 Plugin 'ujihisa/unite-colorscheme'
