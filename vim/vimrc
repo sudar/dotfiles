@@ -82,7 +82,7 @@ endfunction
 if has("gui_running")
     " Add more features to the status bar
     Plugin 'bling/vim-airline'
-    let g:airline_theme="bubblegum"
+    let g:airline_theme="solarized"
     set laststatus=2
     set fillchars+=stl:\ ,stlnc:\
 
