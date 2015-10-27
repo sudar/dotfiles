@@ -188,7 +188,7 @@ if has("gui_macvim")
     " Disable autocomplete for markdown files
     let g:ycm_filetype_blacklist = {
       \ 'markdown' : 1,
-	  \ 'unite': 1
+      \ 'unite': 1
       \}
 
     " YouCompleteMe and UltiSnips compatibility, with the helper of supertab
@@ -412,7 +412,7 @@ let g:phpcomplete_parse_docblock_comments=1
 Plugin 'shawncplus/phpcomplete.vim'
 
 " WordPress
-let g:wordpress_vim_wordpress_path="~/Dropbox/code/wp/sites/wp2/"
+let g:wordpress_vim_wordpress_path="/Users/sudar/dev/vvv/www/wordpress-default/"
 Plugin 'dsawardekar/wordpress.vim'
 
 " WordPress snippets
