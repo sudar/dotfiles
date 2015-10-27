@@ -41,6 +41,7 @@
     pls = pull origin staging
     ph = push origin master
     pl = pull origin master
+    pho = push origin
     pht = push origin master --tags
     plt = pull origin master --tags
     lg2 = log --oneline --decorate
@@ -67,3 +68,5 @@
 
 [help]
 	autocorrect = 1
+[push]
+	default = simple
