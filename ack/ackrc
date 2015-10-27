@@ -12,6 +12,8 @@
 --ignore-dir=log
 --ignore-dir=tmp
 
+--ignore-file=is:tags
+
 # add types ack doesn't know about
 
 --type-add=ruby=rake,haml
