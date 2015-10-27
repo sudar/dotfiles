@@ -18,9 +18,6 @@ Plugin 'gmarik/Vundle.vim'
 " ---------------------------------------------------------------------------
 " Source Control Management
 " ---------------------------------------------------------------------------
-" Updated Vim-Git runtime files
-Plugin 'tpope/vim-git'
-
 " Git wrapper for vim. Who needs git bash any more ;)
 Plugin 'tpope/vim-fugitive'
 
@@ -170,10 +167,6 @@ Plugin 'VisIncr'
 " Display TODO from different opened files.
 Plugin 'TaskList.vim'
 map <Leader>to :TaskList<CR>
-
-" Open docs for current function. use gK
-Plugin 'Keithbsmiley/investigate.vim'
-let g:investigate_use_dash=1
 
 if has("gui_macvim")
     " Auto complete on steroids
@@ -370,8 +363,8 @@ endif
 " ---------------------------------------------------------------------------
 " They need to present before setting filetype, because of this bug https://github.com/gmarik/vundle/issues/176#issuecomment-12996848
 
-" Jade
-Plugin 'digitaltoad/vim-jade'
+" Collection of language packs for vim
+Plugin 'sheerun/vim-polyglot'
 
 " Zen Coding. Expands HTML abbreviations.
 Plugin 'mattn/emmet-vim'
@@ -388,12 +381,6 @@ let g:user_emmet_settings = {
 \    'extends' : 'html',
 \  },
 \}
-
-" Syntax highlight for CSS
-Plugin 'JulesWang/css.vim'
-
-" PHP syntax
-Plugin 'StanAngeloff/php.vim'
 
 " PHP indent. Need this only till v1.49+ goes into vim distribution
 Plugin '2072/PHP-Indenting-for-VIm'
@@ -417,15 +404,6 @@ Plugin 'dsawardekar/wordpress.vim'
 
 " WordPress snippets
 Plugin 'sudar/vim-wordpress-snippets'
-
-"  Pig syntax
-Plugin 'motus/pig.vim'
-
-" Pig snippets. TODO: Make it compatible with UltiSnips
-Plugin 'rverk/snipmate-pig'
-
-" Syntax highlighting for Arduino
-Plugin 'sudar/vim-arduino-syntax'
 
 " Add Arduino snippets
 Plugin 'sudar/vim-arduino-snippets'
