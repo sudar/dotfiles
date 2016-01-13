@@ -11,6 +11,7 @@
 --ignore-dir=.idea
 --ignore-dir=log
 --ignore-dir=tmp
+--ignore-dir=dist
 
 --ignore-file=is:tags
 
