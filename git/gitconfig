@@ -4,7 +4,7 @@
 
 [user]
 	;Replace your own name and email address
-	name = Sudar
+	name = Sudar Muthu
 	email = sudar@sudarmuthu.com
 
 [color]
@@ -39,6 +39,8 @@
     dfc = diff --cached
     phs = push origin staging
     pls = pull origin staging
+    phd = push origin develop
+    pld = pull origin develop
     ph = push origin master
     pl = pull origin master
     pho = push origin
