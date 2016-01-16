@@ -401,13 +401,12 @@ Plugin 'sudar/vim-wordpress-snippets'
 " Add Arduino snippets
 Plugin 'sudar/vim-arduino-snippets'
 
+" JavaScript - React
+
 " ---------------------------------------------------------------------------
 " custom folder for misc stuff
 " ---------------------------------------------------------------------------
 set rtp+=~/.vim/custom/
-
-" Open up Man pages from Vim itself. eg: Man printf
-runtime! ftplugin/man.vim
 
 " ---------------------------------------------------------------------------
 "  ******** All Bundle configuration ends here ********
