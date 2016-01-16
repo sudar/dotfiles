@@ -94,10 +94,10 @@ endif
 if v:version > 702
     " Syntax Highlighter
     Plugin 'scrooloose/syntastic.git'
-    let g:syntastic_check_on_open = 1   " Enable syntax check when a file is opened or saved
+    let g:syntastic_check_on_open = 0   " Enable/disable syntax check when a file is opened
+    let g:syntastic_check_on_wq = 0     " Enable/disable syntax check when a file is opened
     let g:syntastic_loc_list_height = 5
     let g:syntastic_auto_loc_list = 1
-    "let g:syntastic_quiet_messages = { "level" : "warnings" }
     nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 endif
 
@@ -186,8 +186,8 @@ if has("gui_macvim")
     let g:SuperTabDefaultCompletionType    = '<C-n>'
     let g:SuperTabCrMapping                = 0
 
-	" Search for the tag file in the parent directory all the way up to HOME
-	set tags=./tags,tags;~
+    " Search for the tag file in the parent directory all the way up to HOME
+    set tags=./tags,tags;~
 endif
 
 " ---------------------------------------------------------------------------
