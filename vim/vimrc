@@ -654,11 +654,15 @@ function! HasFileName()
 endfunction
 
 " Automatically cd into the directory that the file is in
-autocmd BufEnter ?* if HasFileName() | execute "chdir ".escape(expand("%:p:h"), ' ') | endif
+augroup cd
+	autocmd BufEnter ?* if HasFileName() | execute "chdir ".escape(expand("%:p:h"), ' ') | endif
+augroup END
 
 if has("gui_running")
     " Move cursor to last position
-	autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+	augroup movecursor
+		autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+	augroup END
 endif
 
 " Close empty buffers. Copied from http://stackoverflow.com/a/6561076/24949
@@ -680,7 +684,9 @@ endfunction
 " ----------------------------------------------------------------------------
 " -------- Text/Markdown -----------------------
 " Plain text files are Markdown
-autocmd BufNewFile,BufReadPost *.txt,*.text,*.md setlocal ft=markdown
+augroup markdown
+	autocmd BufNewFile,BufReadPost *.txt,*.text,*.md setlocal ft=markdown
+augroup END
 autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
 
 " highlight code inside markdown
