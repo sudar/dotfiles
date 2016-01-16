@@ -50,30 +50,6 @@ nnoremap <expr> G (v:count ? 'Gzv' : 'G')
 Plugin 'deris/vim-shot-f'
 
 " ---------------------------------------------------------------------------
-" Unite
-" ---------------------------------------------------------------------------
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/unite.vim'
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-
-" Open files
-nnoremap <space>f :Unite -buffer-name=files -start-insert file_rec/async:! -default-action=tabopen<cr>
-
-" Open buffers
-nnoremap <space>b :Unite -start-insert -buffer-name=buffer buffer -default-action=tabopen<cr>
-
-" Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_settings()
-function! s:unite_settings()
-	" Play nice with supertab
-	let b:SuperTabDisabled=1
-	" Enable navigation with control-j and control-k in insert mode
-	imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-	imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
-
-" ---------------------------------------------------------------------------
 " Status bar
 " ---------------------------------------------------------------------------
 if has("gui_running")
