@@ -34,6 +34,9 @@ ln -sv $PWD/bash/editrc ~/.editrc
 # ackrc. For ack
 ln -sv $PWD/ack/ackrc ~/.ackrc
 
+# .ctags. For ctags
+ln -sv $PWD/ctags/ctags-config ~/.ctags
+
 # Octave startup file
 ln -sv $PWD/octave/octaverc ~/.octaverc
 

@@ -1,0 +1,7 @@
+--recurse=yes
+--exclude=.git
+--exclude=.svn
+--exclude=dist
+--exclude=node_modules
+--exclude=vendor
+--exclude=*.min.js
