@@ -1,0 +1,10 @@
+{
+    "require": {
+        "squizlabs/php_codesniffer": "*",
+        "cmrcx/phptidy": "*",
+        "laravel/lumen-installer": "^1.0"
+    },
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "*"
+    }
+}
