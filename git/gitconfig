@@ -37,6 +37,7 @@
     st = status -sb
     df = diff --word-diff
     dfc = diff --cached
+	subup = submodule update --init --recursive
     phs = push origin staging
     pls = pull origin staging
     phd = push origin develop
