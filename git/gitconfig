@@ -21,10 +21,12 @@
     remote = green
 
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+	meta = yellow
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = yellow bold
+	whitespace = red reverse
 
 [color "status"]
     added = yellow
@@ -35,18 +37,33 @@
     ci = commit
     co = checkout
     st = status -sb
-    df = diff --word-diff
-    dfc = diff --cached
+    s = status -sb
+	b = branch
+	br = branch
+	dfc = diff --cached
+	df = diff --word-diff
+	show = diff-so-fancy | less --tabs=1,5 -RFX
 	subup = submodule update --init --recursive
+
+    ml = merge --no-ff -
+
+	phh = push origin HEAD
+
     phs = push origin staging
     pls = pull origin staging
+    phs1 = push origin stage-10uplabs
+    pls1 = pull origin stage-10uplabs
     phd = push origin develop
     pld = pull origin develop
+
     ph = push origin master
     pl = pull origin master
+    phg = push github master
+    plg = pull github master
     pho = push origin
     pht = push origin master --tags
     plt = pull origin master --tags
+
     lg2 = log --oneline --decorate
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     info = remote -v
@@ -55,6 +72,10 @@
     excludesfile = ~/Dropbox/code/dotfiles/git/gitignore
     attributesfile = ~/Dropbox/code/dotfiles/git/git_attributes_file
     editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
 
 [url "git://github.com/"]
 	insteadOf = "gh://"
@@ -73,3 +94,8 @@
 	autocorrect = 1
 [push]
 	default = simple
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
