@@ -1,10 +1,15 @@
 {
     "require": {
         "squizlabs/php_codesniffer": "*",
-        "cmrcx/phptidy": "*",
-        "laravel/lumen-installer": "^1.0"
+        "laravel/installer": "*",
+        "hirak/prestissimo": "^0.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
+		"phpcompatibility/phpcompatibility-wp": "*",
+        "sllh/composer-versions-check": "^2.0",
+        "phpunit/phpcov": "^7.0",
+        "10up/wpsnapshots": "^1.6",
+        "wp-coding-standards/wpcs": "^2.2"
     },
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "*"
     }
 }
