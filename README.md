@@ -4,6 +4,7 @@ What is this?
 This repo contains my config files for the following programs. Feel free to use entire files or snippets from them for your own use.
 
  - vim/macvim
+ - Ideavim (PhpStorm Vim plugin)
  - bash
  - git
  - screen

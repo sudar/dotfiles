@@ -1,0 +1,15 @@
+" Extensions
+set surround
+
+" change the mapleader from \ to ,
+let mapleader=","
+
+" Escape insert mode without pressing esc
+:imap jj <Esc>
+:imap kk <Esc>
+
+" Easy window navigation. Prevents another keypress.
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
