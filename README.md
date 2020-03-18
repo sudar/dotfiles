@@ -9,6 +9,7 @@ The following are actively maintained.
  - git
  - composer
  - zsh
+ - iTerm2
  - screen
  - Editline (exitrc)
  - ack (ack-grep in Ubuntu)
