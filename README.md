@@ -3,17 +3,27 @@ What is this?
 
 This repo contains my config files for the following programs. Feel free to use entire files or snippets from them for your own use.
 
- - vim/macvim
+The following are actively maintained.
+
  - Ideavim (PhpStorm Vim plugin)
- - bash
  - git
+ - composer
  - screen
- - sqlite
- - Readline (inputrc)
  - Editline (exitrc)
  - ack (ack-grep in Ubuntu)
 
-I use this on a Mac as well as a Ubuntu desktop. In Mac this assumes that you are running `bash` shell. If not, then you might [have to change it](http://hints.macworld.com/article.php?story=20071025221744166).
+The following are not actively maintained any more since I am not using these tools any more.
+
+ - vim/macvim (Replaced it with Ideavim PhpStorm extension)
+ - bash
+ - Readline (inputrc)
+ - sqlite
+ - ctags
+ - octave
+
+Earlier I was using the above dotfiles on a Mac as well as a Ubuntu desktop.
+
+These days I am using it mostly on my Mac alone running zsh shell.
 
 Inspiration
 ----------------
