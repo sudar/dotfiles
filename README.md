@@ -8,6 +8,7 @@ The following are actively maintained.
  - Ideavim (PhpStorm Vim plugin)
  - git
  - composer
+ - zsh
  - screen
  - Editline (exitrc)
  - ack (ack-grep in Ubuntu)
