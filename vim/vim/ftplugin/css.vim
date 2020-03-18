@@ -4,7 +4,6 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-
 " autocomplete
 setlocal omnifunc=csscomplete#CompleteCSS
 
@@ -12,4 +11,4 @@ setlocal omnifunc=csscomplete#CompleteCSS
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 
 " jsbeautify key options
-noremap <buffer> <c-l> :call CSSBeautify()<cr>
+"noremap <buffer> <c-l> :call CSSBeautify()<cr>

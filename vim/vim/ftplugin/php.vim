@@ -8,16 +8,20 @@ let php_htmlInStrings = 1  "Syntax highlight HTML code inside PHP strings.
 let php_sql_query = 1      "Syntax highlight SQL code inside PHP strings.
 let php_noShortTags = 1    "Disable PHP short tags.
 let php_baselib = 1        "for highlighting baselib functions
-let php_alt_comparisons= 1 "to highlight comparison operators in an alternate colour
+let php_alt_comparisons= 1 "To highlight comparison operators in an alternate colour
 
 " Config for PHP folding
-let b:phpfold_use = 1 "Fold groups of use statements in the global scope.
-let b:phpfold_group_iftry = 0 "Fold if/elseif/else and try/catch/finally blocks as a group, rather than each part separate.
-let b:phpfold_group_args = 1 "Group function arguments split across multiple lines into their own fold.
-let b:phpfold_group_case = 1 "Fold case and default blocks inside switches.
-let b:phpfold_heredocs = 1 "Fold HEREDOCs and NOWDOCs.
-let b:phpfold_doc_with_funcs = 1 "Fold DocBlocks. Overrides b:phpfold_docblocks.
-let b:phpfold_text = 1 "Enable the custom foldtext option.
+let b:phpfold_group_args = 0
+" Disable function argument folding. This seems to be having some performance issues
+" https://github.com/swekaj/php-foldexpr.vim/issues/15#issuecomment-56962857
+let b:phpfold_text_percent = 1     " Display the percentage of lines the fold represents.
+let b:phpfold_text_right_lines = 1 " Display the line count on the right instead of the left.
+let b:phpfold_use = 1              " Fold groups of use statements in the global scope.
+let b:phpfold_group_iftry = 0      " Fold if/elseif/else and try/catch/finally blocks as a group, rather than each part separate.
+let b:phpfold_group_case = 1       " Fold case and default blocks inside switches.
+let b:phpfold_heredocs = 1         " Fold HEREDOCs and NOWDOCs.
+let b:phpfold_doc_with_funcs = 1   " Fold DocBlocks. Overrides b:phpfold_docblocks.
+let b:phpfold_text = 1             " Enable the custom foldtext option.
 
 " autocomplete options
 setlocal omnifunc=phpcomplete#CompletePHP

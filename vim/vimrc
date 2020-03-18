@@ -40,53 +40,70 @@ endif
 " Press <leader><Leader>j or <Leader><Leader>k
 Plugin 'Lokaltog/vim-easymotion'
 
+" Indent based navigation
+Plugin 'jeetsukumaran/vim-indentwise'
+
 " open items from quickfix window in a new tab
 set switchbuf+=usetab,newtab
 
 " Unfold the line if going to an exact line number
 nnoremap <expr> G (v:count ? 'Gzv' : 'G')
 
+" ---------------------------------------------------------------------------
+" Common edit functionalities
+" ---------------------------------------------------------------------------
+" Smart yanking
+Plugin 'YankRing.vim'
+nmap <Leader>yy :YRShow<CR>
+let g:yankring_history_dir = '~/.vim/yankring'
+
 " highlight the character which can move directly to (by `f`,`F`,`t`,`T`)
 Plugin 'deris/vim-shot-f'
 
-" ---------------------------------------------------------------------------
-" Status bar
-" ---------------------------------------------------------------------------
-if has("gui_running")
-    " Add more features to the status bar
-    Plugin 'bling/vim-airline'
-    let g:airline_theme="solarized"
-    set laststatus=2
-    set fillchars+=stl:\ ,stlnc:\
+" Add CamelCase and underscore to word motions
+Plugin 'chaoren/vim-wordmotion'
 
-    " Show expandtab setting in statusline
-    let g:airline_section_y = airline#section#create(['ffenc', ' ', '%{&expandtab?"et":"noet"}'])
+" Indent objects
+Plugin 'michaeljsmith/vim-indent-object'
 
-    " enable/disable showing only non-zero hunks
-    let g:airline#extensions#hunks#non_zero_only = 1
+" context aware selection
+" use + and - to change selection region
+Plugin 'terryma/vim-expand-region'
 
-    " Show buffer list in status bar
-    Plugin 'bling/vim-bufferline'
-    " Don't echo in command bar
-    let g:bufferline_echo = 0
+" Add new targets
+Plugin 'wellle/targets.vim'
 
-    " Show the total number of search matches
-    Plugin 'osyo-manga/vim-anzu'
+" Surround - Easily change, add and delete around surroundings
+Plugin 'tpope/vim-surround'
+" Key mappings
+" Normal mode
+"-----------
+"ds  - delete a surrounding
+"cs  - change a surrounding
+"ysiw(  - add a surrounding
+"ys2aw" - add a surrounding for two words
+"yS  - add a surrounding and place the surrounded text on a new line + indent it
+"yss - add a surrounding to the whole line
+"ySs - add a surrounding to the whole line, place it on a new line + indent it
+"ySS - same as ySs
 
-    " mapping
-    nmap n <Plug>(anzu-n-with-echo)
-	nmap N <Plug>(anzu-N-with-echo)
-	nmap * <Plug>(anzu-star-with-echo)
-	nmap # <Plug>(anzu-sharp-with-echo)
-	" clear status
-	nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+"Visual mode
+"-----------
+"s   - in visual mode, add a surrounding
+"S   - in visual mode, add a surrounding but place text on new line + indent it
 
-	" Start anzu on first search
-	let g:anzu_enable_CursorMoved_AnzuUpdateSearchStatus=1
+"Insert mode
+"-----------
+"<CTRL-s> - in insert mode, add a surrounding
+"<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
+"<CTRL-g>s - same as <CTRL-s>
+"<CTRL-g>S - same as <CTRL-s><CTRL-s>
 
-	" statusline
-	set statusline=%{anzusearch_status()}
-endif
+" Repeat the last command. Press . to repeat the last command.
+Plugin 'tpope/vim-repeat'
+
+" Provides a lot of useful key mappings including XML encoding, URL encoding etc.
+Plugin 'tpope/vim-unimpaired'
 
 " ---------------------------------------------------------------------------
 " Source code handling
@@ -95,15 +112,17 @@ if v:version > 702
     " Syntax Highlighter
     Plugin 'scrooloose/syntastic.git'
     let g:syntastic_check_on_open = 0   " Enable/disable syntax check when a file is opened
-    let g:syntastic_check_on_wq = 0     " Enable/disable syntax check when a file is opened
+    let g:syntastic_check_on_wq = 0     " Enable/disable syntax check when a file is closed
     let g:syntastic_loc_list_height = 5
     let g:syntastic_auto_loc_list = 1
+    let g:syntastic_enable_balloons = 1
+
     nmap <F6> :SyntasticToggleMode<CR> " Toggle Syntax highlight
 endif
 
 " Highlight current word
 if has("gui_running")
-	Plugin 'osyo-manga/vim-brightest'
+    Plugin 'osyo-manga/vim-brightest'
 endif
 
 " Show signs at locations which are of interest in Quickfix window
@@ -125,7 +144,7 @@ set matchpairs+=<:>
 " Automatically match tags and braces in different files.
 runtime! macros/matchit.vim
 " Python match support
-Plugin 'python_match.vim'
+"Plugin 'python_match.vim'
 
 " Load the built-in global doxygen syntax
 let g:load_doxygen_syntax=1
@@ -190,6 +209,10 @@ if has("gui_macvim")
     set tags=./tags,tags;~
 endif
 
+" Add support for .editorconfig file
+Plugin 'editorconfig/editorconfig-vim'
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 " ---------------------------------------------------------------------------
 " Snippets
 " ---------------------------------------------------------------------------
@@ -214,55 +237,12 @@ endif
 Plugin 'loremipsum'
 
 " ---------------------------------------------------------------------------
-" Common edit functionalities
-" ---------------------------------------------------------------------------
-" Smart yanking
-Plugin 'YankRing.vim'
-nmap <Leader>yy :YRShow<CR>
-let g:yankring_history_dir = '~/.vim/yankring'
-
-" use ,w ,b ,e to navigate CamelCase and underscore identifiers
-Plugin 'bkad/CamelCaseMotion'
-
-" context aware selection
-" use + and - to change selection region
-Plugin 'terryma/vim-expand-region'
-
-" Surround - Easily change, add and delete around surroundings
-Plugin 'tpope/vim-surround'
-" Key mappings
-" Normal mode
-"-----------
-"ds  - delete a surrounding
-"cs  - change a surrounding
-"ysiw(  - add a surrounding
-"ys2aw" - add a surrounding for two words
-"yS  - add a surrounding and place the surrounded text on a new line + indent it
-"yss - add a surrounding to the whole line
-"ySs - add a surrounding to the whole line, place it on a new line + indent it
-"ySS - same as ySs
-
-"Visual mode
-"-----------
-"s   - in visual mode, add a surrounding
-"S   - in visual mode, add a surrounding but place text on new line + indent it
-
-"Insert mode
-"-----------
-"<CTRL-s> - in insert mode, add a surrounding
-"<CTRL-s><CTRL-s> - in insert mode, add a new line + surrounding + indent
-"<CTRL-g>s - same as <CTRL-s>
-"<CTRL-g>S - same as <CTRL-s><CTRL-s>
-
-" Repeat the last command. Press . to repeat the last command.
-Plugin 'tpope/vim-repeat'
-
-" Provides paired key mappings
-Plugin 'tpope/vim-unimpaired'
-
-" ---------------------------------------------------------------------------
 " Searching/Replacing
 " ---------------------------------------------------------------------------
+"  Show search count
+Plugin 'henrik/vim-indexed-search'
+let g:indexed_search_shortmess = 1
+
 " Smart abbreviation, Coercion, find and replace
 " abbreviations are stored in after/plugin/abolish.vim
 " :S for smart search and replace
@@ -284,10 +264,80 @@ Plugin 'mileszs/ack.vim'
 "endif
 
 " ---------------------------------------------------------------------------
+" File and Directory handling
+" ---------------------------------------------------------------------------
+" Automatically cd into the directory that the file is in
+Plugin 'airblade/vim-rooter'
+let g:rooter_silent_chdir = 1
+let g:rooter_change_directory_for_non_project_files = 'current'
+let g:rooter_patterns = ['Gruntfile.js', 'Makefile', '.git', '.git/', '.svn/', '.root', 'Rakefile', 'Gemfile', 'CHANGELOG']
+
+if has("gui_macvim")
+    " Fuzzy file opener
+    Plugin 'torbiak/probe'
+    let g:probe_ignore_files = [ 'bower_components', 'node_modules', 'vendor', 'uploads', 'log/.*', '.*\.png', '.*\.jpg' ]
+    let g:probe_max_file_cache_size = 1000
+    let g:probe_mappings = { 'accept_tab': '<enter>' }
+endif
+
+" ---------------------------------------------------------------------------
+" Status bar
+" ---------------------------------------------------------------------------
+if has("gui_running")
+
+    " Add more features to the status bar
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
+    let g:airline_theme="solarized"
+    set laststatus=2
+    set fillchars+=stl:\ ,stlnc:\
+
+    " Don't show Spell
+    let g:airline_detect_spell=0
+
+    " Don't use any separator
+    let g:airline_right_sep=''
+    let g:airline_left_sep=''
+
+    " Use shorter Mode names
+    let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+
+    " Show expandtab setting in statusline
+    let g:airline_section_y = airline#section#create(['ffenc', ' ', '%{&expandtab?"et":"noet"}'])
+
+    " enable/disable showing only non-zero hunks
+    let g:airline#extensions#hunks#non_zero_only = 1
+
+    " Whitespace setting
+    let g:airline#extensions#whitespace#mixed_indent_algo = 2 " spaces are allowed after tabs, but not in between
+    let g:airline#extensions#whitespace#trailing_format = 'tr[%s]'
+    let g:airline#extensions#whitespace#mixed_indent_format = 'm-i[%s]'
+    let g:airline#extensions#whitespace#long_format = 'long[%s]'
+    let g:airline#extensions#whitespace#mixed_indent_file_format = 'm-i-f[%s]'
+    let airline#extensions#c_like_langs = ['c', 'cpp', 'cuda', 'javascript', 'ld', 'php', 'php.wordpress' ]
+
+    " Show buffer list in status bar
+    Plugin 'bling/vim-bufferline'
+    let g:bufferline_echo = 0 " Don't echo in command bar
+
+endif
+
+" ---------------------------------------------------------------------------
 " External Applications
 " ---------------------------------------------------------------------------
 if has("gui_macvim")
-
     " Make writing Blog posts easier. Run :WriterToggle
     Plugin 'honza/writer.vim'
 
@@ -299,7 +349,7 @@ endif
 
 if has("gui_running")
     " Open browser
-    Plugin 'tyru/open-browser.vim'
+    "Plugin 'tyru/open-browser.vim'
 
     " Publish blog posts from Vim. Who needs Windows Live editor any more ;)
     Plugin 'pentie/VimRepress'
@@ -315,29 +365,8 @@ if &t_Co == 8 && $TERM !~# '^linux'
   set t_Co=16
 endif
 
-" Try different color schemes
-Plugin 'Color-Scheme-Explorer'
-
-" Color Schemes source for Unite. Browse through the different color schemes
-Plugin 'ujihisa/unite-colorscheme'
-
-" Programmer Color scheme
-Plugin 'pw'
-
-" Light ColorScheme
-Plugin 'lightdiff'
-
-" 256 color schemes
-Plugin 'Eddie.vim'
-Plugin 'desert256.vim'
-Plugin 'ciaranm/inkpot'
-Plugin '256-grayvim'
-
 " 16 color Schemes
 Plugin 'noahfrederick/vim-noctu'
-
-" GUI color Schemes
-Plugin 'noahfrederick/vim-hemisu'
 
 " Everyone is talking about this
 Plugin 'altercation/vim-colors-solarized'
@@ -352,12 +381,16 @@ else
 endif
 
 " ---------------------------------------------------------------------------
-" file type specific Bundles.
+" File type specific Bundles.
 " ---------------------------------------------------------------------------
 " They need to present before setting filetype, because of this bug https://github.com/gmarik/vundle/issues/176#issuecomment-12996848
 
 " Collection of language packs for vim
 Plugin 'sheerun/vim-polyglot'
+
+" Don't use JavaScript syntax bundled with vim-polyglot.
+" Instead use the default one that ships with vim
+let g:polyglot_disabled = ['javascript']
 
 " Zen Coding. Expands HTML abbreviations.
 Plugin 'mattn/emmet-vim'
@@ -375,33 +408,28 @@ let g:user_emmet_settings = {
 \  },
 \}
 
+" ---------------------------------------------------------------------------
+"  PHP and WordPress
+" ---------------------------------------------------------------------------
 " PHP indent. Need this only till v1.49+ goes into vim distribution
 Plugin '2072/PHP-Indenting-for-VIm'
 
-"PHP code folding
+" PHP code folding. Config are set in ftplugin/php.vim file
 Plugin 'swekaj/php-foldexpr.vim'
-
-" PHP auto docblock
-Plugin 'tobyS/vmustache' "Dependency
-Plugin 'tobyS/pdv'
-let g:pdv_template_dir = $HOME."/.vim/bundle/pdv/templates_snip"
-"nnoremap <buffer> <leader>et :call pdv#DocumentWithSnip()<CR>
 
 " PHP autocomplete
 let g:phpcomplete_parse_docblock_comments=1
 Plugin 'shawncplus/phpcomplete.vim'
 
 " WordPress
-let g:wordpress_vim_wordpress_path="/Users/sudar/dev/vvv/www/wordpress-default/"
-Plugin 'dsawardekar/wordpress.vim'
+"let g:wordpress_vim_wordpress_path="/Users/sudar/dev/vvv/www/wordpress-default/"
+"Plugin 'dsawardekar/wordpress.vim'
 
 " WordPress snippets
 Plugin 'sudar/vim-wordpress-snippets'
 
 " Add Arduino snippets
 Plugin 'sudar/vim-arduino-snippets'
-
-" JavaScript - React
 
 " ---------------------------------------------------------------------------
 " custom folder for misc stuff
@@ -535,37 +563,6 @@ set showcmd
 "Select previously pasted text for quick formatting.
 nnoremap <leader>v V`]
 
-" Function to hide all the text except for the text selected in visual mode.
-" This is great for highlighting parts of the code. Just call the function
-" again to deselect everything.
-function! ToggleSelected(visual) range
-    highlight HideSelected ctermfg=bg ctermbg=bg
-                         \ guifg=bg guibg=bg gui=none term=none cterm=none
-
-    if exists("g:toggle_selected_hide")
-        call matchdelete(g:toggle_selected_hide)
-
-        unlet g:toggle_selected_hide
-        redraw
-
-        if !a:visual
-            return
-        endif
-    endif
-
-    let [lnum1, col1] = getpos("'<")[1:2]
-    let [lnum2, col2] = getpos("'>")[1:2]
-
-    let pattern = '\%^\|\%<'.lnum1.'l\|\%<'.col1.'v\|\%>'.lnum2.'l\|\%>'.col2.'v'
-    let g:toggle_selected_hide = matchadd('HideSelected', pattern, 1000)
-
-    redraw
-endfunction
-
-" Show only selected in Visual Mode
-nmap <silent> <leader>th :cal ToggleSelected(0)<CR>
-vmap <silent> <leader>th :cal ToggleSelected(1)<CR>
-
 " ----------------------------------------------------------------------------
 " Normal Mode settings
 " ----------------------------------------------------------------------------
@@ -581,20 +578,10 @@ nmap Q gqap
 nnoremap j gj
 nnoremap k gk
 
-" Create Blank Newlines and stay in Normal mode
-nnoremap <silent> Zj o<Esc>
-nnoremap <silent> Zk O<Esc>
-
 " Map F1 key to Esc. Would be interested in those situations where you hit f1 by default
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
-
-"Move a line of text using ALT+[jk]
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " Copy previous line word by word
 imap <C-L> @@@<ESC>hhkywjl?@@@<CR>P/@@@<CR>3s
@@ -625,44 +612,29 @@ map <C-l> <C-w>l
 " ----------------------------------------------------------------------------
 " Buffer open/close
 " ----------------------------------------------------------------------------
-" Save and load folds while closing and opening files
-let g:skipview_files = [
-            \ '[EXAMPLE PLUGIN BUFFER]'
-            \ ]
-function! HasFileName()
-    if has('quickfix') && &buftype =~ 'nofile'
-        " Buffer is marked as not a file
-        return 0
-    endif
-    if empty(glob(expand('%:p')))
-        " File does not exist on disk
-        return 0
-    endif
-    if len($TEMP) && expand('%:p:h') == $TEMP
-        " We're in a temp dir
-        return 0
-    endif
-    if len($TMP) && expand('%:p:h') == $TMP
-        " Also in temp dir
-        return 0
-    endif
-    if index(g:skipview_files, expand('%')) >= 0
-        " File is in skip list
-        return 0
-    endif
-    return 1
-endfunction
-
-" Automatically cd into the directory that the file is in
-augroup cd
-	autocmd BufEnter ?* if HasFileName() | execute "chdir ".escape(expand("%:p:h"), ' ') | endif
-augroup END
-
 if has("gui_running")
     " Move cursor to last position
-	augroup movecursor
-		autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-	augroup END
+    augroup movecursor
+        autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    augroup END
+
+    " Save all buffers when focus lost, ignoring warnings,
+    " and return to normal mode.
+    " https://github.com/airblade/dotvim/blob/b97494da7b42234a7f2c16063a3afbb566967ccb/vimrc#L242-L254
+    autocmd FocusLost * nested silent! wa
+    autocmd FocusLost * if mode()[0] =~ 'i\|R' | call feedkeys("\<Esc>") | endif
+
+    " Pulse the current line
+    " https://github.com/airblade/dotvim/blob/dd5d7737e39aad5e24c1a4a8c0d115ff2ae7b488/vimrc#L294-L310
+    function! s:Pulse()
+        setlocal nocursorline
+        redraw
+        sleep 100m
+
+        setlocal cursorline
+        redraw
+    endfunction
+    autocmd FocusGained * call s:Pulse()
 endif
 
 " Close empty buffers. Copied from http://stackoverflow.com/a/6561076/24949
@@ -685,7 +657,7 @@ endfunction
 " -------- Text/Markdown -----------------------
 " Plain text files are Markdown
 augroup markdown
-	autocmd BufNewFile,BufReadPost *.txt,*.text,*.md setlocal ft=markdown
+    autocmd BufNewFile,BufReadPost *.txt,*.text,*.md setlocal ft=markdown
 augroup END
 autocmd BufNew,BufNewFile,BufRead requirements.txt setlocal ft=
 
