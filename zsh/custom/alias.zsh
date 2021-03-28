@@ -20,6 +20,9 @@ alias g='git'
 
 alias gmbrd='git branch --merged | egrep -v "(^\*|master|stage|staging|preprod|pre-prod|dev)" | xargs git branch -d'
 
+# Get the git main branch.
+alias git-main="git remote show origin | grep \"HEAD branch\" | cut -d \":\" -f 2"
+
 alias cdid='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 
 #------------------------------------------------------------------------------
