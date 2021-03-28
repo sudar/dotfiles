@@ -72,6 +72,9 @@ alias rm=rmtrash
 # Display excluded time machine paths 
 alias tmex="sudo mdfind \"com_apple_backup_excludeItem = 'com.apple.backupd'\""
 
+# Get the file mode of a file
+alias fmod="stat -f '%A %a %N'"
+
 #------------------------------------------------------------------------------
 # Docker Alias
 #------------------------------------------------------------------------------
