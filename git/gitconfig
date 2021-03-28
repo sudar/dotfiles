@@ -41,7 +41,8 @@
 	b = branch
 	br = branch
 	dfc = diff --cached
-	df = diff --word-diff
+	df = diff
+	dfw = diff --word-diff
 	show = diff-so-fancy | less --tabs=1,5 -RFX
 	subup = submodule update --init --recursive
 
@@ -58,19 +59,23 @@
 
     ph = push origin master
     pl = pull origin master
+    phm = push origin main
+    plm = pull origin main
+    pht = push origin trunk
+    plt = pull origin trunk
     phg = push github master
     plg = pull github master
     pho = push origin
-    pht = push origin master --tags
-    plt = pull origin master --tags
+    phta = push origin master --tags
+    plta = pull origin master --tags
 
     lg2 = log --oneline --decorate
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
     info = remote -v
 
 [core]
-    excludesfile = ~/Dropbox/code/dotfiles/git/gitignore
-    attributesfile = ~/Dropbox/code/dotfiles/git/git_attributes_file
+    excludesfile = ~/dev/dotfiles/git/gitignore
+    attributesfile = ~/dev/dotfiles/git/git_attributes_file
     editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 
