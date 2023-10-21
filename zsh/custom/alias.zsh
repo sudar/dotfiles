@@ -16,6 +16,9 @@ alias l='ls -CF'
 # Shorter version of frequently used commands
 #------------------------------------------------------------------------------
 
+# Github copilot cli alias
+eval "$(github-copilot-cli alias -- "$0")"
+
 alias g='git'
 
 # Delete all merged branches
