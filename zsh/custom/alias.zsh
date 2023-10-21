@@ -78,18 +78,21 @@ alias tmex="sudo mdfind \"com_apple_backup_excludeItem = 'com.apple.backupd'\""
 # Get the file mode of a file
 alias fmod="stat -f '%A %a %N'"
 
+# Open .md file as html
+alias rah='f() { pandoc $1 | lynx --stdin }; f'
+
 #------------------------------------------------------------------------------
 # Docker Alias
 #------------------------------------------------------------------------------
-alias dwp='docker-compose exec --user www-data phpfpm wp'
-alias dsh='docker-compose exec --user root phpfpm bash'
-ds() { docker stop $(docker ps -a -q); }
-alias dup="ds && docker-compose up -d"
 
 alias d='10updocker'
 alias dst='10updocker start'
 alias dsp='10updocker stop'
 alias dspa='10updocker stop all'
+
+alias dwp='10updocker wp'
+alias dsh='10updocker shell phpfpm'
+alias dlg='10updocker logs'
 
 # Setup tests
 dts() {
