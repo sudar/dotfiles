@@ -6,6 +6,7 @@
 	;Replace your own name and email address
 	name = Sudar Muthu
 	email = sudar@sudarmuthu.com
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAEAQDKOIpYnzc5kaD+8sxN1LBQO0JGXXKOhWbNua5ppb8Y5BR/AIEj4DC9kTDLeGE322AxApDoCGZUFIxqtByByfL0gPPKv88CbtQBU6SSk0G8ohR+0S61lQ2QxogxpspaxBCUkyve64hmnzhHaxHXH4HHNf34ZFmxAekd9lGOM3kkhNUO7ae8o9vTecY1NtO91RvL/KFr3DJk9ScERXZPYfxjimyOzwsbp+IImqUay4R75OkocQaTR7jDD8QFYqO+dX6UHqZaeitZwHuPTtePD7FP7PqIkJE6Vpz8q8UkozEbKv5x21R/d/UxK1uxxneztkfPMSZJCNbu/Shu7RXSlpOwsl0NT1PihOssSj+u6C7HA5MuQF8OOibv/JDZPcXLfyyHlRISfCfA9RHCaGDtezPniT5GuTui/wGW4zUfcMuRdc1iPM0oyzbn+/yGXq1oeHqEe4orcyaySNBSCh8hAAHWbrrxwxAsQ+Zq7Yle0CYIclwlt/FM9Y9EoXQfuay1VonW8lGoR74XNGsnCWy1h6/rv3yQvZswrRyfkqDrObzKJAKmFuBb8Tk45aciVx7cdkDT1FPhL9q5WCiWAeClYH//q5UqDhuNHlCqybuuS8BpujBycwBzOCMS3NjNghb/AeqzLrn9Rl5i8YbPDW5d8LelGth9sx+h1y+n7tZiF7rxT/VHQrCTmYsZGVDwg9dM8FLS1wm1Qo7tnTbR8BS+KQtRHYe6ZEFkPGh6jauhhMyBVWwfErmqDjl855plomlebEpk59XT9zVGov/L+QD9KyqybTsyWqGItH0up2kc7hpPsIISHDYlKU2JFzyPvZgcFLw0d3UEDGWywQlcvbb1Kvz0Fj01wdLYO+Yovc1JzmDCUqDFq2IM17PB8YBp/k9xOq7clQLTK0nJuMpxFMva/pPA9dQ/VnnvKtKDY1mEVk2YaDmcEB+scOi4DvxVywFtBCeoi6E9xRU3ZyEiO734uIpVypkXNRkm7Ns9MwXVcDekH3X+l8r6fyFug/aNZtNNBA+k5wMFEM3kmFzMvg6VrFW8HhB2+gg0CXFOr+fLdycp7IBJK+RbqRf34zODaT0X0SfXI/FLY9wzvoQYDxkfhB7NDg5ePzC1yV2uVel4Qr/kavr4vWIaVPFJFy5RegolgENbh8c2Pw/qmp9vFrm3DrCN7ok6r3h3WoikOWWlQFcE6kW1l1NE7jeRgBFqtgSbT1X8K0uKCBQHIxph7iN4xtvkH73U/X6mcg7gRzMd7LZf8cmkAb/ezFW2+rUJadEv95eMb+SkOr+2rSS0A2We9fWm4x/qYkcKVDeYGyDyVjiapkKkxoPc+djAx5iYt7lTOa0IJOetuArHJOnpbFbH+duR Sudar Muthu sudar@sudarmuthu.com 1369995930
 
 [color]
     diff = auto
@@ -99,8 +100,19 @@
 	autocorrect = 1
 [push]
 	default = simple
+	gpgSign = if-asked
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[init]
+	defaultBranch = main
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = /Users/sudar/.ssh/allowed_signers
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true
