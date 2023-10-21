@@ -52,18 +52,18 @@
 	phh = push origin HEAD
 
     phs = push origin staging
-    pls = pull origin staging
+    pls = pull origin staging --ff-only
     phs1 = push origin stage-10uplabs
     pls1 = pull origin stage-10uplabs
     phd = push origin develop
-    pld = pull origin develop
+    pld = pull origin develop --ff-only
 
     ph = push origin master
-    pl = pull origin master
+    pl = pull origin master --ff-only
     phm = push origin main
-    plm = pull origin main
+    plm = pull origin main --ff-only
     pht = push origin trunk
-    plt = pull origin trunk
+    plt = pull origin trunk --ff-only
     phg = push github master
     plg = pull github master
     pho = push origin
