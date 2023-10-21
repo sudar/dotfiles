@@ -1,15 +1,16 @@
 {
     "require": {
         "squizlabs/php_codesniffer": "*",
-        "laravel/installer": "*",
-        "hirak/prestissimo": "^0.3",
         "dealerdirect/phpcodesniffer-composer-installer": "*",
-		"phpcompatibility/phpcompatibility-wp": "*",
-        "sllh/composer-versions-check": "^2.0",
+        "phpcompatibility/phpcompatibility-wp": "*",
         "phpunit/phpcov": "^7.0",
-        "10up/wpsnapshots": "^1.6",
-        "wp-coding-standards/wpcs": "^2.2"
+        "wp-coding-standards/wpcs": "^2.2",
+        "10up/wpsnapshots": "^2.0",
+        "10up/phpcs-composer": "dev-master"
     },
-    "require-dev": {
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
