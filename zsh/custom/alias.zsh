@@ -64,16 +64,23 @@ alias ping='prettyping --nolegend'
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 #------------------------------------------------------------------------------
+# Time Machine commands
+#------------------------------------------------------------------------------
+
+# Display excluded time machine paths 
+alias tmex="sudo mdfind \"com_apple_backup_excludeItem = 'com.apple.backupd'\""
+
+# Remove a directory from time machine excluded paths
+alias tmrex="tmutil removeexclusion"
+
+#------------------------------------------------------------------------------
 # External commands/programs
 #------------------------------------------------------------------------------
 # Open files from command line in a new tab in macvim
 alias mvi="open -a MacVim.app $1"
 
 # move files to trash instead of deletion
-alias rm=rmtrash
-
-# Display excluded time machine paths 
-alias tmex="sudo mdfind \"com_apple_backup_excludeItem = 'com.apple.backupd'\""
+alias rmt=rmtrash
 
 # Get the file mode of a file
 alias fmod="stat -f '%A %a %N'"
