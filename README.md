@@ -44,6 +44,21 @@ It will also download files from contrib/ folder of git source for git autocompl
 
 Make sure you replace my name with your name in the `git/gitconfig` file.
 
+Importing Custom iTerm2 Profile
+-------------------------------
+
+This repo contains a custom iTerm2 profile inside the iterm2 folder that is tweaked to my taste. Feel free to use or tweak it based on your preference.
+
+To use the custom iTerm2 profile included in this repository, follow these steps:
+
+1. Open iTerm2 and navigate to `Preferences` (or press `Cmd + ,`).
+2. Go to the `Profiles` tab and click on the `Other Actions` dropdown at the bottom.
+3. Select `Import JSON Profiles...`.
+4. Browse to the `iterm2` folder in this repository and select the provided JSON profile file.
+5. Once imported, you can select the profile with the name `custom` from the list and set it as default if desired.
+
+This will apply the custom settings and appearance defined in the profile.
+
 Contributions
 ----------------
 Contributions are always welcome in the form of pull requests with explanatory comments.
