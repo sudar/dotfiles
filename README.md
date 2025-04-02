@@ -31,8 +31,7 @@ Inspiration
 ----------------
 The contents of this repo have been partly invented from scratch, partly inspired by open source projects, and partly refactored from snippets collected all over the internet. Many are attributed.
 
-Installation
-----------------
+## Installation
 
 Download or clone the entire source code from github and then run the following command.
 
@@ -44,8 +43,7 @@ It will also download files from contrib/ folder of git source for git autocompl
 
 Make sure you replace my name with your name in the `git/gitconfig` file.
 
-Importing Custom iTerm2 Profile
--------------------------------
+### Importing Custom iTerm2 Profile
 
 This repo contains a custom iTerm2 profile inside the iterm2 folder that is tweaked to my taste. Feel free to use or tweak it based on your preference.
 
@@ -58,6 +56,22 @@ To use the custom iTerm2 profile included in this repository, follow these steps
 5. Once imported, you can select the profile with the name `custom` from the list and set it as default if desired.
 
 This will apply the custom settings and appearance defined in the profile.
+
+### Installing Oh My Zsh
+
+To install Oh My Zsh, visit the [official installation guide](https://ohmyz.sh/) and follow the instructions provided there.
+
+#### Including Custom Zsh Config
+
+To include custom Zsh configurations from this repository, set the `ZSH_CUSTOM` variable in your `~/.zshrc` file to point to the custom Zsh folder in this repository. For example:
+
+```bash
+export ZSH_CUSTOM=/path/to/this/repo/zsh/custom
+```
+
+Replace `/path/to/this/repo` with the actual path to this repository on your system.
+
+After making this change, reload your shell or run `source ~/.zshrc` to apply the new configuration.
 
 Contributions
 ----------------
