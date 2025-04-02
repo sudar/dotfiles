@@ -5,11 +5,11 @@ This repo contains my config files for the following programs. Feel free to use 
 
 The following are actively maintained.
 
- - Ideavim (PhpStorm Vim plugin)
+ - zsh (with [Oh My Zsh](https://ohmyz.sh/) integration)
  - git
  - composer
- - zsh
- - iTerm2
+ - iTerm2 (Only on Mac)
+ - Ideavim (PhpStorm Vim plugin)
  - screen
  - Editline (exitrc)
  - ack (ack-grep in Ubuntu)
@@ -17,7 +17,7 @@ The following are actively maintained.
 The following are not actively maintained any more since I am not using these tools any more.
 
  - vim/macvim (Replaced it with Ideavim PhpStorm extension)
- - bash
+ - bash (replaced it with zsh)
  - Readline (inputrc)
  - sqlite
  - ctags
