@@ -9,6 +9,7 @@ The following are actively maintained.
  - git
  - composer
  - iTerm2 (Only on Mac)
+ - Homebrew (Only on Mac)
  - Ideavim (PhpStorm Vim plugin)
  - screen
  - Editline (exitrc)
@@ -70,6 +71,43 @@ export ZSH_CUSTOM=/path/to/this/repo/zsh/custom
 Replace `/path/to/this/repo` with the actual path to this repository on your system.
 
 After making this change, reload your shell or run `source ~/.zshrc` to apply the new configuration.
+
+### Installing Homebrew and Using the Brewfile
+
+#### Installing Homebrew
+Homebrew is a package manager for macOS that simplifies the installation of software. To install Homebrew, visit the [official installation guide](https://brew.sh/) and follow the instructions provided there.
+
+#### Installing Packages from the Brewfile
+
+This repository includes a `Brewfile` that lists the Homebrew packages I use. To install these packages as a bundle, run:
+
+```bash
+brew bundle --file path/to/this/repo/brew/Brewfile
+```
+
+Replace `path/to/this/repo` with the actual path to this repository on your system.
+
+This command will read the `Brewfile` and install all the specified packages, casks, and taps.
+
+If you want to update the installed packages later, you can run:
+
+```bash
+brew bundle --file path/to/this/repo/brew/Brewfile --force
+```
+
+#### Adding New Packages to the Brewfile
+
+If you manually install a new package using Homebrew and want to add it to the `Brewfile`, you can update the file by running:
+
+```bash
+brew bundle dump --file path/to/this/repo/brew/Brewfile --force
+```
+
+This will regenerate the `Brewfile` with all currently installed packages, ensuring your changes are captured.
+
+This ensures your system stays in sync with the `Brewfile`.
+
+For more information about Homebrew and its features, visit the [official documentation](https://brew.sh/).
 
 Contributions
 ----------------

@@ -1,0 +1,11 @@
+tap "deskflow/tap"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
+# GitHub command-line tool
+brew "gh"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.13"
+# Mouse and keyboard sharing utility
+cask "deskflow"
