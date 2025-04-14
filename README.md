@@ -23,9 +23,7 @@ The following are not actively maintained any more since I am not using these to
  - ctags
  - octave
 
-Earlier I was using the above dotfiles on a Mac as well as a Ubuntu desktop.
-
-These days I am using it mostly on my Mac alone running zsh shell.
+Earlier I was using the above dotfiles on a Mac and a Ubuntu desktop. But these days I am mostly using it on a Mac and a Windows machine with WSL running ZSH shell.
 
 Inspiration
 ----------------
