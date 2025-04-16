@@ -92,7 +92,7 @@ This command will read the `Brewfile` and install all the specified packages, ca
 If you want to update the installed packages later, you can run:
 
 ```bash
-brew bundle --file path/to/this/repo/brew/Brewfile --force
+brew bundle dump --describe --file path/to/this/repo/brew/Brewfile --force
 ```
 
 #### Adding New Packages to the Brewfile
