@@ -10,6 +10,12 @@
 # Shorter alias for brew
 alias b='brew'
 
+# List only the packages installed by brew
+alias bli='brew list --installed-on-request'
+
+# List available package updates
+alias bupl='brew update && brew outdated'
+
 # Update and upgrade brew
 alias bupg='brew update && brew upgrade'
 
@@ -18,6 +24,3 @@ alias bbg='brew bundle dump --describe --force --file=~/dev/dotefiles/brew/Brewf
 
 # Install the packages listed in the brewfile
 alias bbi='brew bundle --file=~/dev/dotefiles/brew/Brewfile'
-
-# List only the packages installed by brew
-alias bli='brew list --installed-on-request'
