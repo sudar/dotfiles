@@ -5,7 +5,15 @@ brew "bat"
 brew "diff-so-fancy"
 # GitHub command-line tool
 brew "gh"
+# Platform built on V8 to build network applications
+brew "node"
+# General-purpose scripting language
+brew "php"
+# Wrapper to colorize and simplify ping's output
+brew "prettyping"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
+# Move files and directories to the trash
+brew "rmtrash"
 # Mouse and keyboard sharing utility
 cask "deskflow"
