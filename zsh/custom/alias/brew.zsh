@@ -20,7 +20,7 @@ alias bupl='brew update && brew outdated'
 alias bupg='brew update && brew upgrade'
 
 # Generate the brewfile that contains all the installed packages
-alias bbg='brew bundle dump --describe --force --file=~/dev/dotefiles/brew/Brewfile'
+alias bbg='brew bundle dump --describe --force --file=$PWD/Brewfile'
 
 # Install the packages listed in the brewfile
-alias bbi='brew bundle --file=~/dev/dotefiles/brew/Brewfile'
+alias bbi='brew bundle --file=$PWD/Brewfile'
