@@ -1,14 +1,18 @@
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+##############################################################################
+# Path specific custom configuration for zsh
+# Feel free to use the entire file or parts of it.
+#
+# Author: Sudar (https://sudarmuthu.com)
+# Repo: https://github.com/sudar/dotfiles
+#
+##############################################################################
 
-export PATH="$PATH:/usr/local/opt/gettext/bin"
-export PATH="$PATH:/Users/sudar/Applications/Arduino-1.0.6.app/Contents/Resources/Java/hardware/tools/avr/bin/"
-export PATH="$PATH:/Users/sudar/Library/Python/2.7/bin"
-export PATH="$PATH:/Users/sudar/.composer/vendor/bin"
-export PATH="$PATH:/Users/sudar/Dropbox/code/dotfiles/specific/bin"
-export PATH="$PATH:/Users/sudar/Dropbox/code/wp/wp-plugin-in-github"
-export PATH="$PATH:/Users/sudar/dev/vvv/www/wp-cli/bin"
-export PATH="$PATH:/Users/sudar/Library/Android/sdk/platform-tools"
+# Add WordPress plugin GitHub tools to PATH
+# This includes commands for managing WordPress plugins in GitHub
+# https://github.com/sudar/wp-plugin-in-github
+export PATH="$PATH:$HOME/dev/tools/wp-plugin-in-github"
 
-export MANPATH="/usr/local/man:$MANPATH"
+# Add WordPress maintenance scripts to PATH
+# This includes various scripts for WordPress site maintenance and management
+# https://github.com/sudar/scripts-for-wp-maintanence
+export PATH="$PATH:$HOME/dev/tools/scripts-for-wp-maintanence"
