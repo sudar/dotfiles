@@ -74,14 +74,14 @@
     plta = pull origin master --tags
 
     lg2 = log --oneline --decorate
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+    lg = log --graph --pretty=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --abbrev-commit
     info = remote -v
 
 [core]
     excludesfile = ~/dev/dotfiles/git/gitignore
     attributesfile = ~/dev/dotfiles/git/git_attributes_file
     editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [url "git://github.com/"]
 	insteadOf = "gh://"
