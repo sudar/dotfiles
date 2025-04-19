@@ -9,16 +9,6 @@ _sed() {
 	sed -E "$1" $2 > $2.tmp && mv $2.tmp $2
 }
 
-_sed "/^additional_files=/s#\"[^\"]*\"#\"$PWD\"#g" $PWD/bash/bashrc
-
-# Bash files
-ln -sv $PWD/bash/bashrc ~/.bashrc
-ln -sv $PWD/bash/bash_profile ~/.bash_profile
-
-if [ "$TERM_PROGRAM" == "Apple_Terminal" ]; then
-    ln -sv $PWD/bash/profile ~/.profile
-fi
-
 # screen files
 ln -sv $PWD/screen/screenrc ~/.screenrc
 
@@ -26,19 +16,14 @@ ln -sv $PWD/screen/screenrc ~/.screenrc
 ln -sv $PWD/sqlite/sqliterc ~/.sqliterc
 
 # inputrc. For programs that use readline library
+# Used by programs like bash, mysql client etc for command line editing and key bindings
 ln -sv $PWD/bash/inputrc ~/.inputrc
 
-# editrc. For programs that use editline library
+# editrc. For programs that use editline library (like sqlite3 and psql) to provide command line editing and history
 ln -sv $PWD/bash/editrc ~/.editrc
 
 # ackrc. For ack
 ln -sv $PWD/ack/ackrc ~/.ackrc
-
-# .ctags. For ctags
-ln -sv $PWD/ctags/ctags-config ~/.ctags
-
-# Octave startup file
-ln -sv $PWD/octave/octaverc ~/.octaverc
 
 # git files
 ln -sv $PWD/git/gitconfig ~/.gitconfig       # You might have to adjust some paths in this file

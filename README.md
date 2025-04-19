@@ -10,17 +10,17 @@ The following are actively maintained.
  - composer
  - iTerm2 (Only on Mac)
  - Homebrew (Only on Mac)
- - Ideavim (PhpStorm Vim plugin)
+ - sqlite
  - screen
  - Editline (exitrc)
+ - Readline (inputrc)
  - ack (ack-grep in Ubuntu)
 
 The following are not actively maintained any more since I am not using these tools any more.
 
  - vim/macvim (Replaced it with Ideavim PhpStorm extension)
+ - Ideavim (PhpStorm Vim plugin)
  - bash (replaced it with zsh)
- - Readline (inputrc)
- - sqlite
  - ctags
  - octave
 
