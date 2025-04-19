@@ -42,18 +42,3 @@ ln -sv $PWD/octave/octaverc ~/.octaverc
 
 # git files
 ln -sv $PWD/git/gitconfig ~/.gitconfig       # You might have to adjust some paths in this file
-
-# vim files
-ln -sv $PWD/vim/vimrc ~/.vimrc
-ln -sv $PWD/vim/vim ~/.vim
-ln -sv $PWD/specific/vimpressrc ~/.vimpressrc # put all your private stuff in a /specific folder
-
-# Install vundle
-git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-vim +PluginInstall! +qall
-
-# ignore changes to the yankring history file
-git update-index --assume-unchanged vim/vim/yankring/yankring_history_v2.txt
-
-# install and setup scripts from git contrib
-source get-git-contrib.sh

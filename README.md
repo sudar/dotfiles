@@ -38,8 +38,6 @@ Download or clone the entire source code from github and then run the following 
 
 This command will create symbolic references in the home directory. If the config files exists already, then they are not overwritten.
 
-It will also download files from contrib/ folder of git source for git autocomplete and git prompt
-
 Make sure you replace my name with your name in the `git/gitconfig` file.
 
 ### Importing Custom iTerm2 Profile

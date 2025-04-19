@@ -34,6 +34,9 @@
     changed = green
     untracked = cyan
 
+[init]
+	defaultBranch = main
+
 [alias]
     ci = commit
     co = checkout
@@ -78,10 +81,7 @@
     excludesfile = ~/dev/dotfiles/git/gitignore
     attributesfile = ~/dev/dotfiles/git/git_attributes_file
     editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RFX
-
-[pager]
-    diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+	pager = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
 
 [url "git://github.com/"]
 	insteadOf = "gh://"
@@ -98,21 +98,21 @@
 
 [help]
 	autocorrect = 1
+
+[commit]
+	gpgSign = true
+
+[tag]
+	gpgSign = true
+
 [push]
 	default = simple
 	gpgSign = if-asked
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[init]
-	defaultBranch = main
+
 [gpg]
 	format = ssh
+
 [gpg "ssh"]
+	# This file contains a list of public keys that are allowed to sign commits and tags
+	# Format: <email> <key-type> <key>
 	allowedSignersFile = /Users/sudar/.ssh/allowed_signers
-[commit]
-	gpgSign = true
-[tag]
-	gpgSign = true
