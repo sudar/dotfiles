@@ -1,19 +1,31 @@
 tap "deskflow/tap"
+# Search tool like grep, but optimized for programmers
+brew "ack"
+# Automatically exclude development dependencies from Time Machine backups
+brew "asimov", args: ["HEAD"]
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# General-purpose scripting language
+brew "php"
+# Dependency Manager for PHP
+brew "composer"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
+# Perl lib for reading and writing EXIF metadata
+brew "exiftool"
+# Play, record, convert, and stream audio and video
+brew "ffmpeg"
 # GitHub command-line tool
 brew "gh"
 # Platform built on V8 to build network applications
 brew "node"
-# General-purpose scripting language
-brew "php"
 # Wrapper to colorize and simplify ping's output
 brew "prettyping"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.13"
 # Move files and directories to the trash
 brew "rmtrash"
+# Version control system designed to be a better CVS
+brew "subversion"
 # Mouse and keyboard sharing utility
 cask "deskflow"
