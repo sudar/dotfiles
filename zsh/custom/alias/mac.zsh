@@ -15,14 +15,17 @@ alias cdic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 #------------------------------------------------------------------------------
 
 # Display excluded time machine paths 
-alias tmex="sudo mdfind \"com_apple_backup_excludeItem = 'com.apple.backupd'\""
+alias tmexl="sudo mdfind \"com_apple_backup_excludeItem = 'com.apple.backupd'\""
+
+# Add a directory to time machine excluded paths
+alias tmexa="sudo tmutil addexclusion -p"
 
 # Remove a directory from time machine excluded paths
-alias tmrex="tmutil removeexclusion"
+alias tmexr="tmutil removeexclusion"
 
 #------------------------------------------------------------------------------
 # External commands/programs
 #------------------------------------------------------------------------------
 
 # move files to trash instead of deletion. Requires rmttrash.
-alias rmt=rmtrash 
+alias rm=rmtrash 
