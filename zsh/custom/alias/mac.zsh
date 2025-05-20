@@ -24,6 +24,26 @@ alias tmexa="sudo tmutil addexclusion -p"
 alias tmexr="tmutil removeexclusion"
 
 #------------------------------------------------------------------------------
+# Disk related commands
+#------------------------------------------------------------------------------
+# Check if fsck (file system check) is running on any disk
+# Use this command when an external disk is not listed after being connected
+alias diskcheck="ps -ef | grep fsck | grep -v grep"
+
+# List all available disks
+alias disks="diskutil list"
+
+#------------------------------------------------------------------------------
+# Hide/unhide files in Finder
+#------------------------------------------------------------------------------
+
+# Hide files in Finder
+alias hide="chflags hidden"
+
+# Unhide files in Finder
+alias unhide="chflags nohidden"
+
+#------------------------------------------------------------------------------
 # External commands/programs
 #------------------------------------------------------------------------------
 
