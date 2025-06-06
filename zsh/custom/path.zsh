@@ -7,6 +7,10 @@
 #
 ##############################################################################
 
+# Add Python's bin directory to PATH
+# This allows you to use python, pip, etc. in addition to python3, pip3, etc.
+export PATH="$PATH:$(brew --prefix python)/libexec/bin"
+
 # Add WordPress plugin GitHub tools to PATH
 # This includes commands for managing WordPress plugins in GitHub
 # https://github.com/sudar/wp-plugin-in-github
