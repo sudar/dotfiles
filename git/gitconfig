@@ -115,4 +115,4 @@
 [gpg "ssh"]
 	# This file contains a list of public keys that are allowed to sign commits and tags
 	# Format: <email> <key-type> <key>
-	allowedSignersFile = /Users/sudar/.ssh/allowed_signers
+	allowedSignersFile = ~/.ssh/allowed_signers
