@@ -7,6 +7,11 @@
 #
 ##############################################################################
 
+# Load this file only in Mac
+if [[ `uname` != "Drawin" ]]; then
+        return 0
+fi
+
 # Shorter alias for brew
 alias b='brew'
 

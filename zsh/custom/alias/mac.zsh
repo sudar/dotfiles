@@ -7,6 +7,11 @@
 #
 ##############################################################################
 
+# Load this file only in Mac
+if [[ `uname` != "Drawin" ]]; then
+        return 0
+fi
+
 # Quick access to iCloud Drive
 alias cdic='cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/'
 
