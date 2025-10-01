@@ -49,6 +49,18 @@ alias hide="chflags hidden"
 alias unhide="chflags nohidden"
 
 #------------------------------------------------------------------------------
+# Enhance built-in commands
+#------------------------------------------------------------------------------
+# Use bat instead of cat. Need to install `bat` via brew.
+alias cat='bat'
+
+# Use prettyping instead of just ping. Need to install `prettyping` via brew.
+alias ping='prettyping --nolegend'
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+#------------------------------------------------------------------------------
 # External commands/programs
 #------------------------------------------------------------------------------
 

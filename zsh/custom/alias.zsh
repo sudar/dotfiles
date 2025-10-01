@@ -38,21 +38,8 @@ alias delsvn='find . -name ".svn" -type d -exec rm -rf {} \;'
 # Make the output more human readable
 #------------------------------------------------------------------------------
 
-alias free="free -m"
 alias df="df -h"
 alias du="du -h"
-
-#------------------------------------------------------------------------------
-# Enhance built-in commands
-#------------------------------------------------------------------------------
-# Use bat instead of cat
-alias cat='bat'
-
-# Use prettyping instead of just ping
-alias ping='prettyping --nolegend'
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 #------------------------------------------------------------------------------
 # External commands/programs
