@@ -1,11 +1,16 @@
 ##############################################################################
-# Path specific custom configuration for zsh
+# Mac specific path custom configuration for zsh
 # Feel free to use the entire file or parts of it.
 #
 # Author: Sudar (https://sudarmuthu.com)
 # Repo: https://github.com/sudar/dotfiles
 #
 ##############################################################################
+
+# Load this file only in Mac
+if [[ `uname` != "Drawin" ]]; then
+	return 0
+fi
 
 # Add Python's bin directory to PATH
 # This allows you to use python, pip, etc. in addition to python3, pip3, etc.
