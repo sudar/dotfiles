@@ -27,3 +27,6 @@ ln -sv $PWD/ack/ackrc ~/.ackrc
 
 # git files
 ln -sv $PWD/git/gitconfig ~/.gitconfig       # You might have to adjust some paths in this file
+
+# conda
+ln -sv $PWD/conda/condarc ~/.condarc

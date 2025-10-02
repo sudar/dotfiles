@@ -8,6 +8,7 @@ The following are actively maintained.
  - zsh (with [Oh My Zsh](https://ohmyz.sh/) integration)
  - git
  - composer
+ - (mini)conda
  - iTerm2 (Only on Mac)
  - Homebrew (Only on Mac)
  - sqlite
