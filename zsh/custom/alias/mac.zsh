@@ -48,6 +48,9 @@ alias hide="chflags hidden"
 # Unhide files in Finder
 alias unhide="chflags nohidden"
 
+# Quarantine a file downloaded from internet
+alias quar="xattr -d com.apple.quarantine"
+
 #------------------------------------------------------------------------------
 # Enhance built-in commands
 #------------------------------------------------------------------------------
