@@ -8,7 +8,7 @@
 ##############################################################################
 
 # Load this file only in Mac
-if [[ `uname` != "Drawin" ]]; then
+if [[ `uname` != "Darwin" ]]; then
 	return 0
 fi
 
